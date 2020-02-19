@@ -1,7 +1,7 @@
 \section{Numeryczna reprezentacja liczb całkowitych}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Reprezentacja stałopozycyjna (integer)}
-	\textcolor{blue}{Informacje ogólne:}
+
 	\begin{itemize}
 		\item np. kod U2: na d+1 bitach reprezentowane dokładnie liczby
 			\begin{center}
@@ -9,8 +9,9 @@
    					 L \in [-2^d, 2^d-1]
     			\]
 			\end{center}
+			Uzupełnieniem dwójkowym liczby x zapisanej za pomocą n bitów nazywamy liczbę równą $2^n–x_{(U2)}$
 		\item gdy argumenty i wynik reprezentowane stałopozycyjnie, to działania na nich: $+$, $-$, $\cdot$, $/ (div)$, $/ (mod)$ są wykonywane dokładnie
-		\item kompromis pomiędzy zakresem, a precyzją
+	
 		
 	\end{itemize}
      
@@ -26,10 +27,10 @@
     	\item libfixmath - implementacja biblioteki stałoprzecinkowej w C
     \end{itemize}
     $\newline$
-    \textbf{Zalety i wady:}
-    \begin{itemize}
-    	\item (+) szybkość i prostota
-    	\item (-) mała skalowalność
-    \end{itemize}
+%    \textbf{Zalety i wady:}
+%   \begin{itemize}
+%    	\item (+) szybkość i prostota
+%    	\item (-) mała skalowalność
+%    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%

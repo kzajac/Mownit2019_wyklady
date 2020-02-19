@@ -7,23 +7,29 @@
     \begin{center}
     \includegraphics[width=0.8\linewidth]{img/2/2_1_axis}
     \end{center}
-    System z powyższego rysunku: $\frac{5}{4} + \frac{3}{8} \notin F$ - ze względu na ,,gęstość'' elementów $F$.
+    Problemy: \newline
+    
+    $\frac{5}{4} + \frac{3}{8} \notin F$ - ze względu na ,,gęstość'' elementów $F$.\newline
+    
+     $\frac{7}{2} + \frac{7}{2} \notin F$ - {\it overflow (nadmiar)} 
 \end{frame}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Operacje zmiennopozycyjne}
-    $\frac{7}{2} + \frac{7}{2} \notin F$ - {\it overflow}
-    \vspace{.5cm}
-
-    W większości komputerów: $x \oplus y = fl(x + y)$ dla $x + y$ z zakresu $F$
-
+    
+    Oznaczamy:
     $\oplus$ - dodawanie zmiennopozycyjne, \newline
-    $fl(x)$ - reprezentacja zmiennoprzecinkowa 
+    $fl(x)$ - reprezentacja zmiennoprzecinkowa \newline
+    
+    działania arytmetyczne na  reprezentacjach liczb rzeczywistych muszą być implementowane tak, jakby działanie było wykonywane dokładnie i tylko wynik reprezentowano w zbiorze liczb maszynowych:\newline
+    
+    $x \oplus y = fl(x + y)$ dla $x + y$ z zakresu $F$\newline
 
+   Problem: jesli dodajemy liczby odległe od siebie, to ta mniejsza może "zniknąć", mimo, że przed dodawaniem była reprezentowalna 
     \[
     a + b = 2^{c_a} \cdot \left( m_a + m_b \cdot 2^{-(c_a-c_b)} \right) \Rightarrow
     \left\{ 
         \begin{array}{ll}
-            |b| \le 1/2 \cdot 2^{-t} \cdot |a| \\
+            dla |b| \le 1/2 \cdot 2^{-t} \cdot |a| \\
             fl(a + b) = a
         \end{array}
     \right.
@@ -47,7 +53,7 @@
 \begin{frame}{Operacje zmiennopozycyjne}
     Ogólnie:
     \[
-    fl(a \square b) = rd(a \square b) = (a \square b) \cdot (1 + \varepsilon)
+    fl(a \square b) = \overbrace{rd(a \square b)}^{\text{inne oznaczenie}} = (a \square b) \cdot (1 + \varepsilon)
     \] \[
     \varepsilon = \varepsilon(a, b, \square), \varepsilon \le \beta^{1-t}
     \] \[
@@ -61,6 +67,6 @@
         Wartość maszynowego $\epsilon$ określa precyzję obliczeń numerycznych wykonywanych na liczbach zmiennoprzecinkowych.
     \end{block}
 
-    Zwykle wystarcza znajomość $\varepsilon' = 2^k \cdot \varepsilon, k \approx 1, 2, 3, ...$ $\rightarrow$ fragment progr. $\varepsilon$
+    Zwykle wystarcza znajomość $\varepsilon' = 2^k \cdot \varepsilon, k \approx 1, 2, 3, ...$ 
 \end{frame}
 %%%%%%%%%%%%%%%%

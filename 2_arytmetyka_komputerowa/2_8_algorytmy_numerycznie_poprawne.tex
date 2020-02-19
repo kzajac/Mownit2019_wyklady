@@ -1,14 +1,4 @@
 $  $\section{Algorytmy numerycznie poprawne}
-%%%%%%%%%%%%%%%%
-\begin{frame}{Algorytmy numerycznie poprawne}
-	Ograniczenia:
-    \begin{itemize}
-    	\item dane - {\it zaburzone}
-    	\item wyniki - {\it zaburzone}
-    \end{itemize}
-    stąd: błędy reprezentacji
-\end{frame}
-%%%%%%%%%%%%%%%%
 \begin{frame}{Algorytmy numerycznie poprawne}
 	\begin{block}{Definicja}
 		{\bf Algorytmy numerycznie poprawne} - takie, które dają rozwiązania będące nieco zaburzonym dokładnym rozwiązaniem zadania o nieco {\it zaburzonych} danych. Są to algorytmy najwyższej jakości.
@@ -94,18 +84,24 @@ $  $\section{Algorytmy numerycznie poprawne}
 \end{frame}
 %%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Algorytmy numerycznie poprawne - przykład}
-	\textbf{Analiza poprawności numerycznej:}
-	\begin{exampleblock}{Przykład 1}
-    	{\bf Interpretacja (dowolność)}
+	\begin{exampleblock}{Analiza poprawności numerycznej dla przykładu 1}
+	  Istnieją takie $\tilde{a}$ i $\tilde{b}$, dla których da się wskazać $K_d$ i $K_w$.
+      Na przykład:
         \begin{itemize}
-        	\item dokładny wynik: $K_w = 0$
-            \item dla zaburzonych danych:
+            \item dla $\tilde{a}$ takiego że $\tilde{a}_i= a_i\cdot(1+\alpha_i)$
+             \item dla $\tilde{b}$ takiego że $\tilde{b}_i= b_i\cdot(1+\beta_i) \cdot (1 + \varepsilon_i)
+                    \cdot \prod_{j=i}^{n} (1 + \delta_j)$
+        	\item mamy dokładny wynik: $K_w = 0$
+            \item ale dla zaburzonych danych $\tilde{a}$ i $\tilde{b}$ spełniających warunki :
             	\begin{addmargin}[1cm]{0cm}
             		$|| \vec{a} - \tilde{a} || \le \beta^{1-t} \cdot || \vec{a} \ ||$ \hspace{.5cm} $(K_{d_1} = 1)$\\
             		$|| \vec{b} - \tilde{b} || \le (n + 1) \cdot \beta^{1-t} \cdot || \vec{b} ||$ \hspace{.5cm} $(K_{d_2} = n+1)$
             	\end{addmargin}
         \end{itemize}
-        {\bf Uwaga:} pominięcie błędów reprezentacji danych $\equiv$ zmniejszenie $K_d$ o 1.
+        Tutaj skutki błędów zaokrągleń  interpretujemy jako skutki takiego zaburzenia danych, że otrzymany wynik jest dla tych zaburzonych danych dokładny.\\
+        Małe zaburzenia oznaczają, że algorytm jest poprawny numerycznie.
 	\end{exampleblock}
 \end{frame}
+
+
 %%%%%%%%%%%%%%%%

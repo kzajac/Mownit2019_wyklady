@@ -30,7 +30,7 @@
     \centering
     \begin{tabular}{r c}
     	ogólnie: & \(
-            K(x) = \lim_{x^{*} \to x} \frac{
+            cond(f(x)) = \lim_{x^{*} \to x} \frac{
                 \left| \frac{
                     f(x) - f(x^{*})
                 }{
@@ -50,7 +50,7 @@
         \)\\
         
         $f(x) = \sqrt{x}$: & \(
-        	K(x) = \left| \frac{
+        	cond(f(x)) = \left| \frac{
                 x \cdot \frac{1}{2 \sqrt{x}}
             }{
                 \sqrt{x}
@@ -58,7 +58,7 @@
         \) \\
         
         $f(x) = \frac{1}{1 - x}$: & \(
-            K(x) = \frac{ \left|
+            cond(f(x)) = \frac{ \left|
                 x \cdot \frac{1}{
                     (1-x)^2
                 } \right| 
@@ -67,7 +67,7 @@
             \right| } = \frac{x}{1 - x}
           	\) \\
             & \(
-            x = (1 + 10^{-6}) \Rightarrow K \approx 10^6 \hspace{.5cm} (!)
+            x = (1 + 10^{-6}) \Rightarrow cond(f(x)) \approx 10^6 \hspace{.5cm} (!)
             \)
     \end{tabular}
 \end{frame}

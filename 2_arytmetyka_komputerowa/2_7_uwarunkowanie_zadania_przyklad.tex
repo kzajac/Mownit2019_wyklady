@@ -5,35 +5,52 @@
     	\[
         	(x-2)^2 = 10^{-6} \Rightarrow x_\text{1, 2} = 2 \mp 10^{-3}
         \]
-        {\bf ALE:} zmiana stałej o $10^{-6} \rightarrow$ zmiana $x_\text{1, 2}$ o $10^{-3}$!
+        {\bf ALE:} zmiana stałej o $10^{-6} \rightarrow$ to zmiana $x_\text{1, 2}$ o $10^{-3}$!
     \end{exampleblock}
 \end{frame}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Uwarunkowanie zadania - przykład}
 	\begin{exampleblock}{Przykład 2 - Wilkinson (1963)}
-    
+    Szukamy zer wielomianu:
     	\vspace{.1cm}
         \(
         	p(x) = (x-1)(x-2) \cdot ... \cdot (x-19)(x-20) = x^{20} - 210x^{19} + ...
         \) \vspace{.2cm}
         
-        {\bf założenia:} $-210 \to -210 +2^{-23}$ (tylko!) $(\approx 1.19 \cdot 10^{-7})$ \\
-        {\bf realizacja:} szukanie zer z $\beta = 2, t = 90: p(x) + 2^{-23} \cdot x^{19} = 0$ \\
+        przy zaburzeniu tylko jednego współczynnika (przy 
+        $x^{19}$ ): 
+        $-210 \to -210 +2^{-23}$  $(2^{-23}\approx 1.19 \cdot 10^{-7})$ \\
+        szukamy tak naprawdę zer  dla
+        \vspace{.1cm}
+        \(
+        p(x) + 2^{-23} \cdot x^{19}$ 
+         \) \vspace{.2cm}
+         
         {\bf wynik:} \(
             \left.
             	\begin{array}{ll}
                 10 \to 10.095 ... \mp 0.643...i \\
                 ... \\
-                19 \to 19.502 ... \mp 1.940 .
+                19 \to 19.502 ... \mp 1.940...i .
                 \end{array}
             \right\rbrace \text{10 pierw. zespolonych!}
         \)
+        
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Uwarunkowanie zadania - przykład}
+	\begin{exampleblock}{Przykład 2 - Wilkinson (1963)}
+    
+    
         {\bf powód:} czułość zadania na zaburzenia danych! \\
         
         \centering
         \(
             p(x,\alpha) = x^{20} - \alpha \cdot x^{19} + ... = 0
         \) \\ \vspace{.1cm}
+         Jak zmienia się miejsce zerowe $x_i$ w stosunku do zmian współczynnika $\alpha$ ?\\
+         
         \(
             \left.
             \frac{ 
@@ -43,7 +60,10 @@
             } 
             \right|_{x=x_i=i}
             \leftarrow \text{miara czułości}
-        \) \\ \vspace{.1cm}
+        \) \\ \vspace{.1cm}\\
+        
+       
+           Korzystam z wzoru na pochodną zupełną:\\
         \(
         	\frac{
             	\partial p(x,\alpha)
@@ -58,7 +78,19 @@
             }{
             	\partial \alpha
             } = 0
-        \)
+        \)\\
+        
+        \(
+         \frac{
+                  \partial x
+              }{
+                  \partial \alpha
+              } = - \frac{
+                  \frac{\partial p}{\partial \alpha}
+              }{
+                 \frac{\partial p}{\partial x}
+              }
+              \)
 	\end{exampleblock}
 \end{frame}
 %%%%%%%%%%%%%%%%
@@ -72,11 +104,11 @@
                   \partial x
               }{
                   \partial \alpha
-              } = \frac{
+              } = - \frac{
                   \frac{\partial p}{\partial \alpha}
               }{
-                  \frac{\partial p}{\partial x}
-              } = \frac{
+                 \frac{\partial p}{\partial x}
+              } =  \frac{
                   x^{19}
               }{
                   \sum_{i=1}^{20} \prod_{j=1, j \neq i}^{20} (x-j)
@@ -85,10 +117,10 @@
           \[ 
               \left.
                   \frac{\partial x}{\partial \alpha}
-              \right|_{x=1} = \frac{
+              \right|_{x=i} = \frac{
                   i^{19}
               }{
-                  \prod_{j=1, j \neq i}^{20}
+                  \prod_{j=1, j \neq i}^{20}(i-j)
               }, i = 1, 2, ..., 20
           \]
     	\end{column}

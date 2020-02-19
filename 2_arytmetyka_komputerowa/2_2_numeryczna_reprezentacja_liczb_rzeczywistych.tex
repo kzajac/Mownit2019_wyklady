@@ -37,8 +37,8 @@
     \textcolor{blue}{Wyjaśnienie:}
     \begin{itemize}
     	\item 2 $\rightarrow$ znak liczby $\pm$
-    	\item  $(\beta - 1)$ $\rightarrow$ podstawa, na pierwszym bicie nie ma zera
-    	\item $\beta^{t-1}$ $\rightarrow$ pozostałe t-1 bitów z przedziału ${0,\dots,\beta-1}$
+    	\item  $(\beta - 1)$ $\rightarrow$ liczba możliwości na pierwszym bicie mantysy  (o jeden mniej, bo unormowanie -- nie ma zera)
+    	\item $\beta^{t-1}$ $\rightarrow$ liczba możliwości na pozostałych  t-1 bitach 
     	\item $(U - L + 1)$ $\rightarrow$ zakres wykładnika
     	\item 1 $\rightarrow$ zero
     \end{itemize}
@@ -49,17 +49,17 @@
     Elementy $F$ nie są równomiernie rozłożone na osi:
     $\beta = 2, t = 3, L = -1, U = 2$ \hspace{5mm} (33 elementy):
     \begin{center}
-    \includegraphics[width=0.8\linewidth]{img/2/2_1_axis}
+    \includegraphics[width=0.7\linewidth]{img/2/2_1_axis}
     \end{center}
 
     Każdy element $F$ reprezentuje cały przedział liczb $\mathbb{R}$\newline 
     $x$ - l. rzeczywista $\in$ zakresu $F$,\newline
     $fl(x)$ - reprezentacja zmiennoprzecinkowa liczby $x$
-
+    
     \[
     \left| \frac{fl(x) - x}{x} \right| \le \frac{1}{2} \beta^{1-t}
     \]
-
+  $\beta^{1-t}$ - oszacowanie względnej dokładności arytmetyki
     \begin{flushright}
         {\it Zadanie:} sprawdzić
     \end{flushright}
@@ -83,7 +83,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%%
 \subsection{Dokładność reprezentacji zmiennoprzecinkowej}
-\begin{frame}{Reprezentacja zmiennoprzecinkowa (float)}
+\begin{frame}{Bład reprezentacji zmiennoprzecinkowej}
     \[
     x = s \cdot 2^c \cdot m
     \]
@@ -103,16 +103,17 @@
 
     \begin{block}{Reprezentacja mantysy}
         $$
-        m_t = \underbrace{\sum_{i=1}^{t}e_i \cdot 2^{-i}}_\text{t-bitowa mantysa} \ + \underbrace{e_{t+1} \cdot 2^{-t}}_\text{zaokrąglenie}
+        m_t = \underbrace{\sum_{i=1}^{t}e_i \cdot 2^{-i}}_\text{t-bitowa mantysa} \ + \underbrace{e_{t+1} \cdot 2^{-t}}_\text{zaokrąglenie dodajemy do ostatniego bitu reprezentacji}
         $$
     \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%
-\begin{frame}{Reprezentacja zmiennoprzecinkowa (float)}
-    a)Błąd reprezentacji zmiennoprzecinkowej - zaokrąglenie w dół\newline
+\begin{frame}{Bład reprezentacji zmiennoprzecinkowej }
+    a)Jeśli liczba jest bliżej do swojego  zaokrąglenia w dół to po prostu pomijamy resztę bitów  i reprezentacja jest równa : \newline
 	$$
 		fl(x)^{-} = \pm \sum_{i=1}^{t}{\frac{d_{i}}{\beta_{i}}}\ \cdot \  \beta^e
 	$$
+	Najdalsza "końcówka" takiej liczby to:
     \centering
     \begin{tabular}{|*{5}{p{.75cm}|}}
         \hline
@@ -120,20 +121,21 @@
           & 0   & 1   & ... & 1 \\ \hline
     \end{tabular}
     \[
-    m = \underbrace{\sum_{i=1}^{t} e_i \cdot 2^{-i} + 0 \cdot 2^{-(t+1)}}_{m_t} +
+    m = \underbrace{\sum_{i=1}^{t} e_i \cdot 2^{-i} + 0 \cdot 2^{-(t+1)}}_{\textrm{to samo co } m_t=\sum_{i=1}^{t} e_i \cdot 2^{-i} + 0 \cdot 2^{-t}} +
         \underbrace{\sum_{i=t+2}^{\infty} 1 \cdot 2^{-i}}_{
-            \frac{1}{2^{t+1}} = 2^{-(t+1)}
+            \textrm{suma ciagu: } \frac{1}{2^{t+1}} = 2^{-(t+1)}
         }
     \] \[
     m - m_t = 2^{-(t+1)}
     \]
 \end{frame}
 %%%%%%%%%%%%%%%%
-\begin{frame}{Reprezentacja zmiennoprzecinkowa (float)}
-    b)Błąd reprezentacji zmiennoprzecinkowej - zaokrąglenie w górę\newline
+\begin{frame}{Bład reprezentacji zmiennoprzecinkowej}
+    b)Jeśli liczba jest bliżej do swojego  zaokrąglenia w górę to dodajemy 1 do ostatniego bitu  i reprezentacja jest równa :\newline
 	$$
-		fl(x)^{+} = \pm \sum_{i=1}^{t}{\frac{d_{i}}{\beta_{i}}}\ \cdot \  \beta^e \ \pm \frac{d_{t+1}}{\beta_{t+1}}
+		fl(x)^{+} = \pm (\sum_{i=1}^{t}{\frac{d_{i}}{\beta_{i}}}\  +  \frac{1}{\beta_{t}}) \cdot \  \beta^e
 	$$	
+	Najdalsza "końcówka" takiej liczby to:
     \centering
     \begin{tabular}{|*{5}{p{.75cm}|}}
         \hline
@@ -145,10 +147,41 @@
     \]\[
     m_t = \sum_{i=1}^{t} e_i \cdot 2^{-i} + 2^{-t}
     \] \[
-    m_t - m = 2^{-(t+1)}  \ \ \left| \frac{m - m_t}{m} \right| \le \frac{2^{-(t+1)}}{1/2} = 2^{-t}
+    m_t - m = 2^{-(t+1)}  
     \]
 \end{frame}
 %%%%%%%%%%%%%%%%
+\begin{frame}{Bład reprezentacji zmiennoprzecinkowej}
+
+W obydwu przypadkach maksymalny błąd bezwzględny to:
+    \[
+    m_t - m = 2^{-(t+1)}  
+    \]
+    W przyjętej reprezentacji ($d_1=1$, pozostałe bity dowolne) najmniejsze $m$ to $\frac{1}{2}$.\newline
+    Błąd względny można oszacować:
+    \[
+  \left| \frac{m - m_t}{m} \right| \le \frac{2^{-(t+1)}}{1/2} = 2^{-t}
+    \]
+\end{frame}
+
+\begin{frame}{Nadmiar i niedomiar}
+ \begin{itemize}
+     \item Występuje, gdy ilość bitów potrzebna do  reprezentacji cechy  danej liczby jest za mała.
+    
+     \item Nadmiar (overflow) występuje  jeśli  wartość bezwzględna liczby jest za duża, aby ją reprezentować (nie można już zwiększać cechy, bo brakuje bitów)
+     \item Niedomiar (underflow) występuje jeśli wartość bezwzględna liczby jest za mała, aby ją reprezentować (nie można już zmniejszać cechy, bo brakuje bitów)
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Błędy obcięcia (truncation errors)}
+\begin{itemize}
+\item Występują, gdy powinnismy wykonać nieskończony ciąg obliczeń 
+\item W praktyce taki ciąg musi być skończony (obcięty)
+\item Przykłady: ograniczenie szeregu nieskończonego do skończonej liczby składników, aproksymacja pochodnej za pomocą ilorazu różnicowego itp.
+\end{itemize}
+\end{frame}
+    
+ 
 \begin{frame}
 	\textbf{Standaryzacja:}
 	\begin{itemize}
@@ -156,8 +189,9 @@
 		\item IEEE754 - 1985; IEEE754 - 2008 
 		\item treść standardu IEEE754-2008:$\newline$ \url{www.dsc.ufcg.edu.br/~cnum/modulos/Modulo2/IEEE754_2008.pdf}
 		\item wywiad z jednym z twórców standardu IEEE754-1985 (William Kahan):\ \url{www.goo.gl/AeNLrd}
+		\item kalkulator \url{https://babbage.cs.qc.cuny.edu/IEEE-754/}
 	\end{itemize}
 	\textbf{Istotne pojęcia:}$\newline$
-	\textit{ukryta jedynka, normalizacja mantysy, liczby zdenormalizowane}
+	\textit{ukryta jedynka, normalizacja mantysy, liczby zdenormalizowane, przesunięcie wykładnika}
 \end{frame}
 %%%%%%%%%%%%%%%%

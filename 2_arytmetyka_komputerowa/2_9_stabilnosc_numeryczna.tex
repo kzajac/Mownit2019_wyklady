@@ -1,5 +1,15 @@
 \section{Stabilność numeryczna}
 %%%%%%%%%%%%%%%%
+\begin{frame}{Stabilnosc Numeryczna}
+    \begin{itemize}
+        \item algorytmy numerycznie poprawne to algorytmy najwyższej jakości
+        \item udowodnienie numerycznej poprawności algorytmu jest często trudne, wymaga znalezienie wskazników kumulacji niezależnych od danych
+        \item można spróbować zbadać stabilność (słabszy warunek)
+         \item  stabilność to  minimalny wymóg dla algorytmu
+        \item badamy, jak duży byłby błąd wyniku, gdyby dane oraz wynik zostały zaburzone na poziomie reprezentacji, ale same   obliczenia byłyby wykonywane dokładnie
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Przykłady}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Stabilność numeryczna - przykłady}
@@ -50,22 +60,25 @@
 \begin{frame}{Stabilność numeryczna - przykłady}
 
 	\begin{exampleblock}{Przykład 1}
-        {\bf Przyczyna:} np. 38.129 $\Rightarrow$ błąd reprezentacji $\approx$ wynik! ({\it catastrophic cancellation})\\
-        Sposób obliczeń wzmacniający błędy reprezentacji!\\
-        A co dla $e^{-200}$?\\
+        {\bf Przyczyna:} {\it catastrophic cancellation}\\
+        \begin{itemize}
+            \item odejmowanie bliskich liczb - wynikiem jest mała liczba, mająca dużo zer tam, gdzie jej  "poprzednicy" mieli cyfry znaczące,
+            \item taka liczba jest normalizowana, zera zapisywane są w wykładniku (cecha), a cała zawartość mantysy przesuwana jest "w lewo"
+            \item nie wiadomo czym zapełnić pojawiające się miejsca w mantysie po prawej stronie (zera lub przypadkowe wartości)
+        \end{itemize}
         Po zmianie algorytmu: ($\beta, t$ - j.w.)
         \\[-6pt]
         \[
             e^{-5.5} = \frac{1}{e^{5.5}} = \frac{1}{1 + 5.5 + 15.125 + ...} = \underbrace{0.0040865}_\text{0.007\%!}
         \]
         \\[-8pt]
-        $e^x$ oblicza się:
-        \\[-18pt]
-        \begin{align*}
-                         x &= m + f, \text{m - całkowite, } 0 \le f < 1 \\
-                         e^x &= e^{m+f} = e^m \cdot e^f \\
-            \text{lub }  e^x &= e^{(1 + \frac{f}{m}) \cdot m} = \left[ e^{1 + \frac{f}{m}} \right]^m
-        \end{align*}
+       % $e^x$ oblicza się:
+       % \\[-18pt]
+      %  \begin{align*}
+      %                   x &= m + f, \text{m - całkowite, } 0 \le f < 1 \\
+      %                   e^x &= e^{m+f} = e^m \cdot e^f \\
+      %      \text{lub }  e^x &= e^{(1 + \frac{f}{m}) \cdot m} = \left[ e^{1 + \frac{f}{m}} %\right]^m
+      %  \end{align*}
     \end{exampleblock}
 \end{frame}
 %%%%%%%%%%%%%%%%
@@ -155,28 +168,33 @@
 %%%%%%%%%%%%%%%%
 \subsection{Definicja}
 %%%%%%%%%%%%%%%%
-\begin{frame}{Stabilność numeryczna - definicja}
-	\begin{block}{Definicja}
-    	{\bf Algorytm najwyższej jakości} - algorytm numerycznie poprawny.
-    \end{block}
-    \vspace{-20pt}
-    \begin{align*}
-    	\vec{w} = \varphi(\vec{d}) &\\
-        \hat{d}: ||\vec{d} - \hat{d}|| \le \varrho_d ||\vec{d} || &,&& 
-        	\hat{d} - \text{dane zaburzone na poz. repr.} \\
-        \hat{w} = \varphi(\hat{d}) &,&&
-        	\hat{w} - \text{dokł. rozw. dla danych zab.} \\
-		\tilde{w}: ||\hat{w} - \tilde{w} || \le \varrho_w ||\tilde{w}|| &,&&
-        	\tilde{w} - \text{wynik dla $\hat{d}$,} \\
-            &&&\text{zab. na poz. reprezentacji} \\
-        ||\vec{w} - \tilde{w} || \le ||\vec{w} - \hat{w}|| + ||\hat{w} - \tilde{w}|| &\le&&
-        	(1 + \varrho_w) \cdot \max_{\hat{d}} ||\varphi(\vec{d}) - \varphi(\hat{d})|| +\\
-            &&&+ \varrho_w ||\vec{w}|| \\
-        P(\vec{d}, \varphi) &=&& \varrho_w ||\vec{w}|| + \max_{\hat{d}} ||\varphi(d) - \varphi(\hat{d})||
-    \end{align*}
+\begin{frame}{Optymalny poziom błędu rozwiązania}
+    \begin{itemize}
+        \item Dokładne rozwiązanie dla dokładnych danych (idealne) 	$ \vec{w} = \varphi(\vec{d}) $
+        \item Dane zaburzone na poziomie reprezentacji  $\hat{d}: ||\vec{d} - \hat{d}|| \le \varrho_d ||\vec{d} || $ 
+        \item Dokładne rozwiązanie dla zaburzonych danych $\hat{w} = \varphi(\hat{d})$
+      \item Zaburzone (na poziomie reprezentacji) rozwiązanie dla zaburzonych danych	$\tilde{w}: ||\hat{w} - \tilde{w} || \le \varrho_w ||\hat{w}||$
+    \end{itemize}
+   Szacujemy różnicę pomiędzy  idealnym $\varphi(\vec{d})$, a zaburzonym $\tilde{w}$     
+  \begin{center}
+      $|| \vec{w} - \tilde{w} || \le ||\vec{w} - \hat{w}|| + ||\hat{w} - \tilde{w}|| \le
+        	||\vec{w} - \hat{w}|| +\varrho_w ||\hat{w}||
+        	\le
+        	||\vec{w} - \hat{w}|| +\varrho_w (||\hat{w}-\vec{w}||+||\vec{w}||)
+        	\le
+        	(1 + \varrho_w) \cdot \max_{\hat{d}} ||\varphi(\vec{d}) - \varphi(\hat{d})|| + \varrho_w ||\vec{w}|| $
+  \end{center}     
+\end{frame}
+\begin{frame}{Optymalny poziom błędu rozwiązania}
+Definiujemy optymalny poziom błędu rozwiązania jako:
+\begin{center}
+    $ P(\vec{d}, \varphi) = \varrho_w ||\vec{w}|| + \max_{\hat{d}} ||\varphi(d) - \varphi(\hat{d})||$
+\end{center}
+
+Poziom ten wynika wyłącznie  z przeniesienia błędu  reprezentacji  danych  na  wynik  obliczeń
 \end{frame}
 %%%%%%%%%%%%%%%%
-\begin{frame}{Optymalny poziom błędu rozwiązania $\varphi(\vec{d})$ w arytmetyce $fl$}
+\begin{frame}{Stabilność numeryczna - definicja}
 	\begin{block}{Definicja}
 		Algorytm A nazywamy {\bf numerycznie stabilnym} w klasie $\{\varphi, D\}$, jeżeli istnieje stała $K$ taka, że 
         \begin{itemize}
@@ -187,6 +205,7 @@
         \[
         	||\varphi(\vec{d}) - fl(A(\vec{d}))|| \le \underbrace{K}_\text{małe} \cdot P(\vec{d}, \varphi)
         \]
-        {\bf numerycznie poprawny} - stabilny (minimalny wymóg)
+       Algorytm numerycznie stabilny gwarantuje uzyskanie  rozwiązania  z błędem co najwyżej
+K razy większym, niż optymalny poziom błędu rozwiązania tego zadania.
 	\end{block}
 \end{frame}
