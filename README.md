@@ -1,3 +1,9 @@
+
+Release 1.1
+Modified by KR
+
+Release 1.0
+
 # lectures
 Brave quest of 16 + 4 students to make MOWNiT even better again!
 
