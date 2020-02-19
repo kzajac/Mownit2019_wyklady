@@ -4,6 +4,11 @@
 Repozytorium zawiera wykłady z MOwNiTu przygotowane przez dr Bubaka i jego studentów (patrz niżej)
 i zmodyfikowane przez Katarzynę Rycerz, która ten przedmiot przejęła.
 
+# Uwaga !
+
+Ten wykład będzie na bieżąco modyfikowany. Gotowe wykłady będą pojawiać się tutaj:
+https://www.dropbox.com/sh/xgigl029naxh7cx/AAABVGkfk4jEhPWb3mVS12LRa?dl=0
+
 Wersja dr Bubaka znajduje się tutaj:
 https://github.com/AGH-MOwNiT-2017/lectures
 Ponizsza informacja stanowi orginalną instrukcje dla  wersji dr Bubaka:
