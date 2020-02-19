@@ -1,8 +1,12 @@
 
-Release 1.1
-Modified by KR
+# Historia modyfikacji
 
-Release 1.0
+Repozytorium zawiera wykłady z MOwNiTu przygotowane przez dr Bubaka i jego studentów (patrz niżej)
+i zmodyfikowane przez Katarzynę Rycerz, która ten przedmiot przejęła.
+
+Wersja dr Bubaka znajduje się tutaj:
+https://github.com/AGH-MOwNiT-2017/lectures
+Ponizsza informacja stanowi orginalną instrukcje dla  wersji dr Bubaka:
 
 # lectures
 Brave quest of 16 + 4 students to make MOWNiT even better again!
