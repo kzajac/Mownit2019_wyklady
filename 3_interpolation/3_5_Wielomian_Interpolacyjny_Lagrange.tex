@@ -2,19 +2,22 @@
 
 \begin{frame}{3.5 Wielomian Interpolacyjny Lagrange'a \\ 3.5.1 Interpolacja liniowa}
 
+Szukamy wielomianu $P_{1}(x)$ przechodzącego  przez:\\
+$(x_{0},\ y_{0})$ i $(x_{1},\ y_{1})$
 
-$P_{1}(x)$ -- przez $(x_{0},\ y_{0})$ i $(x_{1},\ y_{1})$
+Można sprawdzić, że wielomian postaci:
 $$
 P_{1}(x)=\underbrace{\frac{(x-x_{1})}{(x_{0}-x_{1})}}_{L_0(x)}y_{0}+\underbrace{\frac{(x-x_{0})}{(x_{1}-x_{0})}}_{L_1(x)}y_{1}=\sum_{k=0}^{1}L_{k}(x)f(x_{k})
 $$
+To:
 \begin{itemize}
 \item wielomian stopnia $\leq 1$
 
-\item $x=x_{0}\rightarrow P(x_{0})=y_{0}$ \\
-$x=x_{1}\rightarrow P(x_{1})=y_{1}$ \\
-$L_{k}(x_{l})=\delta_{k,l}$ \\
+\item Przechodzi przez wymagane punkty:\\
+gdy $x=x_{0}$ to $ P_1(x_{0})=y_{0}$ \\
+gdy $x=x_{1}$ to $P_1(x_{1})=y_{1}$ \\
 \end{itemize}
-\begin{flushright}Czy jest jedynym takim wielomianem?\end{flushright}
+\begin{flushright}Ale: Czy jest jedynym takim wielomianem?\end{flushright}
 
 \end{frame}
 
@@ -27,7 +30,7 @@ przez $x_{0}, x_{1}, x_{2}$, . . . , $x_{n}$
 $L_{k}(x_{l})=\delta_{k,l}=\left\{\begin{array}{l}
 0,\ k\neq l\ (\star)\ \\
 1,\ k=l\ (\star\star)
-\end{array}\right. \text{f. ,,wymierna''} $
+\end{array}\right. \text{ dla $k \in \{0,1,..,n\} $} $
 
 $(\star)$ -- licznik $d$
 $d=(x-x_{0})(x-x_{1})\ldots(x-x_{k-1})^{\downarrow}(x-x_{k+1})\ldots(x-x_{n})$
@@ -54,14 +57,16 @@ $$
 
 Jest tylko jeden taki wielomian.\\
 \vspace{2mm}
-\textbf{Dane:} Niech $\exists q_{n}(x)\neq P_{n}(x)$ , przechodzący przez w/w punkty.
+\textbf{Dowód:} Niech $\exists Q_{n}(x)\neq P_{n}(x)$ , przechodzący przez w/w punkty.
 
-Ustalmy $r_{n}(x)=P_{n}(x) - q_{n}(x)$ -- wiel. stopnia $\leq n$
+Ustalmy $R_{n}(x)=P_{n}(x) - Q_{n}(x)$ -- wiel. stopnia $\leq n$\\
+Ponieważ $P_{n}$ oraz $Q_{n}$ są sobie równe dla $x=x_i, i=0,1,...,n$ to:
 $$
- \: r_{n}(x_{i})=0,\ i=\underbrace{0,1, \dots, n}_{n+1}
+ \: R_{n}(x_{i})=0,\ i=\underbrace{0,1, \dots, n}_{n+1}
 $$
+Jeśli wielomian  stopnia $\leq n$ ma n+1 miejsc zerowych, to musi być tożsamościowo równy $0$ 
 $$
-r_{n}(x) \equiv 0
+R_{n}(x) \equiv 0
 $$
 \end{block}
 \end{frame}
@@ -124,39 +129,39 @@ Założenia:
 \end{frame}
 
 \begin{frame}
-Dane:
 
-$x=x_{k}, k=0$, 1, . . . , $n \rightarrow f(x_{k})=P_{n}(x_{k})\Rightarrow$dowolny $\eta$ spelnia $(\star)$ \newline
-- dla ustalonego $x\neq x_{k}, k=0$, 1, . . . , $n\Rightarrow g(t)$ , $[a,\ b]$ :
+- dla węzłów interpolacji $x=x_{k}, k=0$, 1, ..., $n \rightarrow f(x_{k})=P_{n}(x_{k})\Rightarrow $dowolny $\eta$ spelnia $(\star)$ \newline
+- dla ustalonego $\tilde{x}\neq x_{k}, k=0$, 1,..., $n\\
+definuję funkcję g(t)$ , $[a,\ b]$ :
 
-$$g(t)=f(t)-P_{n}(t)-[f(x)-P_{n}(x)]\prod_{i=0}^{n}\frac{t-x_{i}}{x-x_{i}}$$
+$$g(t)=f(t)-P_{n}(t)-[f(\tilde{x})-P_{n}(\tilde{x})]\prod_{i=0}^{n}\frac{t-x_{i}}{\tilde{x}-x_{i}}$$
 
 $$
  \left. \begin{array}{ll}
 f\in C^{(n+1)}[a,\ b] \\
 P\in C^{\infty}[a,\ b]\\
-x\neq x_{k}
+\tilde{x}\neq x_{k}
 \end{array} \right \} \Rightarrow g(t)\in C^{(n+1)}[a,\ b]
 $$
 
-$\fbox{$t=x_{k}:$}$
+$\fbox{dla $t=x_{k}:$}$
 
-$$g(x_{k})=\underbrace{f(x_{k})-P_{n}(x_{k})}_{=0}-[f(x)-P_{n}(x)]\underbrace{\prod_{i=0}^{n}\frac{x_{k}-x_{i}}{x-x_{i}}}_{=0}=0$$
+$$g(x_{k})=\underbrace{f(x_{k})-P_{n}(x_{k})}_{=0}-[f(\tilde{x})-P_{n}(\tilde{x})]\underbrace{\prod_{i=0}^{n}\frac{x_{k}-x_{i}}{\tilde{x}-x_{i}}}_{=0}=0$$
 
 \end{frame}
 
 \begin{frame}
-$\fbox{$t=x \neq x_k:$}$
+$\fbox{dla $t=\tilde{x}$, z założenia $\tilde{x} \neq x_k$}\\
 $$
-g(x)=f(x)-P_{n}(x)-[f(x)-P_{n}(x)]\underbrace{\prod_{i=0}^{n}\frac{x-x_{i}}{x-x_{i}}}_{=1}=0
+g(\tilde{x})=f(\tilde{x})-P_{n}(\tilde{x})-[f(\tilde{x})-P_{n}(\tilde{x})]\underbrace{\prod_{i=0}^{n}\frac{\tilde{x}-x_{i}}{\tilde{x}-x_{i}}}_{=1}=0
 $$
-$\Rightarrow g(t)$ ma $(n+2)$ miejsc zerowych: $x, x_{0}, x_{1}$, . . . , $x_{n}$ \newline \newline
+$\Rightarrow g(t)$ ma $(n+2)$ miejsc zerowych: węzły interpolacji x_{0}, x_{1}$, . . . , $x_{n}$ oraz $\tilde{x}$ wybrane przy definiowaniu $g(t)$ \newline \newline
 Zastosowanie twierdzenia Rolle'a:
 
 
 $$\begin{array}{ll}
 0=g^{(n+1)}(\displaystyle \eta)= \\
-f^{(n+1)}(\eta)-\underbrace{P_{n}^{(n+1)}(\eta)}_{=0}-[f(x)-P_{n}(x)]\frac{d^{n+1}}{dx^{n+1}} \left \{\prod_{i=0}^{n}\frac{t-x_{i}}{x-x_{i}} \right \}_{t=\eta}  \end{array}$$
+f^{(n+1)}(\eta)-\underbrace{P_{n}^{(n+1)}(\eta)}_{=0}-[f(\tilde{x})-P_{n}(\tilde{x})]\frac{d^{n+1}}{dt^{n+1}} \left \{\prod_{i=0}^{n}\frac{t-x_{i}}{\tilde{x}-x_{i}} \right \}_{t=\eta}  \end{array}$$
 
 
  \end{frame}
@@ -164,29 +169,32 @@ f^{(n+1)}(\eta)-\underbrace{P_{n}^{(n+1)}(\eta)}_{=0}-[f(x)-P_{n}(x)]\frac{d^{n+
  \begin{frame}
 
 
-$\displaystyle \prod_{i=0}^{n}\frac{t-x_{i}}{x-x_{i}}=\frac{t^{n+1}}{\prod_{i=0}^{n}(x-x_{i})}+at^{n}+\cdots$
+$\displaystyle \prod_{i=0}^{n}\frac{t-x_{i}}{\tilde{x}-x_{i}}=\frac{t^{n+1}}{\prod_{i=0}^{n}(\tilde{x}-x_{i})}+at^{n}+\cdots$
 $$
-f^{(n+1)}(\eta)=[f(x)-P_{n}(x)]\frac{(n+1)!}{\prod_{i=0}^{n}(x-x_{i})}
+f^{(n+1)}(\eta)=[f(\tilde{x})-P_{n}(\tilde{x})]\frac{(n+1)!}{\prod_{i=0}^{n}(\tilde{x}-x_{i})}
 $$
+gdzie $\tilde{x}$ jest dowolnym $x\ne x_i$ \\
+\vspace{0.5cm}
 \textbf{Błąd interpolacji Lagrange'a:}
-\begin{gather*}
-  f(x)=P_{n}(x)+\underbrace{\frac{f^{(n+1)}(\eta)}{(n+1)!}\prod_{i=0}^{n}(x-x_{i})}_{\text{Porównaj z resztą Taylora!}}
-\end{gather*}
+%\begin{gather*}
+$f(x)=P_{n}(x)+\frac{f^{(n+1)}(\eta)}{(n+1)!}
+\prod_{i=0}^{n}(x-x_{i})$
+%\end{gather*}
 
 
 
-\textbf{Zadanie:} Wyprowadź resztę Taylora powyższą metodą \\
+%\textbf{Zadanie:} Wyprowadź resztę Taylora powyższą metodą \\
 \end{frame}
 
-\begin{frame}
-\begin{itemize}
-\item Alternatywny zapis LIP: $(x_{0},\ x_{1},\ \ldots,\ x_{n})$ :
-\end{itemize}
-$\displaystyle \omega(x)=\prod_{k=0}^{n}(x-x_{k})$
+%\begin{frame}
+%\begin{itemize}
+%\item Alternatywny zapis LIP: $(x_{0},\ x_{1},\ \ldots,\ %x_{n})$ :
+%\end{itemize}
+%$\displaystyle \omega(x)=\prod_{k=0}^{n}(x-x_{k})$
 
-$P_{n}(x)=\displaystyle \omega(x)\sum_{k=0}^{n}\frac{f(x_{k})}{(x-x_{k})\omega ^{'}(x_{k})}$ \\
+%$P_{n}(x)=\displaystyle %\omega(x)\sum_{k=0}^{n}\frac{f(x_{k})}{(x-x_{k})\omega %^{'}(x_{k})}$ \\
 \vspace{5mm}
 
-\textbf{Zadanie:} Sprawdzić.
+%\textbf{Zadanie:} Sprawdzić.
 
  \end{frame}

@@ -1,107 +1,88 @@
 \section{Interpolacja Hermite'a}
-\begin{frame}
-{3.8 Interpolacja Hermite'a}
+%\begin{frame}
+%{3.8 Interpolacja Hermite'a}
 
-Więcej o metodzie i jej autorze \\
-(autor: Shayne Waldrom,University of Auckland):\\
-\vspace{5mm}
-https://www.math.auckland.ac.nz/$\sim$waldron/Hermite/hermite.html
-\end{frame}
+%Więcej o metodzie i jej autorze \\
+%(autor: Shayne Waldrom,University of Auckland):\\
+%\vspace{5mm}
+%https://www.math.auckland.ac.nz/$\sim$waldron/Hermite/he%rmite.html
+%\end{frame}
 
-\begin{frame}
-{3.8.1 Przypadek szczególny}
-
-Dane: $\{(x_{i}, f_{i}, f_{i}^{'}); i=1,2, \dots, N; x_{i}\neq x_{j}, i\neq j\}$
-\begin{gather*}
-  P_{2N-1}(x)=\sum_{i=1}^{N}\alpha_{i}(x)f(i)+\sum_{i=1}^{N}\beta_{i}(x)f_{i}'\\
-  \alpha_{i}\ =\ [1-2(x-x_{i})\Phi_{i}'(x_{i})]\Phi_{i}^{2}(x)\\
-  \beta_{i}\ =\ (x-x_{i})\Phi_{i}^{2}(x)\\
-  \Phi_{i}(x) = \displaystyle \prod_{j=1,j\neq i}^{N}\frac{x-x_{j}}{x_{i}-x_{j}}, i=1, 2,\dots, N\\
-  \Phi_{i}'(x_{i})\ =\ [\Phi_{i}'(x)]_{x_{i}}
-\end{gather*}
-
-\textbf{Zadanie:} sprawdzić.
-
-
-\end{frame}
-
-\begin{frame}
-$$
-\alpha_{i}(x_{j})\ =\ [1-2(x_{j}-x_{i})\Phi_{i}'(x_{i})]\delta_{ij}^{2}=\delta_{ij}
-$$
-$$
-\beta_{i}(x_{j})\ =\ (x_{j}-x_{i})\delta_{ij}^{2}=0
-$$
-$\Rightarrow$ wielomian przechodzi przez $(x_{j},\ f_{j})$ , $j=1,2, \dots, N$ \\
-\vspace{3mm}
-$\alpha_{i}^{l}(x_{j})\ =\ [1-2(x_{j}-x_{i})\Phi_{i}(x_{i})]2\delta_{ij}\Phi_{i}'(x_{j})-2\Phi_{i}^{l}(x_{i})\delta_{ij}=0$ \\
-\vspace{3mm}
-$\beta_{i}'(x_{j})\ =\ (x_{j}-x_{i})2\delta_{ij}\Phi_{i}'(x_{j})+\delta_{ij}=\delta_{ij}$
-
-$$
-\Rightarrow\ P_{2N-1}'(x_{j})=f_{j}'
-$$
-\begin{flushright}$\rightarrow$ wzór zmodyfikowany \end{flushright}
-\end{frame}
-
-\begin{frame}
-{3.8.2 Ogólnie}
-
+%
+\begin{frame}{Interpolacja Hermite'a}
 \textcolor{blue}{Dane:}
 \begin{itemize}
 \item $k+1$ różnych węzłów: $x_{0}, x_{1}, \dots, x_{k}$
 
-\item liczby naturalne $m_{0}, m_{1},\dots , m_{k}, \displaystyle \sum_{i=0}^{k}m_{i}=n+1$
+\item tzw. krotności węzłów dane liczbami naturalnymi $m_{0}, m_{1},\dots , m_{k}, \displaystyle \sum_{i=0}^{k}m_{i}=n+1$
 \end{itemize}
 \textcolor{blue}{Szukamy:}
 
 Dla dowolnej funkcji $f$ -- szukamy wielomianu $H_{n}$ stopnia $\leq n,$ \\
 takiego, że:
 
-$H_{n}^{(j)}(x_{i})=f^{(j)}(x_{i})$ \quad dla $i=0, 1, \dots , k$
-\begin{center}
-$j=0, 1, \dots, m_{i}$
-\end{center}
-(Gdy $m_{i}=1$ -- interpolacja Lagrange'a)
+$H_{n}^{(j)}(x_{i})=f^{(j)}(x_{i})$ \quad dla $i=0, 1, \dots , k$ oraz
+$j=0, 1, \dots, m_{i}$\\
+\vspace{0.5cm}
+Krotność mówi nam, ile pochodnych ma być równych.
+Gdy $m_{i}=1$ -- interpolacja Lagrange'a.
 \end{frame}
 
-\begin{frame}
-\textcolor{blue}{Rozwiązanie:} \\
+\begin{frame}{Rozwiązanie}
+Suma krotności $i$ początkowych węzłów interpolacyjnych
 \vspace{2mm}
 $s(i)=\left\{\begin{array}{l}
 0,\ i=0\\
 m_{0}+m_{1}+\cdots+m_{i-1},\ i>0
 \end{array}\right.$
-\vspace{2mm}
+\vspace{2mm}\\
 
-$0\leq l\leq n:l=s(i)+j$
-
+Zauważmy, że każda liczba 
+$0\leq l\leq n$ da się przedstawić w postaci $l=s(i)+j$ gdzie $0 \leq i \leq k$ oraz $0 \leq j \leq m_{i-1}$\\
+\vspace{0.5cm}
+Definiujemy wielomiany:\\
 $p_{s(0)}(x)=1$
 
-$p_{s(i)+j}(x)=(x-x_{0})^{m_{0}}(x-x_{1})^{m_{1}}\ldots(x-x_{i-1})^{m_{i-1}}(x-x_{i})^{j}(\star)$ \\
-gdzie: $i=0, 1, \dots, k; \: j=1, 2, \dots , m_{i}$ \\
-\vspace{3mm}
-Szukany wielomian interpolacyjny:
+$p_{(s(i)+j)}(x)=(x-x_{0})^{m_{0}}(x-x_{1})^{m_{1}}\ldots(x-x_{i-1})^{m_{i-1}}(x-x_{i})^{j}(\star)$ \\
+gdzie: $i=0, 1, \dots, k; \: j=0, 2, \dots , m_{i-1}$ \\
+Wtedy szukany wielomian interpolacyjny to kombinacja linowa takich wielomianów (por. postać Newtona)
 $$
-H_{n}(x)=\sum_{l=0}^{n}b_{l}p_{l}(x)=\sum_{i=0}^{k}\sum_{j=0}^{m_{i-1}}b_{s(i)+j}p_{s(i)+j}(x)
+H_{n}(x)=\sum_{l=0}^{n}b_{l}\cdot p_{l}(x)=\sum_{i=0}^{k}\sum_{j=0}^{m_{i-1}}b_{(s(i)+j)}\cdot p_{(s(i)+j)}(x)
 $$
 \end{frame}
 
 \begin{frame}
-Współczynniki $b_{l}$:
-
+Jak znaleźć współczynniki $b_{l}$:
 
 $l$ - ustalone, $l=s(i)+j$
 $$
 H_{n}(x)=\underbrace{A(x)}_{b_{0},{b_{1},\ldots,b}_{l-1}}+b_{l}p_{l}(x)+\underbrace{B(..x)}_{b_{l+1},\ldots,b_{n}}(\star\star)
 $$
-ale: $(\mathrm{z}\star)$
+gdzie:
+$A(x)$ - kombinacja liniowa wielomianów $b_i$ o znanych już współczynnikach $b_{0},{b_{1},\ldots,b}_{l-1}$\\
+
+\vspace{3mm}
+$B(x)$ - kombinacja liniowa wielomianów $b_i$ o współczynnikach $b_{l+1},\ldots,b_{n}$
+\end{frame}
+\begin{frame}
+Biorąc pod uwagę (*)
 $$
-l=s(i)+jp_{l}(x)=p_{s(i)}(x)(x-x_{j})^{j}
+p_{l}(x)=p_{(s(i)+j)}(x)=p_{s(i)}(x)(x-x_{i})^{j}
 $$
-$
-$różniczkując$(\star\star)
-$
+oraz dla $m > l$ czyli wielomianów wchodzących w skład $B(x)$, każdy jest postaci
+$$
+p_{m}(x)=f_m(x)*(x-x_{i})^{k}(***)
+$$
+gdzie $k>j$ oraz $f_m(x)$ zawiera czynniki z(*) dla pozostałych węzłow. \\
+\end{frame}
+\begin{frame}
+różniczkując $(\star\star)$
+
+$$
+H_{n}^{(j)}(x)=A^{(j)}(x)+b_{l}p^{(j)}_{s(i)}(x)(x-x_{i})^j+b_{l}p_{s(i)}(x)j!+B^{(j)}(x)
+$$
+Interesuje nas $H_{n}^{(j)}(x_{i})$\\
+Ze względu na (***) $B^{(j)}(x_i)=0$ i mamy:
 $$
 H_{n}^{(j)}(x_{i})=A^{(j)}(x_{i})+b_{l}p_{s(i)}(x_{i})j!
 $$
@@ -111,7 +92,7 @@ H_{n}^{(j)}(x_{i})=f^{(j)}(x_{i})
 $$
 mamy:
 $$
-b_{l}=\frac{f^{(j)}(x_{i})-A^{(j)}(x_{i})}{p_{s(i)}(x_{i})_{j}j!}
+b_{l}=\frac{f^{(j)}(x_{i})-A^{(j)}(x_{i})}{p_{s(i)}(x_{i})j!}
 $$
 
 \end{frame}
