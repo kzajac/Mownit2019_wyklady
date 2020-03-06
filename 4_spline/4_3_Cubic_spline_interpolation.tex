@@ -1,17 +1,20 @@
-\section{Cubic spline interpolation}
-	\begin{frame}{Cubic spline interpolation}
+\section{Interpolacja sześcienna (cubic spine)}
+	\begin{frame}{Interpolacja sześcienna (cubic spine)}
+	 W praktyce najczęściej używane.
 		\begin{block}{}
 			\begin{itemize}
-				\item $s_{j}$ on $[x_{j},x_{j+1}] \rightarrow$ cubic polynomial:
-                $\newline \ \ \ s_{j}(x)=a_{j}+b_{j}(x-x_{j})+c_{j}(x-x_{j})^{2}+
-                d_{j}(x-x_{j})^{3}$
-                \item $s_{j}(x_{j+1})=f(x_{j+1})$
-                \item $s_{j}(x_{j+1})=s_{j+1}(x_{j+1})$
-                \item $s^{'}_{j}(x_{j+1})=s^{'}_{j+1}(x_{j+1})$
-                \item $s^{''}_{j}(x_{j+1})=s^{''}_{j+1}(x_{j+1})$
+				\item $s_{i}$ on $[x_{i},x_{i+1}] \rightarrow$ cubic polynomial:
+                $\newline \ \ \ s_{i}(x)=a_{i}+b_{i}(x-x_{i})+c_{i}(x-x_{i})^{2}+
+                d_{i}(x-x_{i})^{3}$
+                \item $s_{i}(x_{i+1})=f(x_{i+1})$
+                \item $s_{i}(x_{i+1})=s_{i+1}(x_{i+1})$
+                \item $s^{'}_{i}(x_{i+1})=s^{'}_{i+1}(x_{i+1})$
+                \item $s^{''}_{i}(x_{i+1})=s^{''}_{i+1}(x_{i+1})$
 			\end{itemize}
 		\end{block}
-        \begin{figure}[h]
-			\includegraphics[width=.55\linewidth]{img/4/spline_img_4}
-		\end{figure}
+		
+		
+		Wypisując takie warunki dla każdego z "wewnętrznych"  punktów intepolacji i dodając warunki brzegowe można stworzyć układ równań i go rozwiązywać\\
+		Istnieje jednak sprytniejsze podejście !
+        
 	\end{frame}

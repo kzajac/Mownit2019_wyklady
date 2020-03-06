@@ -38,13 +38,13 @@ m_{0}+m_{1}+\cdots+m_{i-1},\ i>0
 \vspace{2mm}\\
 
 Zauważmy, że każda liczba 
-$0\leq l\leq n$ da się przedstawić w postaci $l=s(i)+j$ gdzie $0 \leq i \leq k$ oraz $0 \leq j \leq m_{i-1}$\\
+$0\leq l\leq n$ da się przedstawić w postaci $l=s(i)+j$ gdzie $0 \leq i \leq k$ oraz $0 \leq j \leq m_{i}-1$\\
 \vspace{0.5cm}
 Definiujemy wielomiany:\\
 $p_{s(0)}(x)=1$
 
 $p_{(s(i)+j)}(x)=(x-x_{0})^{m_{0}}(x-x_{1})^{m_{1}}\ldots(x-x_{i-1})^{m_{i-1}}(x-x_{i})^{j}(\star)$ \\
-gdzie: $i=0, 1, \dots, k; \: j=0, 2, \dots , m_{i-1}$ \\
+gdzie: $i=0, 1, \dots, k; \: j=0, 2, \dots , m_{i}-1$ \\
 Wtedy szukany wielomian interpolacyjny to kombinacja linowa takich wielomianów (por. postać Newtona)
 $$
 H_{n}(x)=\sum_{l=0}^{n}b_{l}\cdot p_{l}(x)=\sum_{i=0}^{k}\sum_{j=0}^{m_{i-1}}b_{(s(i)+j)}\cdot p_{(s(i)+j)}(x)
@@ -76,10 +76,14 @@ $$
 gdzie $k>j$ oraz $f_m(x)$ zawiera czynniki z(*) dla pozostałych węzłow. \\
 \end{frame}
 \begin{frame}
-różniczkując $(\star\star)$
+różniczkując $(\star\star)$ korzystamy ze wzoru na pochodną iloczynu 
 
 $$
-H_{n}^{(j)}(x)=A^{(j)}(x)+b_{l}p^{(j)}_{s(i)}(x)(x-x_{i})^j+b_{l}p_{s(i)}(x)j!+B^{(j)}(x)
+(f\cdot g)^{(j)}=f^{(j)}\cdot g+ {n\choose 1} f^{(j-1)}\cdot g^{(1)}+{n\choose 2} f^{(j-2)}\cdot g^{(2)}+f\cdot g^{(j)}
+$$
+oraz faktu, że dla $j\leq k$
+$$
+((x-x_i)^{k})^{(j)}=k\cdot (k-1) ...(k-j+1)(x-x_i)^{k-j}
 $$
 Interesuje nas $H_{n}^{(j)}(x_{i})$\\
 Ze względu na (***) $B^{(j)}(x_i)=0$ i mamy:

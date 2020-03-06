@@ -1,76 +1,45 @@
 \section{Konstrukcja interpolujących sześciennych funkcji sklejanych}
+	
 	\begin{frame}{Konstrukcja interpolujących sześciennych funkcji sklejanych}
-		Podprzedział $[x_{i},x_{i+1}]$, oznaczmy:
-       	\begin{itemize}
-       	\item $h_{i}=x_{i+1}-x_{i}$
-        \item $w=\frac{x-x_{i}}{h_{i}}$
-        \item $\overline{w}=\frac{x_{i+1}-x}{h_{i}}=1-w$
-       	\end{itemize}
-        $\newline$
-        \[
-        	x \nearrow \ od \ x_{i} \ do \ x_{i+1}: \ \ \ w:\nearrow \ 0 \rightarrow 1, 
-            \ \overline{w}:\searrow \ 1 \rightarrow 0
-        \]
-       
-	\end{frame}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-    \begin{frame}
-    	 Niech dla $[x_{i},x_{i+1}]$ sześcienna funkcja sklejana ma postać:
-        \[
-        	s(x)= \underbrace{w\cdot y_{i+1}+\overline{w} \cdot y_{i}}_{\text{$(*)$}}
-            + \underbrace{h^{2}_{i}[(w^{3}-w)\sigma_{i+1}+
-            (\overline{w}^{3}-\overline{w})\sigma_{i}]}_{\text{$(**)$}}
-        \]
-        gdzie:
-        $\newline(*)$ - człony standardowej interpolacji liniowej
-        $\newline(**)$ - korekta sześcienna - dodatkowe wygładzanie funkcji
-        $\newline \sigma_{i}, \sigma_{i+1}$ - pewne stałe, do wyznaczenia
-        $\newline$
-        \begin{itemize}
-        	\item Człony korekcyjne znikają na końcach przedziału $[x_{i},x_{i+1}]$
-            \item $s(x_{i})=y_{i}; \ \ s(x_{i+1})=y_{i+1} \newline$
-            	niezależnie od wyboru $\sigma_{i} \Rightarrow s(x)$ interpoluje dane:
-                $\{ x_{i},y_{i} \}$
-        \end{itemize}
-    \end{frame}
-    %%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-		Różniczkujemy $s(x)$ korzystając z:
-        \[
-        	w'=\frac{dw}{dx}=\frac{1}{h_{i}}\ ;\ \overline{w}'=-\frac{1}{h_{i}}
-        \]
-        \begin{itemize}
-        	\item $s'(x)=\frac{y_{i+1}-y_{i}}{h_{i}}+h_{i}[(3w^{2}-1)\sigma_{i+1}-
-            			(3\overline{w}^{2}-1)\sigma_{i}],  \  \ \textbf{(*)}$
-            \item $s''(x)=6w\sigma_{i+1}+6\overline{w}\sigma_{i}  \ \ 
-            	\Rightarrow 
-            	\framebox{$\sigma_{i}=\frac{1}{6}s''(x_{i})$}$ sens stałych $\sigma_{i}$
-            \item $s'''(x)=\frac{6}{h_{i}}(\sigma_{i+1}-\sigma_{i})=
-            	const \newline$
-              	 - zgodnie z tym, że $s(x)$ jest lokalnie sześcienna 
-        \end{itemize}
+
+     Ponieważ $s_i(x)$ - sześcienna, \\
+     	  to $s''_i(x)$ -liniowa na przedziale $[x_{i},x_{i+1}] $\\
+	 wprowadzam $h_{i}=x_{i+1}-x_{i}$, wtedy (z (*)):\\
+	 \vspace{3mm}
+	   \begin{center}
+	  $s_i^{''}(x)=s_i^{''}(x_i)\frac{x_{i+1}-x}{h_i}+s_i^{''}(x_{i+1})\frac{x-x_i}{h_i}$(**)\\
+	  	  \end{center}
+	  całkując dwukrotnie otrzymuję:\\
+	  \begin{center}
+	       $s_i(x)=\frac{s_i^{''}(x_i)}{6h_i}(x_{i+1}-x)^3+\frac{s_i^{''}(x_{i+1})}{6h_i}(x-x_i)^3+C(x-x_i)+D(x_{i+1}-x)$, 
+	  \end{center}
+	   gdzie C, D - stałe całkowania.\\
+	  korzystając z  warunków interpolacji :\\
+	  $s_i(x_i)=y_i$ oraz $s_i(x_{i+1})=y_{i+1}$ mogę wyliczyć C i D 
+	  	\end{frame}
+	  \begin{frame}
+	   Po wyliczeniu C i D z  warunków interpolacji mamy:\\
+	  $s_i(x)=\frac{s_i^{''}(x_i)}{6h_i}(x_{i+1}-x)^3+\frac{s_i^{''}(x_{i+1})}{6h_i}(x-x_i)^3+
+	  (\frac{y_{i+1}}{h_i}-\frac{z_{i+1}h_i}{6})(x-x_i)+(\frac{y_i}{h_i}-\frac{z_ih_i}{6})(x_{i+1}-x)$  \\
+		 \vspace{3mm}
+	 W powyższym wzorze nie znamy $s_i^{''}(x)$ . Aby je wyliczyć korzystamy z warunku ciągłości pierwszej pochodnej. Różniczkujemy więć $s_i(x)$\\
+	 	 \vspace{3mm}
+	 $s_i^{'}(x_i)=-\frac{h_i}{3}s_i^{''}(x_i)-\frac{h_i}{6}s_i^{''}(x_{i+1})-\frac{y_i}{h_i}+\frac{y_{i+1}}{h_i}$\\
+	 	 \vspace{3mm}
+	    Dla przejrzystości wprowadzamy symbole: $\sigma_{i}=\frac{1}{6}s''(x_{i})$ oraz $\Delta_{i}=\frac{y_{i+1}-y_{i}}{h_{i}} $ (uwaga: $\Delta$ oznacza co innego niż na poprzednim wykładzie), wtedy: \\
+	     \vspace{3mm}
+	    $s_i^{'}(x_i)=-2\sigma_{i}h_i-\sigma_{i+1}h_i+\Delta_{i}$\\
+        $ s_{i}'(x_{i})  &=\ \Delta_{i}-h_{i}(\sigma_{i+1}+2\sigma_{i})$\\
+        Natomiast    od drugiej strony:\\   	
+        $s_{i-1}'(x_{i}) &=\ \Delta_{i-1}+h_{i-1}(2\sigma_{i}+\sigma_{i-1})$\\
+        \end{frame}
+        
+        
+        
+        \begin{frame}
         \begin{block}{}
-        	$\sigma_{i} \ $- określa wartości $s''(x)$ w węzłach (punktach granicznych)
-            $\newline$
-            $\hspace*{0.5cm}$ - automatycznie zapewnia ciągłość 2-gich pochodnych
+        	\centering Warunek ciągłości: $s_{i-1}'(x_{i}) = s_{i}'(x_{i})$
         \end{block}
-    \end{frame}
-    %%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-    	Wartości $\sigma_{i}$ - z warunku ciągłości $s'(x)$ w węzłach: 
-        $\Delta_{i}=\frac{y_{i+1}-y_{i}}{h_{i}} \newline \newline$
-        Z $\textbf{(*)}$: 
-        $
-        \begin{cases}
-            	s_{+}'(x_{i})  &=\ \Delta_{i}-h_{i}(\sigma_{i+1}+2\sigma_{i})
-            	\\
-                s_{-}'(x_{i+1}) &=\ \Delta_{i}+h_{i}(2\sigma_{i+1}+\sigma_{i}) 
-        \end{cases}
-        $
-        \begin{block}{}
-        	\centering Warunek ciągłości: $s_{-}'(x_{i}) = s_{+}'(x_{i})$
-        \end{block}
-        $s_{-}'(x_{i})$ wyznaczane z $\textbf{(*)}$ dla $[x_{i-1},x_{i}]$:
         \[
         	\framebox{$\Delta_{i-1}+h_{i-1}(2\sigma_{i}+\sigma_{i-1})=
             \Delta_{i}-h_{i}(\sigma_{i+1}+2\sigma_{i})$}
@@ -115,16 +84,16 @@
     \end{frame}
     %%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-    	i ogólnie dla:
+    	i ogólnie dla ilorazów róznicowych:
         \begin{flushright}
-        	$f[x_{0}]\equiv f(x_{0}) \linebreak \linebreak$
-            $f[x_{0},\ x_{1}]\equiv\frac{f[x_{1}]-f[x_{0}]}{x_{1}-
+        	$\Delta_{0}^{(0)}=f[x_{0}]\equiv f(x_{0}) \linebreak \linebreak$
+            $\Delta_{0}^{(1)}=f[x_{0},\ x_{1}]\equiv\frac{f[x_{1}]-f[x_{0}]}{x_{1}-
             x_{0}}=\frac{f(x_{1})-f(x_{0})}{x_{1}-x_{0}} 
             \linebreak \linebreak$
-            $f[x_{0},\ x_{1},\ x_{2}]\equiv\frac{f[x_{1},x_{2}]-f[x_{0},x_{1}]}
+            $\Delta_{0}^{(3)}=f[x_{0},\ x_{1},\ x_{2}]\equiv\frac{f[x_{1},x_{2}]-f[x_{0},x_{1}]}
             {x_{2}-x_{0}} \linebreak $
             $\ldots \ldots \linebreak$
-            $f[x_{0},\ x_{1},\ .\ .\ .\ ,\ x_{k}]\equiv\frac{f[x_{1},\ldots,x_{k}]-f[x_{0},\ldots,x_{k-1}]}{x_{k}-x_{0}}$
+            $\Delta_{0}^{(n)}=f[x_{0},\ x_{1},\ .\ .\ .\ ,\ x_{k}]\equiv\frac{f[x_{1},\ldots,x_{k}]-f[x_{0},\ldots,x_{k-1}]}{x_{k}-x_{0}}$
         \end{flushright}
         mamy związek między ilorazami różnicowymi a pochodnymi:
         \begin{exampleblock}{}
@@ -134,14 +103,16 @@
                 \ \ \ (\eta \textrm{- pewien punkt})
             $
         \end{exampleblock}
-        \begin{block}{Zadanie}
-        	Sprawdzić
+        \begin{block}{Przypomnienie}
+         To wynika z 	uogólnionego  twierdzenie o wartości średniej (poprzedni wykład) 
         \end{block}
         
     \end{frame}
     %%%%%%%%%%%%%%
     \begin{frame}
-    	zatem:
+    	Różniczkując wzór na $s^{''}(x)$ w przedziale $[x_{i},x_{i+1}] $ (**) otrzymujemy:
+        $s_i^{'''}(x)=\frac{-s_i^{''}(x_i)}{h_i}+\frac{s_i^{''}(x_{i+1})}{h_i}=\frac{-6\sigma_{i}}{h_i}+\frac{6\sigma_{i+1}}{h_i}$\\
+        Wtedy:
         \begin{align*}
         	s'''(x_{1})&=c_{1}'''(x_{1}) \Rightarrow
             \frac{6}{h_{1}}(\sigma_{2}-\sigma_{1})=6\Delta_{1}^{(3)}
@@ -195,19 +166,20 @@
     \end{frame}
     %%%%%%%%%%%%%%%%%%
     \begin{frame}{Inne ważne możliwości określania warunków}
-    	\begin{enumerate}
-        \setcounter{enumi}{1}
+    	\begin{itemize}
     		\item natural cubic spline: $s''(x_{1})=s''(x_{n})=0$ (free boundary)
-            \item complete spline: $s'(x_{1})=y'_{1}, \ \ s'(x_{n})=y'_{n}$
-            (clamped boundary)
-            \item $s''(x_{1})=y''_{1}; \ \ s^{n}(x_{n})=y''_{n}$
-            \item $s'''(x)$ ciągła w $x_{2}$ oraz $x_{n-1}$ (not-a-knot condition)
+            \item clamped boundary: $s'(x_{1})=f'_{1}, \ \ s'(x_{n})=f'_{n}$ (pierwsze pochodne na krańcach znane bądź przybliżone ilorazami różnicowymi)
+            \item $s''(x_{1})=y''_{1}; \ \ s^{n}(x_{n})=y''_{n}$ (drugie pochodne na krańcach znane bądź przybliżone ilorazami różnicowymi, szczególny przypadek to natural cubic splines)
+            \item not-a-knot condition $s'''_1(x_2)=s'''_2(x_2)$ oraz $s'''_{n-1}(x_{n-1})=s'''_{n}(x_{n-1})$  czyli $s'''(x)$ ciągła w $x_{2}$ oraz $x_{n-1}$
             \item interpolowanie spline'ami funkcji periodycznych
-    	\end{enumerate}
+            $s(x_1)=s(n)$,
+            $s'(x_1)=s'(n)$ oraz
+            $s^{''}(0)=s^{''}(n)$
+    	\end{itemize}
     \end{frame}
     %%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-    	\begin{block}{Zadanie 1}
+    
         	Dla obliczeń - zwłaszcza wielokrotnego określania wartości s(x) 
             korzystna jest postać:
             \[
@@ -220,20 +192,12 @@
             +2\sigma_{i})\newline$
             $c_{i}=3\cdot \sigma_{i}\newline$
             $d_{i}=\frac{\sigma_{i+1}-\sigma_{i}}{h_{i}}\newline$
-            Sprawdzić.
-        \end{block}
-        \begin{block}{Zadanie 2}
-    		Układ równań dla 
-            $s_{i}(x)=a_{i}+b_{i}(x-x_{i})+c_{i}(x-x_{i})^{2}+d_{i}
-            (x-x_{i})^{3}$
-            $\newline$
-            (obliczenie $\rightarrow$ Horner) $\rightarrow$ 
-            podejście "wprost"
-    	\end{block}
+
+        
     \end{frame}
     %%%%%%%%%%%%%%%%%%%%
     \begin{frame}{Błąd interpolacji funkcji sklejanych}
-    	gdy:
+    	Przykładowo dla {\it clamped boundary condition} udowodniono :
         \begin{itemize}
         \item $a=x_{1}, x_{2}, . . . , x_{n}=b$
         \item $f\in C^{4}[a,\ b] , \ \ \ \ \max_{x\in[a,b]}|f^{(4)}
@@ -245,6 +209,11 @@
         	\max_{x\in[a,b]}|f(x)-s(x)|\leq \frac{5}{384} \cdot
             M \cdot \max_{1 \leq i \leq n-1}(x_{i+1}-x_{i})^{4}
         \]
+        
+        Wniosek:  jeśli dodamy 10 razy więcej punktów intepolacji, długość przedziału 
+        $x_{i+1}-x_{i}$ zmniejszy się 10-krotnie, a ograniczenie górne błedu zmniejszy się $10^4$ razy !\\
+        \small{
+        Dowód A. Hall, W. Weston Meyer "Optimal error bounds for cubic spline interpolation",  \url{https://www.sciencedirect.com/science/article/pii/002190457690040X})}
     \end{frame}
     
     
