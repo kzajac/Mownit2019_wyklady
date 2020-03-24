@@ -34,11 +34,19 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{Aproksymacja wielomianowa}
-	funkcje bazowe $\rightarrow$ ciąg jednomianów $\varphi_j(x) = x^j,j=0,1,\ldots,m$\newline
-    funkcje aproksymująca: $f(x) = \sum_{j=0}^{m}a_j\varphi_j(x)=\sum_{j=0}^{m}a_jx^j$ \newline
-    $F(x)$ - na zbiorze dyskretnym $\{x_i\},i=0,1,\ldots,n$
-    $$min!\sum_{i=0}^{n}w(x_i)[F(x_i)-f(x_i)]^2 \rightarrow$$
-    układ normalny:
+	Dane:\\
+	
+	funkcje bazowe $\rightarrow$ ciąg jednomianów $\varphi_j(x) = x^j,j=0,1,\ldots,m$\\
+	\vspace{0.5cm}
+    funkcja aproksymująca: $f(x) = \sum_{j=0}^{m}a_j\varphi_j(x)=\sum_{j=0}^{m}a_jx^j$ \\
+    \vspace{0.5cm}
+    $F(x)$ - zadana na zbiorze dyskretnym $\{x_i\},i=0,1,\ldots,n$\\
+    \vspace{0.5cm}
+    Szukamy takich współczynników $a_j$, że :\\
+    $$min!\sum_{i=0}^{n}w(x_i)[F(x_i)-f(x_i)]^2 $$
+\end{frame}
+\begin{frame}
+    Układ normalny:
     $$\sum_{i=0}^{n}w(x_i)\bigg[F(x_i)-\sum_{j=0}^{m}a_jx_i^j\bigg]x_i^{k\leftarrow\frac{\partial f}{\partial a_k}}=0,k=0,1,\ldots,m$$
     $$\sum_{i=0}^{n}w(x_i)x_i^k\sum_{j=0}^{m}a_jx_i^j=\sum_{i=0}^{n}w(x_i)F(x_i)x_i^k,k=0,1,\ldots,m$$
     $$\sum_{j=0}^{m}\underbrace{\bigg(\sum_{i=0}^{n}w(x_i)x_i^{j+k}\bigg)}_{g_{k,j}}a_j = \underbrace{\sum_{i=0}^{n}w(x_i)F(x_i)x_i^k}_{b_k}$$
@@ -75,10 +83,10 @@
     \item $x_0,x_1,\ldots,x_n$ - są różne
     \item $m \leqslant n$
     \end{enumerate}
-    to $det G \not= 0 \rightarrow$ układ ma jedno rozwiązanie. 
-    \begin{flushright}
-    	\textit{Zadanie: } \quad Pokazać, że dla $m = n$ - wiel. aproksymacyjny = interpolacyjny $(H=0)$
-     \end{flushright}
+    to $det$ $G \not= 0 \rightarrow$ układ ma jedno rozwiązanie. 
+   % \begin{flushright}
+   % 	\textit{Zadanie: } \quad Pokazać, że dla $m = %n$ - wiel. aproksymacyjny = interpolacyjny $(H=0)$
+   %  \end{flushright}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{W praktyce}
@@ -160,20 +168,20 @@
 	\end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\begin{flushright}
-    	\textit{Zadanie:} \quad Pokazać, że $P_n(-x) = (-1)^n \cdot P_n(x)$ 
-    \end{flushright}
-	Wielomiany Legendre'a spełniają równania różniczkowe:
+\begin{frame}{Własności}
+	Wielomiany Legendre'a spełniają zależność:
+	$$P_n(-x) = (-1)^n \cdot P_n(x)$$ 
+  
+	spełniają równania różniczkowe:
         $$\frac{d}{dx}\bigg[(1-x^2)\frac{dP_n(x)}{dx}\bigg]+n(n+1)P_n(x) = 0$$
-        (wynik rozdzielania zmiennych w r. Laplace'a we współrzędnych sferycznych) \newline \par
+        
         \textbf{Ortogonalność: }
         $$\int_{-1}^{1}P_n(x)P_m(x)dx = \left\{\begin{array}{cc}
         0, & m \not= n \\
         \frac{2}{2n+1}, & m = n 
         \end{array}\right.$$
-        \begin{flushright}
-        	\textit{Zadanie: } \quad Sprawdzić ortogonalność w przypadku dyskretnym.
-        \end{flushright}
+       % \begin{flushright}
+        %	\textit{Zadanie: } \quad Sprawdzić %ortogonalność w przypadku dyskretnym.
+        %\end{flushright}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%

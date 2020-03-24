@@ -1,6 +1,6 @@
 \section{Aproksymacja jednostajna}
 %%%%%%%%%%%%%%%%%%%
-\begin{frame}
+\begin{frame}{Aproksymacja jednostajna}
 	Dla $F(x)$ określonej na $[a,b]$ szukamy $f(x)$:
     $$min! ||\mathbf{F(x)-f(x)}|| = min!\underbrace{sup_{x \in [a,b]}|F(x)-f(x)|}_{\text{norma Czebyszewa}}$$
 \end{frame}
@@ -25,6 +25,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{Metoda szeregów potęgowych - szereg Taylora}
+Prostą metodą aproksymacji jednostajnej jest metoda szeregów potęgowych t.j. używamy pierwszych n+1 wyrazów szeregu Taylora:
 	$$W_n(x) = \sum_{k=0}^{n}\frac{F^{(k)}(x_0)}{k!}(x-x_0)^k$$
     oszacowanie błędu aproksymacji $\rightarrow$ reszta Lagrange'a:
     $$F(x)-W_n(x) = \frac{F^{n+1}(\eta)}{(n+1)!}(x-x_0)^{n+1},\eta \in [a,b]$$
@@ -45,19 +46,16 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{Technika aproksymacji Padé}
-	Jest to sposób określenia $\{p_i,q_j\}, i = 0,..,n,j = 0,..,m$ przy zadanych $n,m$ - możliwie najwięcej pochodnych $F(x)$ i $r(x)$ w $x=0\rightarrow$ równych!
+	Jest to sposób określenia $\{p_i,q_j\}, i = 0,..,n,j = 0,..,m$ przy zadanych $n,m$ 
     $$F(x) - r(x) = F(x) - \frac{p(x)}{q(x)}=\frac{F(x) \cdot q(x) - p(x)}{q(x)}$$
     Niech $F(x) = \sum_{i=0}^{\infty}a_i \cdot x^i \rightarrow$ szereg Maclaurina
     $$F(x) - r(x) = \frac{\sum_{i=0}^{\infty}a_ix^i \cdot \sum_{i=0}^{m}q_ix^i - \sum_{i=0}^{n}p_ix^i}{q(x)}$$
-    Należy dobrać $p_0,p_1,..,p_n$ i $q_1,..,q_m$ tak, aby:
+    Należy dobrać $p_0,p_1,..,p_n$ i $q_1,..,q_m$ tak, aby  rozwinięcia $F(x)$ i $r(x)$ w szereg Maclaurina były jak najbardziej zgodne czyli możliwie najwięcej pochodnych $F(x)$ i $r(x)$ w $x=0$ było równych:
     $$F^{(k)}(0)-r^{(k)}(0) = 0, k=0,1,..,N$$
     
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\begin{flushright}
-		\textit{Zadanie: } \quad Pokazać, że jest to równoważne z: \newline\textit{$(F-r)$ ma w $x=0$ pierwiastek $N+1$ krotny.}
-	\end{flushright}
     To znaczy, że licznik:
     $$(a_0+a_1x+..)(1+q_1x+..+q_mx^m)-(p_0+p_1x+..+p_nx^n)$$
     nie powinien mieć wyrazów stopnia $\leqslant N$. Dla uproszczenia zapisu:
@@ -69,10 +67,9 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{Typowy przykład}
-	$$(*) \rightarrow F(x) = \big[7+(1+x)^{\frac{4}{3}}\big]^{\frac{1}{3}} \approx 2+\frac{1}{9}x+\frac{1}{81}x^2-\frac{49}{8748}x^3+\frac{175}{78732}x^4+\ldots $$
+	$$ F(x) = \big[7+(1+x)^{\frac{4}{3}}\big]^{\frac{1}{3}} \approx 2+\frac{1}{9}x+\frac{1}{81}x^2-\frac{49}{8748}x^3+\frac{175}{78732}x^4+\ldots $$
     \begin{block}{Uwagi}
     	\begin{itemize}
-    	\item twierdzenie o zbieżności $r(x) \leftarrow$ dod. zał. o $F(x)$
         \item w praktyce: $N = n+m$ - ustalone: $\left\{\begin{array}{ccl}
         	n & = & m \\
             n & = & m+1
