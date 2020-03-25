@@ -1,0 +1,115 @@
+\section{Złożone kwadratury Newtona-Cotesa}
+	\begin{frame}{Złożone kwadratury Newtona-Cotesa}
+		Wzory N-C są niedogodne dla dużych $[a,\ b]-$ {\it piecewise technique}
+        \begin{center}
+      		\includegraphics[width=0.4\linewidth]{img/6/image004.png}
+      	\end{center}
+      	\textcolor{blue}{Problemy:}
+      	 \begin{itemize}
+			\item wzrost błędu interpolacji dla dużych n
+			\item efekt Rungego (rozwiązanie dla interpolacji to funkcje sklejane oraz interpolacja sześcienna)
+    	\end{itemize}
+	\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{frame}
+	\textcolor{blue}{Wyprowadzenie złożonej kwadratury:}
+	$\newline$
+		Przedział $[a,\ b]$ podzielony na $n$ podprzedziałów $n=2m.$
+        \newline
+        (Simpson element. - 3 węzły)  
+        $$
+        h=\frac{b-a}{2m},\ x_{i}=x_{0}+i\cdot h,\ i=0, 1, 2, . . . , 2m
+        $$
+        \scalebox{0.8}{
+          $\displaystyle
+          \int_{a}^{b}f(x)dx=\sum_{j=1}^{m}\int_{x_{2j-2}}^{x_{2j}}f(x)dx=\sum_{j=1}^{m}\{\frac{h}{3}[f(x_{2j-2})+4f(x_{2j-1})+f(x_{2j})]-\frac{h^{5}}{90}f^{(4)}(\eta_{j})\}
+          $
+        }
+
+        $\eta_{j}\in(x_{2j-2},\ x_{2j})$
+        \newline
+        \newline
+        $f(x_{2j})$ występuje w składowych dla $[x_{2j-2},\ x_{2j}]  [x_{2j},\ x_{2j+2}]$ i stąd:
+        \newline
+
+        \scalebox{0.85}{
+          $\displaystyle
+          \int_{a}^{b}f(x)dx=\frac{h}{3}[f(x_{0})+4\sum_{j=1}^{m}f(x_{2j-1})+2\sum_{j=1}^{m-1}f(x_{2j})+f(x_{2m})]-\frac{h^{5}}{90}\sum_{j=1}^{m}f^{(4)}(\eta_{j})
+          $
+        }
+        $\newline$
+        \textbf{Uwaga:}Analogicznie dla innych kwadratur np.  wzoru trapezów
+	\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{frame}{Błąd dla wzoru złożonego}
+	$\newline$ 
+	\textbf{Założenia:}
+	\begin{itemize}
+			\item $f(x)$ - ciągła
+			\item $f^{(4)}$ - ciągła 
+    	\end{itemize}
+      \textbf{Z tw. o wartości średniej:}
+      $$
+      \exists \  \eta_{j}\in(x_{2j-2}, x_{2j}) :\  
+      \min_{x\in[a,b]}f^{(4)}(x)\leq f^{(4)}(\eta_{j})\leq \max_{x\in[a,b]}f^{(4)}(x)  
+      $$
+      \newline
+	  dla każdego przedziału w wyniku dodawania:
+      \begin{center}
+        $\displaystyle
+        m\cdot\min_{x\in[a,b]}f^{(4)}(x)\leq\sum_{j=1}^{m}f^{(4)}(\eta_{j})\leq m\cdot \max_{x\in[a,b]}f^{(4)}(x),
+        $
+        \newline
+        $\displaystyle
+        \min_{x\in[a,b]}f^{(4)}(x)\leq\frac{1}{m}\sum_{j=1}^{m}f^{(4)}(\eta_{j})\leq \max_{x\in[a,b]}f^{(4)}(x),
+        $
+      \end{center}
+        
+    \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{frame}
+	\textbf{Z tw. o wartości średniej:}
+      $$
+      \exists\mu\in(a,\ b) :\quad f^{(4)}(\mu)=\frac{1}{m}\sum_{j=1}^{m}f^{(4)}(\eta_{j}) \quad \Rightarrow
+      $$
+
+      $\displaystyle
+      \qquad\quad E=-\frac{h^{5}}{90} \cdot m\cdot f^{(4)}(\mu) ,\quad m= \frac{b-a}{2h} \quad \Rightarrow
+      $
+      \begin{exampleblock}{}
+      	\[
+        	E=-\frac{h^{4}(b-a)}{180}f^{(4)}(\mu)
+        \]
+      \end{exampleblock}
+%       \begin{center}
+%       \fbox{$E=-\displaystyle $}
+%       \end{center}
+    \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{frame}{Wpływ błędu wyznaczania $f(x)$}
+        $$
+        f(x_{i})=f^{\star}(x_{i})+e_{i};\quad i=0, 1, 2, . . ., 2m
+        $$
+		$$
+        f^{\star}(x) \textrm{ - wartość funkcji wynikająca z arytmetyki komputerowej }
+        $$
+        (błąd zaokrąglenia $|\epsilon_{i}|<\epsilon$)
+        \newline
+        \newline
+		\textbf{Błąd wzoru złożonego:}
+        \scalebox{0.72}{
+          $\displaystyle \Upsilon=|\frac{h}{3}[e_{0}+4\sum_{j=1}^{m}e_{2j-1}+2\sum_{j=1}^{m-1}e_{2j}+e_{2m}]|\leq\frac{h}{3}[\epsilon+4m\epsilon+2(m+1)\epsilon+\epsilon]=2mh\epsilon= \fbox{$(b-a)\cdot\epsilon$}$
+		}
+        \begin{itemize}
+        \item nie zależy od $h$
+        
+		\item $h\rightarrow 0$ to stabilna
+        
+		\item nie mylić z błędem metody!!!!
+        
+		\item stabilność metody ze względu na błędy zaokrągleń reprezentacji $\rightarrow$ cecha procedur całkowania numerycznego! (nie ma jej np. różniczkowanie!)
+		\end{itemize}
+		\textbf{{\it Zadanie}: wzory złożone dla trapezów i prostokątów}
+        
+    \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%
