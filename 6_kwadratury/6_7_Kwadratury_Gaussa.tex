@@ -29,11 +29,12 @@
       \end{exampleblock}
       
       \begin{exampleblock}{Definicja}
-       \textit{Zbiór liniowo zależny i liniowo niezależny}
-      \scalebox{0.85}{
-       $\{\varphi_{i}\}_{i=0}^{n}- {\it ortogonalny}: 
-          \ \ 
-       <\varphi_{j}|\varphi_{k}>=\alpha_{j}\cdot\delta_{jk}$ }
+       \textit{Zbiór liniowo zależny i niezależny}
+     % \scalebox{0.85}{
+       %$\{\varphi_{i}\}_{i=0}^{n}- {\it %ortogonalny} 
+      %    \ \ 
+       %<\varphi_{j}|\varphi_{k}>=\alpha_{j}\cdot\%delta_{jk}
+      % $}
        $\newline$
        Zbiór funkcji $\{ \varphi_{i}\}_{i=0}^{n}$ jest liniowo niezależny na $[a,b]$:
       
@@ -67,7 +68,7 @@
       $\newline$
       $\newline$
       
-      \hfill\textbf{Zadanie: Udowodnić twierdzenie}
+     % \hfill\textbf{Zadanie: Udowodnić %twierdzenie}
          
   \end{frame}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -76,10 +77,12 @@
           \textbf{Wniosek:}$\newline$
       \end{large}
       $\newline$
-      Dowolny wielomian stopnia $k \leq n$:
+      Zbiór wielomianów ortogonalnych $\{ \varphi_{i}\}_{i=0}^{n}$jest liniowo niezależny\\
+      \vspace{0.5cm}
+      Dowolny wielomian stopnia $k \leq n$ można przedstawić jako kombinację liniową takich wielomianów:
       \[
-          Q_{k}(x)= \sum_{j=0}^{k}c_{j}\varphi_{k}(x)\ 
-          \ \ (\exists\{c_{j}\})
+         \exists\{c_{j}\}; Q_{k}(x)= \sum_{j=0}^{k}c_{j}\varphi_{k}(x)\ 
+          
       \]
       \textbf{Konstruowanie zbioru wielomianów ortogonalnych 
       $\{\varphi_{i}\}_{i=0}^{n}$:}
@@ -96,7 +99,7 @@
        \frac{<\varphi_{i} | \varphi_{i}>}{<\varphi_{i-1} | \varphi_{i-
        1}>}\varphi_{i-1}(x)
       \]
-       \hfill\textbf{Zadanie: Pokazać, że są rzeczywiście ortogonalne}
+      % \hfill\textbf{Zadanie: Pokazać, że są %rzeczywiście ortogonalne}
   \end{frame}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{frame}
@@ -136,7 +139,7 @@
       $\newline$
       $x_{i}$ - zadane
       $\newline$
-      $a_{i}$ - dobór wielomianu stopnia $\leq n $
+      $a_{i}$ - wyznaczone przez dobór wielomianu stopnia $\leq n $
       \end{itemize}
   \end{frame}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,42 +147,44 @@
   	   \textbf{Uwagi:}
       $\newline$
       \begin{itemize}
-      \item możliwość doboru $a_{i}$ i $x_{i}$, $i=1,2,\ldots,n$
+      \item możliwość doboru $a_{i}$ i $x_{i}$, $i=1,2,\ldots,n$ czyli 2n parametrów\\
+      \item za pomocą 2n parametrów można zdefiniować wielomian stopnia 2n-1,
+      \item  tak
           więc można uzyskać stopień dokładności $2n-1$ (w przypadku n-punktowej kwadratury)
       \item szersza klasa funkcji podcałkowych (w sposób naturalny):
       
       \[
           \int_{a}^{b}w(x)f(x)dx\approx\sum_{i=1}^{n}a_{i}f(x_{i})
       \]
-      \item $w(x)$ - funkcja ważąca $\rightarrow$ może zawierać w sobie całkwoalną osobliwość 
+      \item $w(x)$ - funkcja ważąca $\rightarrow$ może zawierać w sobie całkowalną osobliwość 
       \end{itemize}
   \end{frame}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \begin{frame}
-      \begin{block}{Podstawowe twierdzenie kwadratur Gaussa}
+  \begin{frame}{Podstawowe twierdzenie kwadratur Gaussa}
+      
           Odcięte ${x_{i}}$ n-punktowej kwadratury Gaussa z funkcją ważącą 
           $w(x)$ w $[a,b]$ są zerami wielomianu ortogonalnego
           $\varphi_{n}(x)$ dla tego samego przedziału i tej samej funkcji
-          ważącej:
-          $\newline$
-          $\newline$
-          $\{\varphi_{i}\}_{i=0}^{n}$ - zbiór wielomianów ortogonalnych w 
+          ważącej.\\
+         Jeśli $\{\varphi_{i}\}_{i=0}^{n}$ - zbiór wielomianów ortogonalnych w 
           $[a,b]$
           $\newline$
-          $\varphi_{n}(x)$ - ma $n$ różnych zer $x_{1},x_{2}, \ldots,x_{n}
+           to $\varphi_{n}(x)$ - ma $n$ różnych zer $x_{1},x_{2}, \ldots,x_{n}
           \  \in (a,b)$
+          Możemy znależć wielomian interpolujący f(x) w tych węzłach:
           \[
               f(x)= \sum_{i=1}^{n}f(x_{i})\prod_{j=1,j\neq 
               i}^{n}\frac{x-x_{j}}{x_{i}-x_{j}}+\frac{f^{(n)}
               (\eta(x))}
               {n!}\prod_{i=1}^{n}(x-x_{i})
           \]
+          i policzyć całkę jako:
           \[
            (*) \int_{a}^{b} w(x)f(x)dx \approx \sum_{i=1}^{n}a_{i}f(x_{i}),
            \ \ \ a_{i}=\int_{a}^{b} w(x)L_{i}(x)dx
           \]
-          stopień dokładności $\leq n-1$ bo $f^{n}(\eta)$
-      \end{block}
+         Całka jest na pewno dokładna, gdy f(x) jest wielomian stopnia $\leq n-1$, bo wtedy $f^{n}(\eta)=0$
+     
   \end{frame}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{frame}{Twierdzenie o stopniu dokładności kwadratur Gaussa}
@@ -189,10 +194,11 @@
           \end{large}
       $\newline$
       {\it Kwadratura ma stopień dokładności $2n-1$} (dla n-punktowej kwadratury) ;
-      {\it tzn. jest dokładna dla wielomianu}:
+      {\it  t.j. dokładna dla wielomianu:}
 	\begin{center}
       $P(x)=Q(x)\cdot\varphi_{n}(x)+R(x)$ ;\quad $Q, R-${\it stopnia} $<n. $
 	\end{center}
+{\it Uwaga:  każdy  wielomian stopnia $2n-1$ można przedstawić w takiej postaci}
       \end{block}
   \end{frame}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -207,9 +213,9 @@
           \int_{a}^{b}w(x)P(x)dx=\underbrace{\int_{a}^{b}w(x)\overbrace{Q(x)}^{wstaw.(**)}\varphi_{n}(x)dx}_{(***)}+\int_{a}^{b}w(x)R(x)dx
           $$
           $$
-          (***)=\sum_{i=1}^{n-1}d_{i}\int_{a}^{b}w(x)\varphi_{i}\varphi_{n}(x)dx=\alpha\cdot\delta_{i,n}=0\quad (i<n)
+          (***)=\sum_{i=1}^{n-1}d_{i}\int_{a}^{b}w(x)\varphi_{i}\varphi_{n}(x)dx=0\quad (i<n)
           $$
-
+         
       \end{block}
 
   \end{frame}
@@ -259,13 +265,16 @@
     \end{bmatrix}
     \]
     \textbf{Uwaga:}
-    \begin{itemize}
-    \item Zera w wektorze z prawej strony powyższego równania - bo $\newline$ $\varphi_{1}(x)$ , . . . , $\varphi_{n-1}(x)$ są ortogonalne do $\varphi_{0}(x)$ -- stałej!
+   % \begin{itemize}
+   % \item 
+   Zera w wektorze z prawej strony powyższego równania - bo  $\varphi_{1}(x)$ , . . . , $\varphi_{n-1}(x)$ są ortogonalne do $\varphi_{0}(x)$ -- stałej>0
+   czyli :\\
+ dla $ i =1,...,n-1$ $\int_{a}^{b} w(x)\varphi_{i}(x)dx=\frac{1}{\varphi_{0}}\varphi_{0}\int_{a}^{b} w(x)\varphi_{i}(x)dx=\int_{a}^{b} w(x)\varphi_{0}(x)\varphi_{i}(x)dx=0$
     $\newline$
-    \item W układzie wagi -- dokładne tylko dla wielomianów ortogonalnych stopnia $n-1!!!$
-    \end{itemize}
-   \textbf{Zadanie: 
-    	Wyprowadzić 2 i 3-punktowe wzory Gaussa-wprost.}
+   % \item W układzie wagi -- dokładne tylko dla wielomianów ortogonalnych stopnia $n-1!!!$
+   % \end{itemize}
+   %\textbf{Zadanie: 
+   % 	Wyprowadzić 2 i 3-punktowe wzory %Gaussa-wprost.}
   \end{frame}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{frame}{Praktyczne postacie kwadratur Gaussa-... }

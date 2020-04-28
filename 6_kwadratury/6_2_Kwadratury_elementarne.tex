@@ -20,13 +20,20 @@
 			\item kwadratura otwarta
     	\end{itemize}
     	$\newline$
-    	\textcolor{blue}{Wyprowadzenie metody:}
+    	\textcolor{blue}{Wyprowadzenie metody} (korzystamy ze wzoru Taylora):
 		$$
 f(x)=f(y_{i})+ \sum_{p=1}^{\infty}\frac{(x-y_{i})^{p}}{p!}f^{(p)}(y_{i})
 		$$
-        
+        	$$
+F(x)=\int f(x)dx=f(y_{i})x+\sum_{p=1}^{\infty}\frac{(x-y_{i})^{p+1}}{(p+1)!}f^{(p)}(y_{i})
 		$$
-\int_{x_{i}}^{x_{i+1}}f(x)dx=\underbrace{f(y_{i})h_{i}}_{R}+\underbrace{\frac{1}{24}h_{i}^{3}f''(y_{i})+\frac{1}{1920}h_{i}^{5}f^{(4)}(y_{i})+\ldots}_{blad \ metody}
+		Następnie podstawiając  $h=x_{i+1}-x_i$,
+		$\frac{h}{2}=x_{i+1}-y_i=y_i-x_i$
+		$$
+(*)\int_{x_{i}}^{x_{i+1}}f(x)dx=F(x_{i+1})-F(x_i)=
+$$
+$$
+\underbrace{f(y_{i})h_{i}}_{R}+\underbrace{\frac{1}{24}h_{i}^{3}f''(y_{i})+\frac{1}{1920}h_{i}^{5}f^{(4)}(y_{i})+\ldots}_{blad \ metody}
 		$$
 	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -45,32 +52,47 @@ f(x)=f(y_{i})+ \sum_{p=1}^{\infty}\frac{(x-y_{i})^{p}}{p!}f^{(p)}(y_{i})
     	$\newline$
     	\textcolor{blue}{Wyprowadzenie metody:}	 	
     	$$
-f(x_{i})=f(y_{i})- \frac{1}{2}h_{i}f'(y_{i})+\ldots,\ \ f(x_{i+1})=f(y_{i})+ \frac{1}{2}h_{i}f'(y_{i})+\ldots
+f(x_{i})=f(y_{i})- \frac{1}{2}h_{i}f'(y_{i})+\frac{(\frac{h_i}{2})^2}{2!}f''(y_i)\ldots
+$$
+$$
+f(x_{i+1})=f(y_{i})+ \frac{1}{2}h_{i}f'(y_{i})+\frac{(\frac{h_i}{2})^2}{2!}f''(y_i)\ldots
         $$
-        
+        \end{frame}
+ \begin{frame}{Wzór trapezów}
+ Przy sumowaniu wyrazy z nieparzystymi pochodnymi znoszą się :
+ $$
+ f(x_{i})+f(x_{i+1})=2(f(y_{i})+\frac{(\frac{h_i}{2})^2}{2!}f''(y_i)+\ldots)
+ $$
+ $$
+ f(y_{i})=\frac{f(x_{i})+f(x_{i+1})}{2}-\frac{(\frac{h_i}{2})^2}{2!}f''(y_i)-\ldots
+ $$
+ Wstawiając do (*) otrzymujemy:
 		$$
-\int_{x_{i}}^{x_{i+1}}f(x)dx=\underbrace{\frac{1}{2}[f(x_{i}) + f(x_{i+1})] \cdot h_{i}}_{T} \underbrace{- \frac{1}{12}h_{i}^{3} f''(y_{i})-\frac{1}{480}h_{i}^{5}f^{(4)}(y_{i})+\ldots}_{blad \ metody}
+\int_{x_{i}}^{x_{i+1}}f(x)dx=f(y_{i})h_{i}+\frac{1}{24}h_{i}^{3}f''(y_{i})+\frac{1}{1920}h_{i}^{5}f^{(4)}(y_{i})+\ldots=
+$$
+$$
+\underbrace{\frac{1}{2}[f(x_{i}) + f(x_{i+1})] \cdot h_{i}}_{T} \underbrace{- \frac{1}{12}h_{i}^{3} f''(y_{i})-\frac{1}{480}h_{i}^{5}f^{(4)}(y_{i})+\ldots}_{blad \ metody}
 		$$ 
 	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%
-	\begin{frame}{Wzór Simpsona}
-	\begin{center}
-      		\includegraphics[width=0.4\linewidth]{img/6/image003.png}
-      	\end{center}
-      	$\newline$
-      	Złożenie metody prostokątów i trapezów.
-      	$$
-        \textnormal{Sposób składania:} \left\{\begin{array}{l}
-  			I = R + E + F \\
-        	I = T - 2E - 4F
-        \end{array}\right.
-        $$
+%	\begin{frame}{Wzór Simpsona}
+%	\begin{center}
+   %   		\includegraphics[width=0.4\linewidth]{%img/6/image003.png}
+   %   	\end{center}
+   %   	$\newline$
+   %   	Złożenie metody prostokątów i trapezów.
+   %   	$$
+    %    \textnormal{Sposób składania:} %\left\{\begin{array}{l}
+  	%		I = R + E + F \\
+    %    	I = T - 2E - 4F
+    %    \end{array}\right.
+    %    $$
         
-      	\end{frame}
+     % 	\end{frame}
       	
-      \begin{frame}	
+      \begin{frame}{Wzór Simpsona}	
 		\textcolor{blue}{Idea:}
-
+ Całkujemy parabolę przechodzącą przez punkty $x_i,\frac{x_{i}+x_{i+1}}{2}, x_{i+1} $
         $$
 \int_{x_{i}}^{x_{i+1}}f(x)dx \approx  \frac{1}{6}h_{i}[f(x_{i})+4f(\frac{x_{i}+x_{i+1}}{2})+f(x_{i+1})]
 		$$

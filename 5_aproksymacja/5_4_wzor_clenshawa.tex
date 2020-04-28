@@ -25,7 +25,38 @@ Jak działa?\\
         +[ &y_{N-1}& - & \alpha(N-1,x)\cdot y_N & - & 0 & ] F_{N-1}(x) \\
          & \ldots & & \ldots & & \ldots & \\
          +[ & \textrm{\colorbox{red}{$y_8$}} & - & \alpha(8,x)y_9 & - & \beta(9,x)y_{10} & ] \textrm{\colorbox{red}{$F_8(x)$}} \\
-		+[ & y_7 & - & \textrm{\colorbox{red}{$\alpha(7,x)y_8$}} & - & \beta(8,x)y_9 & ] \textrm{\colorbox{red}{$F_7(x)$}} \\
+		+[ & y_7 & - & \textrm{\begin{frame}{Faktoryzacja Doolitle'a}
+LU inaczej - lepszy wgląd w kolejność obliczeń
+\scalebox{0.90}{
+$\begin{bmatrix}
+(1) & 0 & \cdots & 0 & 0\\
+l_{21} & (1) &  &  & \\
+\vdots &  &  &  & \\
+l_{i1} & l_{i2} & \cdots & (1) & 0\\
+\vdots &  &  &  & \\
+l_{n1} & l_{n2} & \cdots & l_{n,n-1} & (1)
+\end{bmatrix} \cdot \begin{bmatrix}
+u_{11} & u_{12} & \cdots & u_{1n}\\
+0 & u_{22} & \cdots & u_{2n}\\
+ &  &  & \vdots\\
+ &  & u_{ii} & u_{in}\\
+ &  &  & \vdots\\
+ 0 & \cdots & \cdots & u_{nn}
+\end{bmatrix}=\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+ &  &  & \vdots\\
+ a_{i1} & a_{i2} & \cdots & a_{in}\\
+ &  &  & \vdots\\
+ a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix}$
+
+}
+\newline
+\\
+$W \mathrm{i}$-tym wierszu macierzy $\mathrm{L}$ różne od $0$ tylko pierwsze $\mathrm{i}$ element\'{o}w $W\mathrm{j}$-tej kolumnie macierzy $\mathrm{U}$ różne od $0$ tylko pierwsze $\mathrm{j}$ elementów
+
+\end{frame}$\alpha(7,x)y_8$}} & - & \beta(8,x)y_9 & ] \textrm{\colorbox{red}{$F_7(x)$}} \\
         +[ & y_6 & - & \alpha(6,x)y_7 & - & \textrm{\colorbox{red}{$\beta(7,x)y_8$}} & ] \textrm{\colorbox{red}{$F_6(x)$}} \\
         +[ & y_5 & - & \alpha(5,x)y_6 & - & \beta(6,x)y_7 & ] F_5(x) \\
          & \ldots & & \ldots & & \ldots & \\

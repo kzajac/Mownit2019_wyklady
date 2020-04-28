@@ -50,7 +50,7 @@ $\newline$$\newline$
 		2. $m=2$, krok $\displaystyle \frac{h}{2}=\frac{b-a}{4}$ $\newline$
         \scalebox{0.85}{
             $
-                \displaystyle \int_{a}^{b}f(x)dx=\frac{h}{6}\underbrace{[f(a)+4f(a+\frac{h}{2})+f(a+h)}_{S(a,\frac{a+b}{2})}+\underbrace{(a+h)+4f(a+\frac{3}{4}h)+f(b)]}_{S(\frac{a+b}{2},b)} - 
+                \displaystyle \int_{a}^{b}f(x)dx=\frac{h}{6}\underbrace{[f(a)+4f(a+\frac{h}{2})+f(a+h)}_{S(a,\frac{a+b}{2})}+\underbrace{f(a+h)+4f(a+\frac{3}{2}h)+f(b)]}_{S(\frac{a+b}{2},b)} - 
             $
         }
         \begin{center}
@@ -60,9 +60,10 @@ $\newline$$\newline$
             $
           }
         \end{center}
-        przyjmijmy, że: $f^{(4)}(\mu)\approx f^{(4)}(\mu^{\star})$
+        przyjmijmy, że: $f^{(4)}(\mu)\approx f^{(4)}(\mu^{\star})$ oraz  podstawiamy $b-a=2h$
+        wtedy błąd dla (2.) $\frac{h^5}{16\cdot 90}f^{(4)}(\mu)$
 		$\newline$$\newline$
-        \textbf{Z porównania 1. i 2. :}
+        \textbf{Z porównania (1.) i (2.) :}
         $$
         S(a,b)-\alpha\approx S(a,\ \frac{a+b}{2})+S(\frac{a+b}{2},\ b)-\frac{1}{16}\alpha \quad\Rightarrow
         $$
@@ -80,14 +81,15 @@ $\newline$$\newline$
           $|\displaystyle \int_{a}^{b}f(x)dx-S(a,\ \frac{a+b}{2})-S(\frac{a+b}{2},\ b)|\approx\frac{1}{15}|s(a,\ b)-S(a,\ \frac{a+b}{2})-S(\frac{a+b}{2},\ b)|$ 
       }
       $\newline$
-      \scalebox{0.9}{
-      	(lewa strona równania powinna być równa $\epsilon$)
-      }
+      
+      lewa strona to błąd przy zastosowaniu dokładniejszego sposobu całkowania - chcemy, żeby był on $<\epsilon$
+      
+      
 	  $\newline$
       
       Wtedy:
       $$
-	      |S(a,\ b)-S(a,\ \frac{a+b}{2})-S(\frac{a+b}{2},\ b)|<15\dot\epsilon \quad(*)
+	      |S(a,\ b)-S(a,\ \frac{a+b}{2})-S(\frac{a+b}{2},\ b)|<15\dot \epsilon \quad(*)
       $$
 	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%

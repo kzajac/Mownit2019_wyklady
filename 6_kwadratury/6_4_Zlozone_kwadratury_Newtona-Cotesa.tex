@@ -16,7 +16,7 @@
 	$\newline$
 		Przedział $[a,\ b]$ podzielony na $n$ podprzedziałów $n=2m.$
         \newline
-        (Simpson element. - 3 węzły)  
+        (Simpson elementarny potrzebuje 3 węzły czyli 2 przedziały)  
         $$
         h=\frac{b-a}{2m},\ x_{i}=x_{0}+i\cdot h,\ i=0, 1, 2, . . . , 2m
         $$
@@ -45,30 +45,30 @@
 	$\newline$ 
 	\textbf{Założenia:}
 	\begin{itemize}
-			\item $f(x)$ - ciągła
-			\item $f^{(4)}$ - ciągła 
+			\item $f(x)$ - ciągła w [a,b]
+			\item $f^{(4)}$ - ciągła  w [a,b]
     	\end{itemize}
-      \textbf{Z tw. o wartości średniej:}
+    	\textbf{Z tw. Weierstrassa:}
       $$
-      \exists \  \eta_{j}\in(x_{2j-2}, x_{2j}) :\  
-      \min_{x\in[a,b]}f^{(4)}(x)\leq f^{(4)}(\eta_{j})\leq \max_{x\in[a,b]}f^{(4)}(x)  
+      \exists \  x_1, x_2 \in[a,b] :\  
+      \min_{x_1\in[a,b]}f^{(4)}(x_1)\leq f^{(4)}(\eta_{j})\leq \max_{x_2\in[a,b]}f^{(4)}(x_2)  
       $$
       \newline
 	  dla każdego przedziału w wyniku dodawania:
       \begin{center}
         $\displaystyle
-        m\cdot\min_{x\in[a,b]}f^{(4)}(x)\leq\sum_{j=1}^{m}f^{(4)}(\eta_{j})\leq m\cdot \max_{x\in[a,b]}f^{(4)}(x),
+        m\cdot\min_{x_1\in[a,b]}f^{(4)}(x_1)\leq\sum_{j=1}^{m}f^{(4)}(\eta_{j})\leq m\cdot \max_{x_2\in[a,b]}f^{(4)}(x_2),
         $
         \newline
         $\displaystyle
-        \min_{x\in[a,b]}f^{(4)}(x)\leq\frac{1}{m}\sum_{j=1}^{m}f^{(4)}(\eta_{j})\leq \max_{x\in[a,b]}f^{(4)}(x),
+        \min_{x_1\in[a,b]}f^{(4)}(x_1)\leq\frac{1}{m}\sum_{j=1}^{m}f^{(4)}(\eta_{j})\leq \max_{x_2\in[a,b]}f^{(4)}(x_2),
         $
       \end{center}
         
     \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{frame}
-	\textbf{Z tw. o wartości średniej:}
+	\textbf{Z tw. o wartości pośredniej (Darboux):}
       $$
       \exists\mu\in(a,\ b) :\quad f^{(4)}(\mu)=\frac{1}{m}\sum_{j=1}^{m}f^{(4)}(\eta_{j}) \quad \Rightarrow
       $$
@@ -93,7 +93,7 @@
 		$$
         f^{\star}(x) \textrm{ - wartość funkcji wynikająca z arytmetyki komputerowej }
         $$
-        (błąd zaokrąglenia $|\epsilon_{i}|<\epsilon$)
+        (błąd zaokrąglenia $|e_{i}|<\epsilon$)
         \newline
         \newline
 		\textbf{Błąd wzoru złożonego:}
@@ -103,7 +103,7 @@
         \begin{itemize}
         \item nie zależy od $h$
         
-		\item $h\rightarrow 0$ to stabilna
+		\item jeśli zwiększamy ilość punktów to $h\rightarrow 0$, błąd zaokrąglenia nie zależy od h $\rightarrow$ metoda  stabilna
         
 		\item nie mylić z błędem metody!!!!
         

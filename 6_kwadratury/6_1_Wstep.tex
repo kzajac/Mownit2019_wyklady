@@ -1,5 +1,18 @@
 \section{Wstęp}
 %%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{frame}{Wstęp}
+	\begin{itemize}
+	    \item  funkcją elementarną nazywamy funkcję wymierną, trygonometryczną, wykładniczą, lub jedną z ich odwrotności
+	     \item weźmy  zbiór funkcji, powstałych z elementarnych przez branie ich sumy, iloczynu, ilorazu, złożenia albo ich kombinacji
+	 
+	 \item  pochodną każdej z tych funkcji można znaleźć, posługując się wzorami na pochodną sumy, iloczynu, ilorazu bądź złożenia funkcji.
+	   
+	   \item Z całkami jest inaczej: gdy musimy znaleźć funkcję pierwotną funkcji z powyższej klasy, to taka pochodna może się już nie dać wyrazić przez funkcje elementarne 
+	   \end{itemize}
+	   	\textcolor{blue}{Przykład:}
+	$\int e^{-x^{2}} dx \rightarrow $ funkcja błędu
+		
+	\end{frame}
 	\begin{frame}{Wstęp} 
 		\textcolor{blue}{Problem:}
 
@@ -8,36 +21,53 @@
 			\item Częsta niemożliwość znalezienia dokładnych całek oznaczonych
     	\end{itemize}
 
-		\textcolor{blue}{Przykłady:}
-		\begin{itemize}
-			\item $\int_{0}^{2}e^{-x^{2}} dx$
-			\item $\int_{0}^{\pi}cos(3cos\theta) d\theta$
-    	\end{itemize}
+		%\textcolor{blue}{Przykłady:}
+	%	\begin{itemize}
+	%		\item $\int_{0}^{2}e^{-x^{2}} dx$
+	%		\item $\int_{0}^{\pi}cos(3cos\theta) d\theta$
+    %	\end{itemize}
+    	W praktyce dysponujemy precedurą obliczania $f(x)$ albo jej stablicowanymi wartościami w ustalonych punktach.\\
     	
     	\textcolor{blue}{Rozwiązanie:}
     	\begin{itemize}
-    	\item Zastąpienie funkcji podcałkowej $f(x)$ inną bliską funkcją $g(x)$, przybliżenie całki przez sumę ważoną:
+    	\item zastąpienie funkcji podcałkowej $f(x)$ inną bliską funkcją $g(x)$
+    	\item przybliżenie całki przez sumę ważoną:
     	\end{itemize}
-    	$$I=\int_{a}^{b}f(x)dx \approx\sum_{i=0}^{n}A_{i}y_{i}$$
+    	$$I=\int_{a}^{b}f(x)dx \approx\sum_{i=0}^{n}A_{i}f(x_i)$$
    	 	
 	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%
-	\begin{frame}
+%	\begin{frame}
     
-a) \textit {kwadratura} - przypadek specjalny zagadnienia początkowego\footnote{zagadnienie polegające na znalezieniu konkretnej funkcji spełniającej dane równanie różniczkowe i warunek początkowy.}:
-$$
- I=\int_{a}^{b}f(x)dx\ \equiv I=y(b)
-$$
-\textcolor{blue}{Dane:} 
-\begin{itemize}
-	\item pochodna: $\displaystyle \frac{dy}{dx}=f(x)$
-	\item warunek początkowy: $y(a)=0$
-  \end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%	    
+%a) \textit {kwadratura} - przypadek specjalny %zagadnienia początkowego\footnote{zagadnienie %polegające na znalezieniu konkretnej funkcji %spełniającej dane równanie różniczkowe i warunek %początkowy.}:
+%$$
+% I=\int_{a}^{b}f(x)dx\ \equiv I=y(b)
+%$$
+%\textcolor{blue}{Dane:} 
+%\begin{itemize}
+%	\item pochodna: $\displaystyle %\frac{dy}{dx}=f(x)$
+%	\item warunek początkowy: $y(a)=0$
+%  \end{itemize}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%	
+\begin{frame}
+    	a) \textbf{Istota}: $\newline$
+    	 Podział przedziału całkowania [a,b] na podprzedziały $\rightarrow$ formuły złożone
+        $$
+	        I=\int_{a}^{b}f(x)dx\ = \sum_{i=0}^{n}\int_{a_{i}}^{a_{i+1}}f(x)dx=\sum_{i=0}^{n}I_{i}
+        $$
+        b) \textbf{Stopień dokładności kwadratury}: $\newline$
+        Stopień dokładności kwadratury to liczba całkowita n $>$ 0 taka, że kwadratura jest dokładna dla wielomianów stopnia $\leq n$  oraz daje niezerowy błąd dla wielomianów stopnia $>n$.\\
+         \textit{E} - błąd kwadratury,$\newline$
+         {$P_{k}$} - wielomian stopnia k, $\newline$
+        $$\forall k\leq n : E(P_{k})=0, \newline
+			   E(P_{n+1})\neq 0$$
+	
+        Ponieważ całkowanie, dodawanie to operacje liniowe $\rightarrow$ zamiast dowolnego $P_{k}$  można sprawdzać jednomian  $x^{k}.$
+    \end{frame}
     \begin{frame}
     
-      b)
+      c)
       \begin{center}
       	\includegraphics[width=0.6\linewidth]{img/6/image001.png}
       \end{center}
@@ -46,32 +76,19 @@ $$
       Kwadratury:
       
         \begin{itemize}
-          \item otwarte 
-          \item zamknięte
+          \item otwarte (nie korzystają ze skrajnych punktów)
+          \item zamknięte (korzystają ze skrajnych punktów)
           \item półotwarte
         \end{itemize}
       \end{block}
     \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-    	c) \textbf{Istota}: $\newline$
-    	 Podział przedziału całkowania [a,b] na podprzedziały $\rightarrow$ formuły złożone
-        $$
-	        I=\int_{a}^{b}f(x)dx\ = \sum_{i=0}^{n}\int_{a_{i}}^{a_{i+1}}f(x)dx=\sum_{i=0}^{n}I_{i}
-        $$
-		d) \textbf{Stopień dokładności kwadratury}: $\newline$
-        \textit{E} - błąd kwadratury,$\newline$
-         {$P_{k}$} - wielomian stopnia k, $\newline$
-        Stopień - liczba całkowita n $>$ 0 :
-        $$\forall k\leq n : E(P_{k})=0, \newline
-			   E(P_{n+1})\neq 0$$
-	
-        całkowanie, dodawanie - operacje liniowe $\rightarrow$ zamiast $P_{k}$ $\rightarrow x^{k}.$
-    \end{frame}
+    
 %%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{frame}{Ekstrapolacja Richardsona}
-		Metoda uzyskiwania wyników o dużej dokładności przy użyciu formuł niskiego rzędu.	
+		Metoda uzyskiwania wyników o dużej dokładności przy użyciu formuł niskiego rzędu.
 		$\newline$
+		Rząd metody - mówi nam jak zmienia się błąd metody w stosunku do zmiany kroku
 		$\newline$
        Historyczne podejścia:
         \begin{itemize}
@@ -79,7 +96,9 @@ $$
           \item L. F. Richardson, J. A. Gaunt (1927 n.e)
         \end{itemize}
         $\newline$
-        Niech	\textit{h} - krok metody, \textit{E(h)} - błąd obliczeń $\rightarrow$ postać asymptotyczna
+        Niech	\textit{h} - krok metody,
+        \textit{k} - rząd metody,
+        \textit{E(h)} - błąd obliczeń $\rightarrow$ postać asymptotyczna (w granicy)
         $$
 			E(h)=\sum_{i=k}^{\infty}a_{i}\cdot h^{i},\ a_{k}\neq 0
 		$$
@@ -106,13 +125,22 @@ $$
 		$$
 \varphi=\frac{1}{h_{1}^{k}-h_{2}^{k}}\cdot(h_{1}^{k}\cdot\varphi_{2}-h_{2}^{k}\cdot\varphi_{1})+\sum_{i=k+1}^{\infty}a_{i}\cdot\frac{h_{1}^{k}h_{2}^{i}-h_{1}^{i}h_{2}^{k}}{h_{1}^{k}-h_{2}^{k}}
 		$$
-		Wynik $\Rightarrow$ zwiększenie najmniejszego wykładnika potęgi \textit{h} w \textit{E(h)} , \\
-		ER pozwala poprawić wynik nawet gdy od razu wybrano metodę rzędu \textit{k} + 1.        
+		Wynik $\Rightarrow$ zwiększenie najmniejszego wykładnika potęgi \textit{h} w \textit{E(h)} 
 	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{frame}
 		Szczególny przypadek ER (użyteczny dla kwadratur):
 		$$
+\varphi=\phi_1(h)+\sum_{j=1}^{\infty}a_{j}h^{2j}
+        $$
+        $$
+4\varphi=4\phi_2(\frac{h}{2})+4a_{1}\frac{h^2}{4}+\sum_{j=2}^{\infty}4a_{j}\frac{h^{2j}}{4^j}
+        $$
+        $$
+ 3\varphi=4\phi_2(\frac{h}{2})-\phi_1(h)+0(h^4)      
+	$$	
+	Ogólnie:
+	$$
 \varphi=N_{j-1}(h)+\sum_{j=1}^{m-1}K_{j}\cdot h^{2j}+O(h^{2m})\ ,
         $$
         co pozwala na rekurencyjne generowanie:   

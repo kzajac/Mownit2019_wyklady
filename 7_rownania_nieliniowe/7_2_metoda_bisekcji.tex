@@ -1,7 +1,7 @@
 \section{Metoda bisekcji (połowienia)}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Metoda bisekcji (połowienia)}
-	\centering \includegraphics[width=.8\linewidth]{img/7/7_2_1}
+	\centering \includegraphics[width=.8\linewidth]{img/7/biplot.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Metoda bisekcji (połowienia)}
@@ -33,8 +33,8 @@
 	\end{table}
 
 	detekcja f(c) = 0\linebreak
-	$\alpha$ : początkowo : w [$a_{0}$, $b_{0}$] $\rightarrow$ $b_{0}$ - $a_{0}$\linebreak
-	\phantom{x} \hspace{0.2cm} po $N$ krokach : w [$a_{N}$, $b_{N}$] $\rightarrow$ błąd $\Rightarrow$
+	$\alpha$ : początkowo : w [$a_{0}$, $b_{0}$] więc błąd  $\sim$ $b_{0}$ - $a_{0}$\linebreak
+	\phantom{x} \hspace{0.2cm} po $N$ krokach : w [$a_{N}$, $b_{N}$]  więc błąd $\Rightarrow$
 	\[
 		E = b_{N} - a_{N} = \frac{b_{N-1} - a_{N-1}}{2} = \ldots = \frac{b_{0} - a_{0}}{2^{N}}
 	\]
@@ -46,12 +46,11 @@
 		\item gwarancja zbieżności
 		\item wolno zbieżna $\leftarrow$ wykorzystywana informacja: znak funkcji
 		\item $>$ niż 1 zero $\rightarrow$ znajduje jedno z nich
-		\item osobliwość $\rightarrow$ znajduje $\rightarrow$ ?
 		\item kryterium zbieżności:
 		\begin{itemize}
 			\item $E \approx 10^{-6}$ $\rightarrow$ dobre dla $\lvert\alpha\rvert \sim 1$, złe $\rightarrow$ $\lvert\alpha\rvert \sim 10^{-26}$
-			\item zwykle: $E = \epsilon \cdot \frac{a_{0} + b_{0}}{2}$ \quad $\epsilon$ - maszynowe!
-			\item $\alpha \approx 0$ $\rightarrow$ specjalny przypadek
+			\item zwykle: $E = \epsilon \cdot \frac{a_{0} + b_{0}}{2}$ \quad $\epsilon$ - maszynowe 
+			%\item $\alpha \approx 0$ $\rightarrow$ specjalny przypadek
 		\end{itemize}
 	\end{itemize}
 \end{frame}
