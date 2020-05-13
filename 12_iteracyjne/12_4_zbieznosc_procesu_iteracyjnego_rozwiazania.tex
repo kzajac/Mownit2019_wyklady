@@ -6,39 +6,66 @@
     \center Ciąg ($\star$) z dowolnym wektorem startowym $x^{(0)}$ jest zbieżny do jedynego granicznego $x^{(\inf)}$ wtedy i tylko wtedy, gdy \emph{promień spektralny (spectral radius)} macierzy iteracji jest mniejszy od 1
     \center $\rho(M)<1$
   \end{block}
+  Promień spektralny macierzy -  wartość własna o maksymalnej wartości bezwzględnej.
 \end{frame}
 
-\begin{frame}{}
-  \begin{block}{Dowód}
-    $\varepsilon^{(t)}=x^{(t)}-x$; wektor błędu w iteracji t
-    \[\underbrace{x=M \cdot x+W\ oraz\ x^{(t+1)}}_{\varepsilon^{(t+1)}=M \cdot \varepsilon^{(t)} \Rightarrow \varepsilon^{(t)}=M^t \cdot \varepsilon^{(0)}}=M \cdot x^{(t)}+W\]
-    (7) $\varepsilon^{(0)}$ - \emph{initial error vector} gdy M zmienia się w procesie iteracji - to:
-    \[{\varepsilon}^{(t)}=M^t \cdot {\varepsilon}^{(0)} \quad (8)\]
-    \emph{Dla określenia zbieżności - potrzebny jest skalar $||\varepsilon^{(t)}||$}.
-    Chcemy, by dla pewnego $t$:
-    \[||\varepsilon^{(t+1)}||<||\varepsilon^{(t)}||\]
-  \end{block}
+\begin{frame}{Dowód}
+  wektor błędu w iteracji t
+    $$\varepsilon^{(t)}=x^{(t)}-x$$ 
+    $$
+    x=M \cdot x+W \text{ oraz } x^{(t+1)}=M \cdot
+    x^{(t)}+W
+    $$
+    Odejmując mamy:
+    $$
+    x^{(t+1)}-x=\varepsilon^{(t+1)}= M \cdot \varepsilon^{(t)} 
+    $$
+    Stosując wielokrotnie:
+    $$
+    \varepsilon^{(t)}=M^t \cdot \varepsilon^{(0)}
+    $$
+    
+    
+  
 \end{frame}
 
-\begin{frame}{}
-  \begin{block}{Dowód}
-    M -- macierz iteracji ma n różnych wartości i wektorów własnych
-    \\\hfill$Ms_i=\rho _is_i$\hfill (12.3)
-    \newline
-    \\Rozkładamy (rzuty na inne osie):
-    \\\hfill\[\varepsilon^{(t)}=M^t \sum_{i = 1}^{n} \alpha _i s_i , \alpha _i \text{ - amplituda kierunku } s_i\]\hfill (12.4)
-    \[\varepsilon^{(t)}=M^t \sum_{i = 1}^{n} \alpha _i s_i = \sum_{i = 1}^{n} \alpha _i M^{t-1}(\underbrace{Ms_i}_{\rho _i s_i}) = ... = \sum_{i = 1}^{n} \alpha _i \rho _i^t s_i \]
-    \[\boxed{\varepsilon^{(t)}=\sum_{i = 1}^{n} \alpha _i \rho _i^t s_i} \qquad (12.5)\]
-  \end{block}
+\begin{frame}{Dowód}
+    M -- macierz iteracji ma n różnych wartości $\rho_i$ i wektorów własnych
+    $s_i$
+   $$Ms_i=\rho_i s_i$$
+    \\Rozkładamy (przestawiamy wektor błedu jako kombinację liniową wektorów własnych $s_i$):
+    $$\varepsilon^{(0)}= \sum_{i = 1}^{n} \alpha _i s_i , \alpha _i \text{ - amplituda kierunku } s_i
+    $$
+    $$
+    \varepsilon^{(t)}=M^t \sum_{i = 1}^{n} \alpha _i s_i = \sum_{i = 1}^{n} \alpha _i M^{t-1}(\underbrace{Ms_i}_{\rho _i s_i}) = ... = \sum_{i = 1}^{n} \alpha _i \rho _i^t s_i $$
+    $$
+    \boxed{\varepsilon^{(t)}=\sum_{i = 1}^{n} \alpha _i \rho _i^t s_i} 
+    $$
 \end{frame}
 
-\begin{frame}{}
-  \begin{block}{Dowód}
-    \[\lim_{t\to\infty} \varepsilon^{(t)} = \alpha _m \rho _m^t s_m\]
-    gdzie: $\rho _m = max_i |\rho _i|= \rho$ promień spektralny macierzy iteracji
-    \center \textbf{$\rho < 1$ - warunek zbieżności}
-    $$ \frac{||\varepsilon^{(t)}||}{||\varepsilon^{(0)}||} \leq ||M^{(t)}|| \text{ - zadana dokładność } \rho\Rightarrow ||M^{(t\star)}|| = 10^{-p}$$   %TO CHECK - sprawdź oznaczenia!
-    \\$\lambda$ -- \emph{asymptotic convergence factor}
-    \[\lambda^{t\star}=10^{-p} \rightarrow t\star = -p \cdot  \frac{ln 10}{ln \lambda} \text{ - liczba iteracji}\]    %TO CHECK - there was a star near t
-  \end{block}
+\begin{frame}{Dowód}
+    \[\lim_{t\to\infty} \varepsilon^{(t)} = \lim_{t\to\infty} \alpha _m \rho _m^t s_m\]
+    gdzie: $\rho _m = max_i |\rho _i|= \rho(M)$ - promień spektralny macierzy iteracji M
+    \center \textbf{$\rho(M) < 1$ - warunek zbieżności}
+    \end{frame}
+    \begin{frame}{Efektywność procedury iteracyjnej}
+    \emph{Dla określenia efektywności zbieżności - potrzebna jest miara długości wektora błedu $||\varepsilon^{(t)}||$}.
+    
+    
+    %$$ \frac{||\varepsilon^{(t)}||}{||\varepsilon^{(0)}||} \leq ||M^{(t)}||$$ 
+    Pytanie: przy zadanej dokładności $p$ $\Rightarrow \text{dla ilu iteracji } 
+    t^\star$\\
+    
+    $$\frac{||\varepsilon^{(t)}||}{||\varepsilon^{(0)}||} = 10^{-p}\text{ ?}$$    
+    
+    Można pokazać, że $\lambda=\rho(M)$ jest asymptotyczną miarą  zbieżności procedury iteracyjnej (mówi ile razy - w granicy - zmniejsza się średni błąd po każdej iteracji).
+    
+    Po $t^\star$ iteracjach mamy:
+    
+    $$\lambda^{t^\star}=10^{-p} \rightarrow t^\star =   \frac{-p}{log_{10}(\lambda)}=
+    \frac{-p}{log_{10}(\rho(M))}=
+     \frac{p}{R}
+    $$
+    gdzie $R$ to  asymptotyczny wskaźnik  zbieżności procedury iteracyjnej (rate of convergence): 
+    $R=-log_{10}(\rho(M)) $
 \end{frame}

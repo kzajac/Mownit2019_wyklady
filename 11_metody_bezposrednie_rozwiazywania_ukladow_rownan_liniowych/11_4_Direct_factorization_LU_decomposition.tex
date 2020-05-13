@@ -50,7 +50,7 @@ u_{11} & u_{12} & \cdots & u_{1n}\\
 Potrzeba dodatkowego warunku dla przekątnej -
 stosuje się różne wersje warunków dla faktoryzacji LU :
 
-$\bullet$ Doolitle: $l_{ii}=1$
+$\bullet$ Doolittle: $l_{ii}=1$
 
 $\bullet$ Crout: $u_{ii}=1$
 
@@ -65,7 +65,7 @@ Sposób: liczymy na przemian - wiersze, kolumny, wiersze, kolumny ... w A.
 Po obliczeniu - L,U zapisane w A.
 \end{frame}
 
-\begin{frame}{Faktoryzacja Doolitle'a}
+\begin{frame}{Faktoryzacja Doolittle'a}
 LU inaczej - lepszy wgląd w kolejność obliczeń
 \scalebox{0.90}{
 $\begin{bmatrix}
@@ -98,7 +98,7 @@ W $\mathrm{i}$-tym wierszu macierzy $\mathrm{L}$ różne od $0$ tylko pierwsze $
 
 \end{frame}
 
-\begin{frame}{Faktoryzacja Doolitle'a}
+\begin{frame}{Faktoryzacja Doolittle'a}
 Dla $i\leq j$ np. $i=1$, $j=1$
 \scalebox{0.90}{
 $\begin{bmatrix}
@@ -138,7 +138,7 @@ $\colorbox{blue}{u}_{1j}=a_{1j}$
 
 
 \end{frame}
-\begin{frame}{Faktoryzacja Doolitle'a}
+\begin{frame}{Faktoryzacja Doolittle'a}
 Dla $i>j$ np. $j=1$, $i=2$
 
     \scalebox{0.90}{
@@ -176,7 +176,7 @@ $\colorbox{blue}{l}_{i1}=\displaystyle \frac{a_{i1}}{u_{11}}$\\
 W kolejnych  krokach analogicznie -  mamy już wyliczone $k-1$ wierszy $u$ i k-1 kolumn $l$ i z nich korzystamy. 
 \end{frame}
 
-\begin{frame}{Faktoryzacja Doolitle'a}
+\begin{frame}{Faktoryzacja Doolittle'a}
 W kroku $\mathrm{k}$ wyznaczamy $U_{k,k}, U_{k,k+1}$, . . . , $U_{k,n}$
 oraz (można równolegle) $L_{k+1,k}$, . . . , $L_{n,k}$ \\
 Ogólnie - ze wzoru na mnożenie macierzy i z faktu, że $l_{ip}=0$ dla $p>i$ oraz $u_{pj}=0$ dla $p>j$\\
@@ -317,7 +317,7 @@ Warunki dla faktoryzacji Choleskiego:
 \begin{itemize}
     \item Macierz rzeczywista
 \item Macierz symetryczna $a_{ij}=a_{ji}$  czyli $A=A^{T}$
-\item Dodatnio określona czyli: $x^T A x \geq 0$ dla każdego wektora $x$
+\item Dodatnio określona czyli: $x^T A x > 0$ dla każdego wektora $x$
 \end{itemize}
 \end{frame}
 \begin{frame}

@@ -1,13 +1,37 @@
-\section{12.10 Metoda Czybyszewa}
+\section{12.10 Metoda Czebyszewa}
 
-\begin{frame}{Metoda Czybyszewa}
-  $B^{-1}=W(A)$ - wielomian macierzowy $M=1-W(A)A$. Znaleźć $W(U)$ taki, by:
-  $$\min!{\max_{U}{|1-W(U)U|}}$$
-  Jest to klasyczny problem aproksymacji $\Rightarrow$ wielomiany Czybyszewa
+\begin{frame}{Metoda Czebyszewa}
+  Jak pamiętamy, ogólny wzór na macierz iteracji to:
+  $$M=I-B^{-1}A$$
+  Zadaniem jest znaleźć takie  B, dla którego $\rho(M)$ ma  jak najmniejszą wartość bezwzględną (zbieżność)\\
+  \vspace{0.5cm}
+  Wprowadzamy wielomian macierzowy $W(A)$ - daje macierz  uzyskaną z wielomianu W(t) po podstawieniu za $t$ macierzy $A$\\
+  \end{frame}
+  \begin{frame}
+  Zakładamy, że $B^{-1}=W(A)$ dla jakiegoś $W$.
+  Wtedy
+  $$M=1-W(A)A$$
+  i szukamy najlepszego takiego wielomianu $W$.\\
+  \vspace{0.5cm}
+
+   Jeśli $A$ ma wartość własną $\lambda$ 
+   to
+  $$P(A)=1-W(A)A$$ ma wartość własną $$P(\lambda)=1-W(\lambda)\lambda$$\\
+  Zadaniem jest znaleźć taki wielomian $P$, dla którego maksymalna wartość w przedziale $[a,b]$, gdzie znajdują się wszystkie wartości własne macierzy $A$  jest najmniejsza:
+  $$\min!{\max_{u \in [a,b]}{|1-W(u)u|}}$$
+  Jest to klasyczny problem aproksymacji $\Rightarrow$ wielomiany Czebyszewa
 \end{frame}
 
-\begin{frame}
-  \begin{block}{Przyspieszenie Czybyszewa metody SOR; odd-even ordering}
+\begin{frame}{Metoda Czebyszewa}
+ \begin{itemize}
+     \item stosujemy wzór roboczy SOR
+     $$x^{(t+1)}_{i}= x^{(t)}_{i} +\omega \underbrace{\frac{1}{a_{ii}}[b_i-\sum^{i-1}_{j=1} a_{ij} x^{(t+1)}_j -\sum^{n}_{j=i} a_{ij} x^{(t)}_j ]}_{r^{(t)}_i \text{- poprawka do starego rozwiązania } x^{(t)}_i}$$
+     \item ale $\omega$ zmienia się w  każdym kroku 
+     \item $\omega$ wyliczamy zgodnie z zależnościami rekurencyjnymi (użycie przeskalowanych wielomianów Czebyszewa)
+ \end{itemize}
+ \end{frame}
+ \begin{frame}{Metoda Czebyszewa}
+  Przeglądanie siatki odd-even:
     \begin{align*}
     \rho &= \rho(M_J)\\
     \omega^{(0)}&=1\\
@@ -15,7 +39,7 @@
     \omega^{(t+\frac{1}{2})}&=\frac{1}{1-\frac{1}{4}\rho^2\omega^{(t)}}\text{, dla t=}\frac{1}{2},1,1\frac{1}{2},...\\
     \omega^{(\infty)} &= \omega_{opt}
     \end{align*}
-  \end{block}
+  
 \end{frame}
 
 \begin{frame}[fragile]{}
@@ -37,7 +61,7 @@ DO 2 t = 1, MAXIT$\qquad\qquad\qquad\qquad\qquad (\approx 100,1000)$
     IF (Norm .LT. EPS ||$\overrightarrow{f}$|| solution obtained
 2 CONTINUE
 \end{lstlisting}
-  \hfill\hfill Zadanie: Przećwiczyć na lab.
+ % \hfill\hfill Zadanie: Przećwiczyć na lab.
 \end{frame}
 
 \begin{frame}{}
@@ -51,4 +75,5 @@ DO 2 t = 1, MAXIT$\qquad\qquad\qquad\qquad\qquad (\approx 100,1000)$
     \end{itemize}
   \end{block}
 \end{frame}
+
 
