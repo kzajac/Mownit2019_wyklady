@@ -1,99 +1,118 @@
 \section{Interpolacja trygonometryczna}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Interpolacja trygonometryczna}
-	\begin{itemize}
-		\item f. okresowe: $g(y + L) = g(y)$; okres: L \\
-		\item f. trygonometryczne: $L \to 2\pi, x = \frac{2\pi}{L} \cdot y, f(x) = g(\frac{x \cdot L}{2\pi})$	
-	\end{itemize}
-	szukamy wielomianu (trygonometrycznego)
+\begin{itemize}
+    \item Wielomiany algebraiczne nie są dobre do opisu zjawisk okresowych
+    \item Rozwiązanie: interpolacja wielomianami opartymi o funkcje  trygonomentyczne
+\end{itemize}
+
+		 funkcje okresowe o okresie L spełniają zależność  $g(y + L) = g(y)$\\
+	 funkcje  trygonometryczne: okresem jest $2\pi$, po przeskalowaniu:
+	$$	x = \frac{2\pi}{L} \cdot y, f(x) = g(\frac{x \cdot L}{2\pi})$$
+ okresem $g(y)$ jest $L$, okresem $f(x)$ jest $2\pi$, 
+	 $$f(x+2\pi)=g(\frac{(x+2\pi) \cdot L}{2\pi})=g(\frac{x \cdot L}{2\pi}+L)=
+	g(\frac{x \cdot L}{2\pi})=f(x)$$
+\end{frame}
+\begin{frame}{Interpolacja trygonometryczna}
+	szukamy wielomianu trygonometrycznego
 	\[
-		t_{n-1}(x) = \sum\limits_{j = 0}^{n-1} c_j \cdot e^{ijx}
-		\tag{16.12}
+		t_{n-1}(x) =\sum\limits_{j = 0}^{n-1} c_j \cdot (e^{ix})^{j}= \sum\limits_{j = 0}^{n-1} c_j \cdot e^{ijx}
 	\]
+	gdzie (przypomnienie - wzór Eulera)
+	$$
+	e^{ix}=cos(x)+isin(x)
+	$$
 	który w \underline{n punktach $x_k \in (0, 2\pi]$} przyjmuje te same wartości, co interpolowana funkcja
-	\\ $t_{n - 1}(x_k) = f(x), k = 0, 1, \dots, n - 1$
+	\\ $t_{n - 1}(x_k) = f(x_k), k = 0, 1, \dots, n - 1$
 \end{frame}
 %%%%%%%%%%%%%%%%
-\begin{frame}[allowframebreaks]{Dowód}
+\begin{frame}{Interpolacja trygonometryczna}
+Wielomiany trygonometryczne różnią się od algebraicznych tylko wyborem zmiennej:
 	\begin{theorem}
 		Zadanie interpolacji trygonometrycznej ma jednoznaczne rozwiązanie.
 	\end{theorem}
-	\begin{proofs}
-		\[
-			\sum\limits_{j = 0}^{n-1} c_j \cdot \underbrace{(e^{ix_k})^j}_{Z_k} = f(x_k), k = 0, 1, \dots, n-1
-			\tag{16.13}
-		\]
-		$\implies$ macierz układu: macierz Vandermonde'a jest nieosobliwa, \\ jeżeli \underline{$x_k$ są różne}, i:
-		\[
-			\det Z = \prod_{k \neq L} (Z_k - Z_L)
-			\tag{16.14}
-		\]
-	\end{proofs}
-	\begin{proofs}[\proofname\ (Cont.)]
+	%\begin{proofs}
+	%	\[
+		%	\sum\limits_{j = 0}^{n-1} c_j %\cdot \underbrace{(e^{ix_k})^j}_{Z_k} = f(x_k), k = 0, 1, \dots, n-1
+		%	\tag{16.13}
+	%	\]
+	%	$\implies$ macierz układu: macierz Vandermonde'a jest nieosobliwa, \\ jeżeli \underline{$x_k$ są różne}, i:
+	%	\[
+	%		\det Z = \prod_{k \neq L} (Z_k - Z_L)
+	%		\tag{16.14}
+	%	\]
+	%\end{proofs}
 		W praktyce - ważny przypadek szczególny: \\
 		n węzłów równoodległych, \underline{$x_k = \frac{2\pi}{n}\cdot k$}, k = 0, 1, \dots, n - 1 \\
-		\underline{funkcje $e^{ijx}$}, j = 0, 1, \dots, n - 1 tworzą \underline{układ ortogonalny} w sensie iloczynu skalarnego zdefinowanego: \\
-		\[
+		\underline{funkcje $e^{ijx}$}, j = 0, 1, \dots, n - 1 tworzą \underline{układ ortogonalny} w sensie iloczynu skalarnego zdefinowanego:
+		$$
 			\langle f|g \rangle = \sum\limits_{k = 0}^{n-1} f(x_k) \cdot g^* (x_k), x_k = \frac{2\pi}{n} \cdot k, k = 0, 1, \dots, n-1
-			\tag{16.15}
-		\]
+		$$
+		\end{frame}
+		\begin{frame}{Interpolacja trygonometryczna}
+		A dokładniej:
 		\[
-			\langle e^{ijx}|e^{ilx} \rangle = \sum\limits_{k = 0}^{n-1} e^{ijx_k}  \cdot e^{-ilx_k} = \sum\limits_{k = 0}^{n-1} e^{i(j - l) \frac{2\pi k}{n}}\stackrel{\Delta}{=}
-			\tag{16.16}
-		\]
-	\end{proofs}
-	\begin{proofs}[\proofname\ (Cont.)]
-		\underline{dla $j = l$}
-		\[
-			\stackrel{\Delta}{=} \sum\limits_{k = 0}^{n-1} e^0 = n
-			\tag{16.17}
-		\]
-		\underline{dla $j \neq l$}
-		\[
-			\stackrel{\Delta}{=} \sum\limits_{k = 0}^{n-1} \underbrace{e^{\frac{i(j - l)2\pi}{n} \cdot k}}_{\substack{
-				\text{-szereg geom.} \\
-				\text{-n-wyrazów}
-			}} = \frac{a_0 - a_n \cdot q}{1 - q} = \frac{1 - e ^{\overbrace{\frac{i(j - l)2\pi}{n} \cdot n}^{=1}}}{1 - e^{\frac{i(j -  l)2\pi}{n}}} = 0
-			\tag{16.18}
-		\]
-		$a_0 = 1; q = e^{\frac{i(j -  l)2\pi}{n}}$
-	\end{proofs}
-	\begin{proof}[\proofname\ (Cont.)]
-		\[
-			\langle e^{ijx}|e^{ilx} \rangle = \sum\limits_{k = 0}^{n - 1}e^{ijx_k}  \cdot e^{-ilx_k} = 
+			\langle e^{ijx}|e^{ilx} \rangle = \sum\limits_{k = 0}^{n - 1}e^{ijx_k}  \cdot e^{-ilx_k} = n \cdot \delta_{j,l}=
 			\begin{cases}
 				0 & j \neq l \\
 				n & j = l
 			\end{cases}
-			\tag{16.19}
 		\]
-	\end{proof}
+		Dla
+		$$
+		x_k = \frac{2\pi}{n} \cdot k, k = 0, 1, \dots, n-1
+		$$
+		Gdzie $\delta_{j,l}$ to delta Kroneckera
+		$$
+		\delta_{j,l}=\left\{\begin{array}
+		{l} 0,\ j\neq l\ \ \\
+		1,\ j=l\ 
+        \end{array}\right. 
+        \text{ dla $j,l \in \{0,1,..,n-1\}$} $$
+
 \end{frame}
+\begin{frame}{Interpolacja trygonomentryczna}
+Dowód:
+		\[
+			\langle e^{ijx}|e^{ilx} \rangle = \sum\limits_{k = 0}^{n-1} e^{ijx_k}  \cdot e^{-ilx_k} = \sum\limits_{k = 0}^{n-1} e^{i(j - l) \frac{2\pi k}{n}}(\star)
+		\]
+		\underline{dla $j = l$}
+		\[
+			(*)= \sum\limits_{k = 0}^{n-1} e^0 = n
+		\]
+		\underline{dla $j \neq l$}
+		\[
+		(*)= \sum\limits_{k = 0}^{n-1} \underbrace{e^{\frac{i(j - l)2\pi}{n} \cdot k}}_{\substack{
+				\text{-szereg geom.} \\
+				\text{-n-wyrazów}
+			}} = a_0\frac{1 - q^n}{1 - q} = \frac{1 - \overbrace{e^{\frac{i(j - l)2\pi}{n} \cdot n}}^{cos((j - l)2\pi)+isin((j - l)2\pi)=1}}{1 - e^{\frac{i(j -  l)2\pi}{n}}} = 0
+		\]
+		$a_0 = 1; q = e^{\frac{i(j -  l)2\pi}{n}}$
+\end{frame}
+
 %%%%%%%%%%%%%%%%
-\begin{frame}{Interpolacja trygonometryczna I}
+\begin{frame}{Interpolacja trygonometryczna}
 	Jakie powinny być współczynniki wielomianu interpolacyjnego $c_j$?
 	
 	\begin{enumerate}[1$^\circ$]
 		\item
 		\begin{align*}
 			\langle t_{n-1}(x)|e^{ilx} \rangle = \Bigg\langle \sum\limits_{j = 0}^{n-1} c_j \cdot e^{ijx} \Bigg|e^{ilx} \Bigg\rangle = \sum\limits_{j = 0}^{n-1} c_j \cdot n \cdot \delta_{jl} = \\ = c_l \cdot n \implies \underline{c_l = \frac{1}{n} \langle t_{n-1}(x)|e^{ilx} \rangle}
-			\tag{16.20}
 		\end{align*}
 		\item
 		\begin{align*}
-			\langle t_{n-1}(x)|e^{ilx} \rangle \underbrace{=}_{(**)} \sum\limits_{k = 0}^{n-1}  \underbrace{t_{n-1}(x_k)}_{\substack{\text{=wartości} \\  \text{funkcji}}} \cdot e^{-ilx_k} = \\ = \sum\limits_{k = 0}^{n-1} f(x_k) \cdot e^{-ilx_k} = \underline{\langle f(x)|e^{ilx} \rangle}
+			\langle t_{n-1}(x)|e^{ilx} \rangle= \sum\limits_{k = 0}^{n-1}  \underbrace{t_{n-1}(x_k)}_{\substack{\text{=wartości} \\  \text{funkcji}}} \cdot e^{-ilx_k} =  \sum\limits_{k = 0}^{n-1} f(x_k) \cdot e^{-ilx_k} 
 		\end{align*}
 	\end{enumerate}
 \end{frame}
-\begin{frame}{Interpolacja trygonometryczna II}	
-	- def. iloczynu (przypadek dyskretny) \\
+\begin{frame}{Interpolacja trygonometryczna}	
+ \\
 	czyli:
 	\[
 		\underline{c_j = \frac{1}{n} \sum\limits_{k = 0}^{n-1} f(x_k) \cdot e^{-ijx_k}, j = 0, 1, \dots, n-1}
-		\tag{16.21}
 	\]
 	\begin{flushleft}
-		$\implies$ \\
+		Dwa etapy obliczeń: \\
 		\underline{\textit{analiza Fouriera:}} \\
 		dla danych liczb zespolonych $f(x_k), k = 0, 1,\dots, n - 1$ szukamy $c_j, j = 0, 1, \dots, n-1$ \\
 		\bigskip
@@ -101,11 +120,10 @@
 		mając liczby $c_j, j = 0, 1, \dots, n-1$ szukamy
 		\[
 			f(x) = \sum\limits_{j = 0}^{n - 1} c_j \cdot e^{ij\frac{2\pi}{n} \cdot k}, k = 0, 1, \dots, n-1
-			\tag{16.22}
 		\]
 	\end{flushleft}
 	\end{frame}
-	\begin{frame}{Interpolacja trygonometryczna III}
+	\begin{frame}{Interpolacja trygonometryczna}
 	\begin{flushleft}
 		$\implies$ obie:
 		\begin{itemize}
@@ -120,7 +138,6 @@
 			\text{-zespolonych dodawań,} \\
 			\text{-obliczeń } e^{-i\frac{2\pi kj}{n}}
 		\end{cases}
-		\tag{16.23}
 		\]
 		$\newline$
 		Wada $\rightarrow$ duża złożoność operacji

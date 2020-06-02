@@ -1,21 +1,11 @@
 \section{Metoda podstawowa}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Metoda podstawowa}
-	\[
-    	I = \int_a^b f(x) dx = \int_a^b h(x)g(x) dx = E\{Y\}
-    \]
-    $g(x)$ - gęstość pewnej zmiennej losowej $X \in (a, b)$
-    
-    Np.:
-    \begin{itemize}
-    	\item $Y = h(x)$
-        \item $I = (b-a) \int_a^b f(x) \underbrace{\frac{dx}{b-a}}_\text{dP}$, $P$ - rozkład równomierny na $(a, b)$
-    \end{itemize}
-    
-\end{frame}
-%%%%%%%%%%%%%%%%
-\begin{frame}{Metoda podstawowa}
-    Bez utraty ogólności wystarczy rozpatrywać: \[
+	
+    	$$I = \int_a^b f(x) dx = (b-a) \int_a^b f(x) \frac{1}{b-a} dx=
+    	(b-a) \int_a^b f(x) p(x) dx$$ $p(x)=\frac{1}{b-a}$ - gęstość prawdopodobieństwa dla rozkładu równomiernego na $(a, b)$\\
+    Bez utraty ogólności wystarczy rozpatrywać: 
+    \[
     	I = \int_0^1 f(x) dx = E\{Y\}
     \]
     $Y = f(X)$, przy czym $X$ - zmienna losowa o rozkładzie równomiernym $(0, 1)$
@@ -41,12 +31,14 @@
 	\vspace{-.5cm}
 	\begin{block}{Wariancja}
 		\begin{align*}
+	\text{Korzystam z własności: }	\sigma^2(aX)=a^2\sigma^2(X)\\
 			\sigma^2(\hat{I}) = 
-            \sigma^2 \frac{1}{N} \left[ 
+            \sigma^2 (\frac{1}{N} \left[ 
             	\sum_{i=1}^n f(x_i)
-            	\right] =
-            \frac{1}{N^2} \sum_{i=1}^N \sigma^2 [f(x_i)] =
+            	\right]) =
+            \frac{1}{N^2} \sum_{i=1}^N \sigma^2 [f(x_i)] = \frac{1}{N^2} N \sigma^2 [f(x)]
             \\
+            	\text{Korzystam z własności: }	\sigma^2(X)=E\{X^2\}-(E\{X\})^2\\
             \frac{1}{N} \sigma^2 [f(x)] = 
             \frac{1}{N} \left[ 
             	\int_0^1 f^2(x)dx - I^2

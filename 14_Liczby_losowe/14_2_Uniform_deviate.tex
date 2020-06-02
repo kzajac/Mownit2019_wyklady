@@ -2,10 +2,13 @@
 \begin{frame}{Liczby losowe o rozkładzie równomiernym (uniform deviate)}
 
 
-	Podstawowy typ generatora liczb losowych:
+	Podstawowy typ generatora liczb to ten dla liczb o rozkładzie równomiernym.
+	$P(x \in [a,b])=\int_{a}^{b} p(x)dx$
 	\begin{center}
-	\includegraphics[scale=0.15]{img/14/14_2_img}
+	\includegraphics[scale=0.1]{img/14/14_2_img}
 	\end{center}
+	Wykres funkcji gęstości prawdopodobieństwa p(x) 
+		$P(x_i \in [a,b])=\int_{a}^{b} p(x)dx$
     \end{frame}
 
     \begin{frame}
@@ -25,8 +28,8 @@
             	x = ranf(iseed)
             \]
 
-	- pod $x$ podstaw następną liczbę losową \\
-    - aktualizuj \textit{iseed}
+%	- pod $x$ podstaw następną liczbę losową \\
+  %  - aktualizuj \textit{iseed}
 
 	\textbf{iseed} --dowolna, zadawana przy pierwszym wywołaniu; \\
 	- ta sama początkowa wartość $\Rightarrow$ ta sama sekwencja liczb pseudolosowych.

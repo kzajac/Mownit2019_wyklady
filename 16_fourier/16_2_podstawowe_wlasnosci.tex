@@ -1,3 +1,4 @@
+
 \section{Podstawowe własności szeregów i transformat Fouriera}
 %%%%%%%%%%%%%%%%
 \begin{frame}[allowframebreaks]{Sposoby opisu procesu fizycznego}
@@ -11,9 +12,9 @@
 		\text{częstości} (\omega) \\ \text{częstotliwości} (f)
 		\end{array}
 		\end{rcases*}$
-		$\implies \widehat{A}(\omega) \quad \omega = 2 \pi f$
+		$\implies \widehat{A}(\omega) \quad \omega =\frac{2\pi}{T}= 2 \pi f$ gdzie $f=\frac{1}{T}$
 	\end{enumerate}
-	$A(t), \quad \widehat{A}(\omega) \,\, - $ dwie różne reprezentacje tej samej funkcji (wielkości fizycznej) związane równaniami transformat Fouriera:
+	$A(t), \quad \widehat{A}(\omega) \,\, - $ dwie różne reprezentacje tego samego zjawiska związane równaniami transformat Fouriera:
 	%%%%%%%%%%%%%%%%
 	\begin{block}
 	\centering
@@ -43,16 +44,18 @@
 		\widehat{A}(f) = \int\limits_{-\infty}^{\infty}dt \cdot A(t) \cdot e^{-2 \pi ift}
 	\end{rcases*}
 	\begin{array}{r}
-		\rightarrow \,\, \text{korzystamy z: } \omega = 2 \pi f\\ \text{nie trzeba pamiętać}\\ \text{o czynniku } \frac{1}{2 \pi}
+		\rightarrow \,\, \text{korzystamy z: } \omega = 2 \pi f\\
+		\text{nie trzeba pamiętać}\\ \text{o czynniku } \frac{1}{2 \pi}
 	\end{array}
 	\]
 	\end{block}
+	Trasformować można zarówno w czasie, jak i w przestrzeni,	jeśli mamy:\\
 	$t - \text{czas} \rightleftharpoons \omega - \text{częstość kołowa}$
-	\\ $x - \text{położenie} \rightleftharpoons k = \frac{2 \pi}{\lambda} - \text{wektor falowy (liczba falowa)}$
-	\\ $\vdots$
+	\\ $x - \text{położenie} \rightleftharpoons k=\frac{2\pi}{\lambda}$ - liczba falowa,
+	$ \lambda - \text{długość fali}$
 	\\ $A(t), \quad \widehat{A}(\omega) \,\, - $ ciągłe f. swych argumentów
 	\[
-		A(t) \rightleftharpoons \widehat{A}(\omega); \widehat{A}(\omega) = \Gamma[A(t)]
+		A(t) \rightleftharpoons \widehat{A}(\omega) %\widehat{A}(\omega) = \Gamma[A(t)]
 	\]
 \end{frame}
 %%%%%%%%%%%%%%%%
@@ -89,11 +92,12 @@
 %%%%%%%%%%%%%%%%
 \begin{frame}{Definicje transformat Fouriera II}
 	\begin{enumerate}[b)]
-		\item FS(i) - szereg Fouriera (Fourier Series) \\
+			\item W transformacie odwrotnej stosujemy - szereg Fouriera (Fourier Series) \\
 		$x$ - zmienna ciągła \\
 		$B(x)$ - f. okresowa ciągłej zmiennej x; okres: L
 		\begin{center}
 			(ciągła odcinkami wraz z pochodną: na tych odcinkach - szereg zbieżny do B(x), w punktach nieciągłości - do wartości średniej)
+		
 		\end{center}
         \begin{columns}
             \begin{column}{0.35\textwidth}
@@ -127,7 +131,7 @@
 %%%%%%%%%%%%%%%%
 \begin{frame}{Definicje transformat Fouriera III}
 	\begin{enumerate}[c)]
-		\item FS(ii) - szereg Fouriera \\
+		\item Discrete-time Fourier transform \\
 		$x_p$ - dyskretne o skoku H \\
 		$x_p = p \cdot H$ \\
 		$p$ - liczba całkowita
@@ -198,6 +202,7 @@
 	\centering
 	\includegraphics[height=0.8\textheight]{img/16/przejscia_graniczne.png}
 \end{frame}
+\begin{comment}
 %%%%%%%%%%%%%%%%
 \begin{frame}{Symetrie funkcji i jej transformaty I}
 	Transformaty Fouriera $\to$ liniowe
@@ -444,3 +449,4 @@
 		\renewcommand{\arraystretch}{1}
 	\end{table}
 \end{frame}
+\end{comment}

@@ -23,7 +23,8 @@
 	X(t) = \int\limits_{-\infty}^{\infty} H(f) \cas(2\pi ft) dt
 	\]
 	\end{block}
-	gdzie: $\cas(x) = \cos(x) + \sin(x)$
+	gdzie: $\cas(x) = \cos(x) + \sin(x)$\\
+	istotna różnica: zamiast $\underbrace{e^{-x \cdot i}}_{\text{zespolone}}$ mamy $\underbrace{\cas(x)}_{\text{rzeczywiste}}$ ($\implies$ ilość operacji arytmetycznych i pamięć)
 	\begin{block}{Wersja dyskretna HT}
 	\[
 		H_j = \frac{1}{n} \sum\limits_{k = 0}^{n-1} f(t_k) \cdot \cas \bigg( \frac{2\pi jk}{n} \bigg)
@@ -33,6 +34,7 @@
 	\]
 	\end{block}
 \end{frame}
+\begin{comment}
 \begin{frame}{Własności HT}
 	\begin{block}{16.30}
 		\centering
@@ -63,11 +65,12 @@
 	\]
 	\end{block}
 \end{frame}
-\begin{frame}{Biliografia}
+\end{comment}
+\begin{frame}{Bibliografia}
 	\begin{itemize}
 		\item R.V.L. Hartley: A more symetrical Fourier analysis applied to transmission problems, Proc. IRE, 30 (1942) 144, \\
 		\item R.N. Bracewell: The fast Hartley transform, Proc. IEEE 72 (1984) 1010 (No 8), \\
-		\item M.A. O'Neill: Faster than fast Fourier, Byte, April 1988, p.293. istotna różnica: zamiast $\underbrace{e^{-x \cdot i}}_{\text{zespolone}}$ mamy $\underbrace{\cas(x)}_{\text{rzeczywiste}}$ ($\implies$ ilość operacji arytmetycznych i pamięć)
+		\item M.A. O'Neill: Faster than fast Fourier, Byte, April 1988, p.293. 
 	\end{itemize}
 \end{frame}
 \begin{frame}{FFT - przydatna w:}

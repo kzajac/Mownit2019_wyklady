@@ -1,114 +1,180 @@
 \section{Zmienne losowe o zadanym rozkładzie}
-\subsection{Metoda transformacji}
-\begin{frame}{Zmienne losowe o zadanym rozkładzie\linebreak Metoda transformacji}
-	\begin{block}{Podstawowe generatory - o rozkładzie równomiernym (uniform deviate):}
-		\[
-			P\left\{x < X < x + dx\right\} = p(x)dx = \begin{cases}
-				dx,\hspace{0.5cm} 0 < x < 1\\
-				0,\hspace{0.65cm} $ gdzie indziej$
-			\end{cases}
-		\]
-		\[
-			\fbox{$p(x) = 1$}
-		\]
-	\end{block}
+\subsection{Metoda  tranformacji}
+\begin{frame}{Rozkład równomierny na (0,1) - dystrybuanta}
+    Dystrybuanta jednoznacznie definiuje rozkład prawdopodobieństwa:
+$$
+F(x)=\int_{-\infty}^{x}{p(y)dy}
+$$
+Funkcja niemalejąca, określa  $P(X<x)$\\
+Dla rozkładu równomiernego na (0,1), dla
+$x\in (0,1)$ $p(x)=1$
+$$
+F(x)=\int_{-\infty}^{x}{p(y)dy}=x
+$$
+Czyli dla $x \in (0,1)$
+$$P(X<x)=x$$
 \end{frame}
-%%%%%%%%%%%%%%%
-\begin{frame}{Metoda transformacji}
-	\begin{block}{Generatory zmiennej losowej $y(x)$ o \textit{zadanym rozkładzie}
-	$p(y)$:}
-	\[
-		\lvert p(y)dy \rvert \hspace{0.1cm} = \hspace{0.1cm} \lvert p(x)dx \rvert \hspace{6.8cm}
-	\]
-	\[
-		\phantom{x} \hspace{0.2cm} p(y) \hspace{0.1cm} = \hspace{0.1cm} p(x) \left| \frac{dx}{dy} \right| \Rightarrow p(y) = \frac{dx}{dy}, \hspace{0.1cm} x = F(y) = \int_{0}^{y} p(y)dy
-	\]
-	\[
-		\fbox{$y(x) = F^{-1}(x)$} \text{ ,} \hspace{1cm} F(y) - \text{dystrybuanta rozkładu p(y)}
-	\]
-	\end{block}
-	\vspace{1cm}
-	
-	\flushright \textit{Zadanie: } rozkład wykładniczy $p(y) = e^{-y}$
+\begin{frame}{Metoda odwróconej dystrybuanty}
+
+
+Jak uzyskać rozkład o zadanej dystrubuancie $F(x)$ ?
+
+Jeśli zdefiniujemy U - zmienną losową o rozkładzie równomiernym na (0,1) to zmienna losowa
+$$
+X=F^{-1}(U)
+$$
+ma rozkład o dystrybuancie $F(x)$\\
+
+Dowód:
+$$
+P(X<x)= P(F^{-1}(U)<x
+)=P(U<F(x))=F(x)
+$$
+
 \end{frame}
-%%%%%%%%%%%%%%
-\begin{frame}{Zmienne o rozkładzie normalnym}
-	\centering \includegraphics[width=1\linewidth]{img/14/14_6_1_img.png}
+\begin{frame}{Przykład rozkład wykładniczy $e^{-x}$}
+Funkcja gęstości prawdopodobieństwa:    
+    $p(x)=e^{-x}$ $x \in [0,\infty)$\\
+    
+Dystrybuanta:
+$$
+F(x)=\int_{-\infty}^x{e^{-x'}dx'}=1-e^{-x}
+$$
+$$
+y=1-e^{-x}
+$$
+$$
+x=-ln(1-y)
+$$
+$$
+F^{-1}(y)=-ln(1-y)
+$$
+Generujemy ciąg liczb losowych o rozkładzie równomiernym $U$ $u_1, u_2, u_3, .., u_n \in (0,1)$\\
+Wtedy ciąg liczb:
+$y_i=-ln(1-u_i)$
+ma rozkład wykładniczy.\\
+W ogólności odwracanie dystrybuanty sprawia często duże trudności numeryczne. 
 \end{frame}
-%%%%%%%%%%%%%%
-\subsection{Zmienne o rozkładzie normalnym}
-\begin{frame}{Zmienne o rozkładzie normalnym}
-	\begin{block}{Uogólnienie met. transformacji dla n-D}
-		$x_{1},x_{2},\ldots,x_{n}$ - zmienne o łącznym rozkładzie $p(x_{1},x_{2},\ldots,x_{n})dx_{1} \ldots dx_{n}$\\
-		\vspace{0.5cm}
-		$y_{1},y_{2},\ldots,y_{n}$ - każda $y$ - funkcja wszystkich $x$, tyle samo $x$ i $y$
-	\end{block}
+\begin{frame}{Rozkład normalny}
+    $$p(x) = e^{-\frac{x^{2}}{2}} \quad, \qquad$$
+    Szukanie odwrotności dystrybuanty(funkcja nieelementarna!):
+    $$F(x)=\int_{-\infty}^{x}e^{\frac{-y^2}{2}}dy'=erf(x) $$
+    jest kosztowne.
+    
+    Zwykle stosuje się metodę Boxa-Mullera 
 \end{frame}
 
-%%%%%%%%%%%%%%
-\begin{frame}{Zmienne o rozkładzie normalnym}
-	\begin{block}{łączny rozkład prawdopodobieństwa $y$:}
-		\[
-			p(y_{1},y_{2},\ldots,y_{n})dy_{1}dy_{2} \ldots dy_{n} =
-		\]
-		\[
-			= p(x_{1},x_{2},\ldots,x_{n}) \underbrace{\left|\frac{\partial(x_{1},x_{2},\ldots,x_{n})}{\partial(y_{1},y_{2},\ldots,y_{n})}\right| dy_{1}dy_{2} \ldots dy_{n}}_{dx_{1}dx_{2} \ldots dx_{n}}
-		\]
-	\end{block}
+\begin{frame}{Metoda Box-Muller}
+
+		Biorę dwa niezależne rozkłady normalne i liczę prawdopodobieńswo 
+		łączne (iloczynu zdarzeń):
+		
+		$$
+			p(x_1,x_2) = e^{-\frac{x_1^{2}}{2}}\cdot e^{-\frac{x_2^{2}}{2}}=
+			e^{-\frac{x_1^{2}+x_2^{2}}{2}}
+		$$	
+	    $$
+		x_1, x_2 \in (-\infty,\infty)
+		$$
+		Wprowadzamy zmienne sferyczne:
+		$$
+		r^2=x_1^{2}+x_2^{2}, r \in[0,\infty)
+		$$
+		$$
+		x_1=r\sin(\phi), \phi \in [0, 2\pi]
+		$$
+		$$
+		x_2=r\cos(\phi)
+		$$
 \end{frame}
-%%%%%%%%%%%%%%
-\begin{frame}{Metoda Box-Muller (1958)}
-	\begin{block}{Metoda Box-Muller (1958) generacji zmiennych losowych o rozkładzie normalnym}
+\begin{frame}{Metoda Box-Muller}
+    Przeliczamy element prawdopodobieństwa (prawdopodobieństwo, że x i y  znajdą się w małym obszarze dxdy) we współrzędnych sferycznych (\colorbox{red}{$r$} - moduł Jakobianu)
+$$
+p(x,y)dxdy=p(r,\phi)
+\textrm{\colorbox{red}{$r$}}
+d\phi dr
+$$
+
+$$
+e^{-\frac{r^2}{2}} \textrm{\colorbox{red}{$r$}} d\phi dr
+$$
+Wprowadzam zmienną $z=\frac{r^2}{2}$
+$$
+dz=rdr
+$$
+$$
+e^{-z}  d\phi dz
+$$
+\end{frame}
+\begin{frame}{Metoda Box-Muller }
+    Otrzymaliśmy rozkład wykładniczy $e^{-z}  d\phi dz$.\\
+    Możemy zastosować odwrotną dystrubuantę:
+    $$
+F^{-1}(w)=-ln(1-w)
+$$
+oraz odwrotną funkcję do:
+$\frac{r^2}{2}=z$ czyli $r=\sqrt{2z} $\\
+    Dodatkowo gęstośc prawdopodobieństwa rozkładu $ e^{\frac{r^2}{2}}$  nie zależy od $\phi \in [0,2\pi]$, który losujemy zgodnie z rozkładem równomiernym na przedziale $(0,2\pi)$
+   % $$
+   %F(x)= \int_{-\infty}^{x}\int_{0}^{2\pi}e^{-z} % d\phi dz=2\pi \int_{-\infty}^{x}e^{-z} dz
+   % $$
+\end{frame}
+\begin{frame}{Metoda Box-Muller}
+	\begin{block}{Metoda Box-Muller  generacji zmiennych losowych o rozkładzie normalnym}
 		\[
-			p(y)dy = \frac{1}{\sqrt{2\pi}}e^{-\frac{y^{2}}{2}}dy \quad, \qquad \text{r. } N(0,1)
+			p(r)dr = e^{-\frac{r^{2}}{2}}dr= e^{-\frac{x_1^{2}+x_2^2}{2}}dx_1dx_2=
+			e^{-\frac{x_1^{2}}{2}}dx_1 e^{-\frac{x_2^{2}}{2}}dx_2
 		\]
-		$x_{1}, x_{2}$ - zm. losowe niezależne, rozkł. równomierny na $(0, 1)$
 	\end{block}
 
 	\begin{block}{transformacja:}
+		$U_{1}, U_{2}$ - zm. losowe niezależne, rozkł. równomierny na $(0, 1)$
 		\[
-			y_{1} = \sqrt{-2 \ln(x_{1})} \cos(2\pi x_{2})
+			x_{1} = r cos(\phi)=\sqrt{-2 \ln(1-U_1)} \cos(2\pi U_2)
 		\]
 		\[
-			y_{2} = \sqrt{-2 \ln(x_{1})} \sin(2\pi x_{2})
+			x_{2} = r sin(\phi)= \sqrt{-2 \ln(1-U_1)} \sin(2\pi U_2)
 		\]
+			$\Rightarrow$ $x_{1} x_{2}$ - każda oddzielnie ma rozkład normalny (2 niezależne!)
 	\end{block}
 \end{frame}
 %%%%%%%%%%%%%%
-\begin{frame}{Metoda Box-Muller (1958)}
-	\begin{block}{stąd:}
-		\[
-			x_{1} = \left[- \frac{1}{2} (y_{1}^{2} + y_{2}^{2})\right]
-		\]
-		\[
-			x_{2} = \frac{1}{2\pi} \arctan\frac{y_{1}}{y_{2}}
-		\]
-	\end{block}
+%\begin{comment}
+%\begin{frame}{Metoda Box-Muller (1958)}
+%	\begin{block}{stąd:}
+%		\[
+%			x_{1} = \left[- \frac{1}{2} (y_{1}^{2} + y_{2}^{2})\right]
+%		\]
+%		\[
+	%		x_{2} = \frac{1}{2\pi} \arctan\frac{y_{1}}{y_{2}}
+%		\]
+%	\end{block}
 	
-	\begin{block}{co daje:}
-		\[
-			\frac{\partial(x_{1}, x_{2})}{\partial(y_{1}, y_{2})} = \begin{vmatrix}
-				\frac{\partial x_{1}}{\partial y_{1}} & \frac{\partial x_{1}}{\partial y_{2}} \\
-				\frac{\partial x_{2}}{\partial y_{1}} & \frac{\partial x_{2}}{\partial y_{2}}
-			\end{vmatrix} =
-			- \left[\frac{1}{\sqrt{2\pi}} e^{-\frac{y_{1}^{2}}{2}}\right] \left[\frac{1}{\sqrt{2\pi}} e^{-\frac{y_{2}^{2}}{2}}\right]
-		\]
-		$\Rightarrow$ $y_{1} y_{2}$ - każda oddzielnie ma rozkład normalny (2 niezależne!)
-	\end{block}
-\end{frame}
+%	\begin{block}{co daje:}
+	%	\[
+		%	\frac{\partial(x_{1}, x_{2})}{\partial(y_{1}, y_{2})} = \begin{vmatrix}
+		%		\frac{\partial x_{1}}{\partial y_{1}} & \frac{\partial x_{1}}{\partial y_{2}} \\
+		%		\frac{\partial x_{2}}{\partial y_{1}} & \frac{\partial x_{2}}{\partial y_{2}}
+		%	\end{vmatrix} =
+		%	- \left[\frac{1}{\sqrt{2\pi}} e^{-\frac{y_{1}^{2}}{2}}\right] \left[\frac{1}{\sqrt{2\pi}} e^{-\frac{y_{2}^{2}}{2}}\right]
+	%	\]
+	%	$\Rightarrow$ $y_{1} y_{2}$ - każda oddzielnie ma rozkład normalny (2 niezależne!)
+%	\end{block}
+%\end{frame}
+%\end{comment}
 %%%%%%%%%%%%%%
 \begin{frame}{Uproszczenie obliczeń}
 	\begin{block}{Zamiast:}
-		$x_{1}, x_{2}$ - rozkład równomierny w jednostkowym kwadracie
+		$U_{1}, U_{2}$ - rozkład równomierny w jednostkowym kwadracie
 	\end{block}
 
 	\begin{block}{bierzemy:}
-		$v_{1}, v_{2}$ - współrz. punktu w jednostkowym kole:\\
-		$v_{1}^{2} + v_{2}^{2} < 1$,\\
-		$R = v_{1}^{2} + v_{2}^{2}$ - ma rozkład równomierny - zamiast $x_{1}$\\
-		$\angle(v_{1}, v_{2})$ - zamiast $x_{2}$
+		$V_{1}, V_{2}$ - współrz. punktu w jednostkowym kole:\\
+		$V_{1}^{2} + V_{2}^{2} < 1$,\\
+		zamiast $U_1$ bierzemy $R = V_{1}^{2} + V_{2}^{2}$ (też ma rozkład równomierny)\\
+		zamiast $U_{2}$ - $\angle(V_{1}, V_{2})$ 
 		\[
-			\cos(2\pi x_{2}) = \frac{v_{1}}{\sqrt{R}}; \qquad \sin(2\pi x_{2}) = \frac{v_{2}}{\sqrt{R}}
+			\cos(2\pi U_{2}) = \frac{V_{1}}{\sqrt{R}}; \qquad \sin(2\pi U_{2}) = \frac{V_{2}}{\sqrt{R}}
 		\]
 		i tak unikamy stosowania funkcji trygonometrycznych
 	\end{block}
@@ -117,24 +183,11 @@
 \begin{frame}{Uproszczenie obliczeń}
 	\begin{block}{}
 		\[
-			y_{1} = v_{1}\sqrt{\frac{-2 \ln(v_{1}^{2} + v_{2}^{2})}{v_{1}^{2} + v_{2}^{2}}},
+			x_{1} = V_{1}\sqrt{\frac{-2 \ln(V_{1}^{2} + V_{2}^{2})}{V_{1}^{2} + V_{2}^{2}}},
 		\]
 		\[
-			y_{2} = y_{1} \cdot \frac{v_{2}}{v_{1}}
+			x_{2} = x_{1} \cdot \frac{V_{2}}{V_{1}}
 		\]
-		$y_{1}, y_{2}$ - niezależne, obie o $N(0,1)$
+		$x_{1}, x_{2}$ - niezależne, obie o $N(0,1)$
 	\end{block}
-
-	\vspace{0.5cm}
-	\begin{flushright}
-		\textit{Zadanie}
-	\end{flushright}
-
-	\vspace{-0.5cm}
-	``Numerical Recipes'' rozkłady:
-	\begin{itemize}
-		\item gamma
-		\item Poissona
-		\item binominalny (``rejection method'' 7.3)
-	\end{itemize}
 \end{frame}
