@@ -19,7 +19,7 @@
     \begin{center}
     	\begin{tabular}{|r|} \hline
     		$u'(t_0)=f(t_0,u_0)$\\ \hline
-        	$u''(t_0) = \frac{\partial f}{\partial t}\arrowvert_0+\frac{\partial f}{\partial u}\arrowvert_0 \cdot u'_0 = \frac{\partial f}{\partial t}\arrowvert_0 + \frac{\partial f}{\partial u}\arrowvert_0 \cdot f(t_0,u_0)$\\ \hline
+        	$u''(t_0) = \frac{\partial f}{\partial t}\arrowvert_0+\frac{\partial f}{\partial u}\arrowvert_0 \cdot u'_0 = \frac{\partial f}{\partial t}\arrowvert_0 + \frac{\partial f}{\partial u}\arrowvert_0 \cdot f(t_0,u_0)$ (pochodna zupełna)\\ \hline
         itd... \\ \hline
        		$u'(t_0)$ - prosto, wyższe - uciążliwe obliczenia!\\ \hline
     	\end{tabular}
@@ -29,10 +29,10 @@
 \begin{frame}
 	Równanie (**) można zapisać jako:
     \begin{tabular}{ccl}
-    $u_1$ & = & $u_0+h \cdot \bigg[u'(t_0)\frac{h}{2}u''(t_0) +\ldots+\frac{h^{q-1}}{q!}u^{(q)}(t_0)\bigg] =$\\
-     & = & $u_0 + h \cdot \bigg[f(t_0,u_0)+\frac{h}{2}\cdot f^{(1)}(t_0,u_0)+\ldots+\frac{h^{q-1}}{q!}f^{q-1}(t_0,u_0)\bigg]$
+    $u_1$ & = & $u_0+h \cdot \bigg[u'(t_0)+\frac{h}{2}u''(t_0) +\ldots+\frac{h^{q-1}}{q!}u^{(q)}(t_0)\bigg] =$\\
+     & = & $u_0 + h \cdot \underbrace{\bigg[f(t_0,u_0)+\frac{h}{2}\cdot f^{(1)}(t_0,u_0)+\ldots+\frac{h^{q-1}}{q!}f^{q-1}(t_0,u_0)\bigg]}_{F_T}$
     \end{tabular}
-    gdzie:
+    gdzie (pochodna zupełna):
     $$f^{(s)}(t_0,u_0) = \frac{d^s}{dt^s}f(t,u(t))\bigg\arrowvert_{t=t_0, u(t)=u_0} \qquad s = 1,2,\ldots,q-1$$
     \begin{block}{Idea metod Rungego-Kutty}
     Ideą metod jest dobranie funkcji F (wzór *):
@@ -57,13 +57,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	Niech:
-    \begin{tabular}{lcll}
-    $\alpha$ & = & $\frac{\partial f}{\partial t}+f\frac{\partial f}{\partial u}$ & \\
-    $\beta$ & = & $\frac{\partial^2f}{\partial t^2}+2f\frac{\partial^2f}{\partial t \partial u}+f^2\frac{\partial^2f}{\partial u^2}$ & f = f(t,u)
-    \end{tabular}
- 	\newline \newline \par
-    Dla $r = 0$ wzory (***) mają postać:
+    Dla $r = 3$ wzory (***) mają postać:
    	\newline
     \begin{tabular}{rcl}
     	$F(x,y,h)$ & $=$ & $c_1 \cdot k_1 + c_2 \cdot k_2 + c_3 \cdot k_3$ \\
@@ -73,19 +67,27 @@
         $k_3$ & $=$ & $f(t+a_3 \cdot h, u+h \cdot (b_{31} \cdot k_1 + b_{32} \cdot k_2)) = $ \\
          & $=$ & $f(t+a_3 \cdot h, u+h \cdot (a_3 - b_{32}) \cdot k_1 + h \cdot b_{32} \cdot k_2)$
     \end{tabular}
+    Potrzebna nam będzie pochodna zupełna
+    $$f^{(1)}(t,u) = \frac{\partial f}{\partial t}+\frac{\partial f}{\partial u} \cdot \frac{\partial u}{\partial t}=\frac{\partial f}{\partial t}+ 
+    \frac{\partial f}{\partial u} \cdot f(t,u)$$
+    	Niech (dla uproszczenia):
+    \begin{tabular}{lcll}
+    $\alpha$ & = & $\frac{\partial f}{\partial t}+f\frac{\partial f}{\partial u}$ & \\
+    $\beta$ & = & $\frac{\partial^2f}{\partial t^2}+2f\frac{\partial^2f}{\partial t \partial u}+f^2\frac{\partial^2f}{\partial u^2}$ & f = f(t,u)
+    \end{tabular}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	$k_2, k_3$ rozwijamy w szereg Taylora wokół (t,u):
     \begin{flushleft}
-    	$k_2=f(t,u)+ha_2\bigg(\frac{\partial f}{\partial t}+k_1\frac{\partial f}{\partial u}\bigg) + \frac{1}{2}h^2a_2^2\bigg(\frac{\partial^2f}{\partial t^2}+k_1\frac{\partial^2f}{\partial t \partial u}+k_1^2\frac{\partial^2f}{\partial u^2}\bigg)+O(h^3)$ \newline
+    	$k_2=f(t,u)+ha_2\bigg(\frac{\partial f}{\partial t}+k_1\frac{\partial f}{\partial u}\bigg) + \frac{1}{2}h^2a_2^2\bigg(\frac{\partial^2f}{\partial t^2}+2k_1\frac{\partial^2f}{\partial t \partial u}+k_1^2\frac{\partial^2f}{\partial u^2}\bigg)+O(h^3)$ \newline
         $k_2 = f(t,u)+ha_2\alpha+\frac{1}{2}h^2a_2^2\beta+O(h^3)$ \newline
         $k_3 = f(t,u)+ha_3\alpha + h^2(a_2 \cdot b_{32} \cdot \alpha \frac{\partial f}{\partial u} + \frac{1}{2}a_3^2\beta) + O(h^3)$
     \end{flushleft}
     stąd:
     \begin{tabular}{r}
     	$\varphi(h) = F(t,u,h) - F_T(t,u,h) = $\\
-    	$ = (c_1+c_2+c_3-1) \cdot f(t,u)+h \cdot \alpha \cdot (c_2 \cdot \alpha^2 + c_3 \cdot a_3 - \frac{1}{2}) + $ \\
+    	$ = (c_1+c_2+c_3-1) \cdot f(t,u)+h \cdot \alpha \cdot (c_2 \cdot a_2 + c_3 \cdot a_3 - \frac{1}{2}) + $ \\
         $+ h^2 \cdot \big[c_3a_3b_{32}\alpha\frac{\partial f}{\partial u}+\frac{1}{2}(c_2 \cdot a_2^2 +c_3a_3^2)-\frac{1}{6}(\alpha \cdot \frac{\partial f}{\partial u}+\beta)\big]+O(h^3) $
     \end{tabular}
     \begin{block}{Uwaga!}
@@ -159,7 +161,7 @@
             $k_4 = f(t_i+h,u_i+hk_1-hk_2+hk_3)$
     	\end{tabular}
     \end{center}
-  	Dla obu: $\varphi_4(h) = O(h^5)$
+  	Dla obu: $\varphi_4(h) = O(h^4)$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Wada metod R-4}

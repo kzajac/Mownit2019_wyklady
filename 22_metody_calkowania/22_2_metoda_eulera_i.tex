@@ -13,27 +13,32 @@
   \textbf{Cechy:}
   \begin{itemize}
     \item jawna
-    \item dokładna jedynie do wyrazów 1-go rzędu ze względu na $\Delta t$ \quad $(\varepsilon=0(\Delta t)$)
+    \item 1-go rzędu - bład zmienia liniowo się ze względu na $\Delta t$: \quad $\varepsilon=0(\Delta t)$
     \item prosta
     \item efektywna
   \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Stabilność}
-  $t^n$ \quad $u^n, \varepsilon^n$ - błąd \qquad
-  $t^{n+1}$ \quad $u^{n+1}, \varepsilon^{n+1}$ 
+  w czasie $t^n$ mamy  $u^n$ z błędem $\varepsilon^n$  \\
+  w czasie $t^{n+1}$ mamy $u^{n+1}$ z błędem $\varepsilon^{n+1}$ \\
   \fbox{$\varepsilon^{n+1} = g \cdot \varepsilon^n$\qquad
   g - współczynnik wzmocnienia błędu}
-
   $$u^{n+1} + \varepsilon^{n+1} = u^n+\varepsilon^n-f(u^n+\varepsilon^n,t^n)\cdot \Delta t \qquad(*)$$
-  \underline{zał.:} $\varepsilon^n$ - mały $\Rightarrow$ linearyzacja r. nieliniowego
-  $$f(u^n+\varepsilon^n,t^n) = f(u^n,t^n)+\frac{\partial f}{\partial u}{\bigg\arrowvert}_{u^n} \cdot \varepsilon^n+0(\varepsilon^n)$$
-  Po podst. do (*):\qquad $\varepsilon^{n+1} = \varepsilon^n-\frac{\partial f}{\partial u}\big\arrowvert_n \cdot \Delta t \cdot \varepsilon^n +0(\varepsilon^n)$ \newline
-  \underline{współczynnik wzmocnienia}:\qquad $g = 1- \frac{\partial f}{\partial u}{\big\arrowvert}_n \cdot \Delta t\downarrow$
-  warunek stabilności: $|g|<1$ warunek stabilności dla $\frac{\partial f}{\partial u}>0$
+  \underline{zał.:} $\varepsilon^n$ - mały $\Rightarrow$ rozwijamy w szereg Taylora, pomijamy człony nieliniowe:
+  $$f(u^n+\varepsilon^n,t^n) = f(u^n,t^n)+\frac{\partial f}{\partial u}{\bigg\arrowvert}_{u^n} \cdot \varepsilon^n$$
+  Po podst. do (*):
+   $$\textrm{\colorbox{red}{$u^{n+1}$}} + \varepsilon^{n+1} = \textrm{\colorbox{red}{$u^{n}$}}+\varepsilon^n-(\textrm{\colorbox{red}{$f(u^n,t^n)$}}+\frac{\partial f}{\partial u}{\bigg\arrowvert}_{u^n} \cdot \varepsilon^n) \cdot \textrm{\colorbox{red}{$\Delta t$}}$$
+  $$\varepsilon^{n+1} = \varepsilon^n-\frac{\partial f}{\partial u}\big\arrowvert_n \cdot \Delta t \cdot \varepsilon^n $$
+  \end{frame}
+  \begin{frame}
+  \underline{współczynnik wzmocnienia}:\qquad $g = \frac{\epsilon^{n+1}}{\epsilon^{n}}=1- \frac{\partial f}{\partial u}{\big\arrowvert}_n \cdot \Delta t$\\
+  warunek stabilności: $|g|\leq1$\\
+  warunek stabilności dla $\frac{\partial f}{\partial u}>0$
   $$\frac{\partial f}{\partial u}\arrowvert_n \cdot \Delta t \leqslant 2 \quad 
   \rightarrow \quad \Delta t \leqslant \frac{2}{\frac{\partial f}{\partial u}\arrowvert_n} \Rightarrow krok$$
-  (gdy $\frac{\partial f}{\partial u}\arrowvert_n < 0$ - metoda niestabilna)
+  (gdy $\frac{\partial f}{\partial u}\arrowvert_n < 0$ - metoda niestabilna)\\
+   \underline{stabilność} - fundamentalna własność metody różnicowej
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -41,13 +46,15 @@
 	\begin{center}
 	$\frac{du}{dt}+\frac{u}{\tau} = 0$, \quad $u(0) = 1$\newline $R$, $L\rightarrow \tau = \frac{L}{R}$\qquad rozpad promieniotwórczy\par
       \begin{itemize}
-    \item analitycznie: $u = e^{-\frac{t}{\tau}}$
+    \item rozwiązanie otrzymane analitycznie: $u = e^{-\frac{t}{\tau}}$
     \end{itemize}
 	\end{center}
   
   krok czasowy gwarantujący stabilność:
+  $$
+  \Delta t \leqslant \frac{2}{\frac{\partial f}{\partial u}\arrowvert_n}$$
   $$\frac{\partial f}{\partial u}\bigg\arrowvert_n = \frac{1}{\tau}\qquad \Delta t \leqslant 2\tau$$
-  $\Rightarrow$ \underline{stabilność} - fundamentalna własność metody różnicowej
+ 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -55,23 +62,28 @@
 	\begin{center}
 		oscylator harmoniczny: \qquad $\frac{d^2x}{dt^2}+ \omega^2x=0$
 	\end{center}
-    $\Rightarrow$ układ 2 równań:
-    $$\left\{\begin{array}{lccll}
-	\frac{dx}{dt}&-&\omega^2x&=&0\\
-	\frac{dx}{dt}&+&\omega v&=&0\\
+    $\Rightarrow$ układ 2 równań (dla $v=\frac{dx}{dt}$):
+    $$\left\{\begin{array}{lcclll}
+	\frac{dv}{dt}&+&\omega^2x&=&0 &\\
+	\frac{dx}{dt}&-&v&=&0 & \mid \cdot (-i \omega )\\
 	\end{array} \right.$$
-    wprowadzenie \qquad \underline{$u = x+iv$} $\Rightarrow$ pojedyncze równanie 1-go rzędu:
-    $$ \frac{du}{dt} + i\omega u= 0 \qquad \arrowvert \qquad bo: \quad \frac{dx}{dt} + i\frac{dv}{dt}+i\omega v = 0$$
-    \underline{współczynnik wzmocnienia:}
+	po dodaniu mamy:
+	$$ 	\frac{dv}{dt}-i \omega \frac{dx}{dt}+
+	\omega^2 x+i \omega v  = 0$$
+	$$ 	\frac{dv}{dt}-i \omega \frac{dx}{dt}+
+	-i^2 \omega^2 x+i \omega v  = 0$$
+	$$ 	\frac{dv}{dt}-i \omega \frac{dx}{dt}+
+	i\omega( v-i\omega x ) = 0$$
+	 \end{frame}
+	 %%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}{Przykład 2 c.d.}
+    wprowadzenie \underline{$u = v-i\omega x$} $\Rightarrow$ pojedyncze równanie 1-go rzędu:
+    $$ \frac{du}{dt} + i\omega u= 0 \qquad  \qquad $$
+\underline{współczynnik wzmocnienia:} ($f(u)=i\omega u$)
     $$g = 1-{\frac{\partial f}{\partial u}}\bigg\arrowvert _n \cdot \Delta t \quad \Rightarrow \quad g=1-i\cdot \omega \cdot \Delta t \qquad zespolony!$$
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Przykład 2 c.d.}
 	$$|g|^2 = g \cdot g^* = 1+\omega^2 {\Delta t}^2 \quad \rightarrow \quad 1+\bigg(\frac{\partial f}{\partial u}\bigg{\arrowvert}_n \cdot \Delta t\bigg)^2 > 1 \Rightarrow |g| > 1 $$
-    \begin{block}{Uwaga}
-    	Metoda Eulera jest bezwzględnie niestabilna dla równań typu oscylacyjnego.
-    \end{block}
+  \fbox{Metoda Eulera jest  niestabilna dla równań typu oscylacyjnego.}\\
+
     W zagadnieniach \textit{nieliniowych $\frac{\partial f}{\partial u}$} jest funkcją $u$ \quad $\Rightarrow$ \quad należy na każdym etapie wybierać $\Delta t$ spełniające warunki stabilności. 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
