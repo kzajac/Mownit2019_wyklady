@@ -83,7 +83,7 @@
   	\end{itemize}
   	\end{block}
   	  Metoda mało efektywna dla dużego $n$
-  	  \\(w połączeniu z metodą aproks. kwadratowej.)
+  	%  \\(w połączeniu z metodą aproks. kwadratowej.)
 
   \end{frame}
 
@@ -161,12 +161,12 @@
 	  		\item[--] mała ilość obliczeń funkcji $F(X)$ w każdym kroku,
 	  		\item[--] największe możliwe kroki,
 	  		\item[--] rozsądny kierunek poszukiwań,
-	  		\item[--] bezpieczna i szybka daleko od minimum,
-	  		\item[--] daje estymaty błędów parametrów
+	  		\item[--] bezpieczna i szybka daleko od minimum
+	  	%	\item[--] daje estymaty błędów parametrów
 	  	\end{itemize}
     \end{block}
     \begin{block}{Zbieżność}
-	  	$\underbrace{EDM}_{ \text{estimated distance to minimum}} = F(P_H) - F(P_L) < \underbrace{EPSI}_{(\epsilon)}$
+	  	$\underbrace{EDM}_{ \text{estimated distance to minimum}} = F(P_H) - F(P_L) < \epsilon$
     \end{block}
 
   \end{frame}
@@ -196,26 +196,34 @@
 
     \begin{block}{}
       \begin{itemize}
- 	      \item[--] $2 \cdot n$ wywołań $F(X)$ (symetryczne, gdy $2\ |\ n$)
- 	      \item[--] Lecz łatwo przy okazji obliczyć drugie pochodne:
+ 	    %  \item[--] $2 \cdot n$ wywołań $F(X)$ (symetryczne, gdy $2\ |\ n$)
+ 	      \item[--] łatwo przy okazji obliczyć drugie pochodne:
  	  	  \begin{displaymath}
- 	   	  	\frac{\partial (F)}{\partial (x^2)} \bigg\vert_{x_0} \approx \frac{F(x_0+d) - 2 \cdot F(x_0) + F(x_0-d)}{d^2}
+ 	   	  	\frac{\partial^2 F}{\partial x^2} \bigg\vert_{x_0} \approx \frac{F(x_0+d) - 2 \cdot F(x_0) + F(x_0-d)}{d^2}
  	      \end{displaymath}
- 	      Sprawdzić: drugie pochodne są stałe w małych obszarach - nie są potrzebne kroki symetryczne.
+ 	     
  	      \item[--] Drugie pochodne tworzą macierz $n \times n$.
+ 	       $H_{ij} = \left. \frac{\partial^2 F}{\partial x_i \partial x_j}$\\
+ 	       Na przykład:
+ 	       \begin{small}
+ 	       $$
+ 	       \frac{\partial^2 F}{\partial x \partial y}\bigg\vert_{x_0, y_0}\approx$$
+ 	       $$
+ 	       \frac{F(x_0+d, y_0+d) -F(x_0, y_0+d) - F(x_0+d, y_0)+F(x_0,y_0)}{d^2}
+ 	       $$
+ 	       \end{small}
       \end{itemize}
   	\end{block}
-
+% Sprawdzić: drugie pochodne są stałe w małych obszarach - nie są potrzebne kroki symetryczne.
   \end{frame}
 
   \begin{frame}{Wyznaczanie pochodnych cd.}
-
     \begin{figure}
 		\centering
 		\includegraphics[height=0.6\textheight ,width=0.6\textwidth]{img/17/wyznaczanie_pochodnych}
 	\end{figure}
     \begin{block}{}
-      Poza p.~symetrycznymi potrzeba $\frac{n(n-1)}{2}$ pkt. (mieszane pochodne)
+     Ogólnie dla mieszanych pochodnych poza p.~symetrycznymi potrzeba $\frac{n(n-1)}{2}$ pkt. 
   	\end{block}
 
   \end{frame}
@@ -223,40 +231,56 @@
   \begin{frame}{Metody gradientowe}
 
     \begin{block}{Metoda największego spadku}
-      Podążanie w kierunku wyznaczonym przez - $\vec g$ (gradient)
-      \\(w tym kierunku funkcja maleje najszybciej) (Cauchy)
-      \\$\left\{
-        \begin{array}{l}
-          \text{- seria minimalizacji 1-D wzdłuż kierunku największego spadku} \\
-          \text{- iteracyjna, bo gradient nie jest stały}
-	    \end{array}
-	  \right.$
-  	\end{block}
+    \begin{itemize}
+        \item podążanie w kierunku wyznaczonym przez  $- \vec g$ (gradient $g_i = \left. \frac{\partial F}{\partial x_i}$)
+        \item w tym kierunku funkcja maleje najszybciej (nierówność Cauchy’ego-Schwarza)
+        \item seria minimalizacji 1-D wzdłuż kierunku największego spadku $\vec{x_{k+1}}=\vec{x_k}-\alpha_k \vec{g}\vert_{x_k}$ ; $\alpha_k$ dobrane tak, ze $f(\vec{x_k}-\alpha_k \vec{g}\vert_{x_k})=min_{\alpha>0} f(\vec{x_k}-\alpha \vec{g}\vert_{x_k})$
+        \item iteracyjna, bo gradient nie jest stały 
+ \item $g_{k+1}\perp g_{k}$ - metoda  prowadzi do "zygzakowania"
+    \end{itemize}
+ \end{block} 
+	 \end{frame}
+	 \begin{frame}
+  	
     \begin{figure}
 		\centering
-		\includegraphics[height=0.5\textheight ,width=0.6\textwidth]{img/17/high_fall_met_1}
+		\includegraphics[width=0.9\textwidth]{img/17/high_fall_met_1}
 	\end{figure}
 
   \end{frame}
 
-  \begin{frame}{Metoda największego spadku cd.}
+  %\begin{frame}{Metoda największego spadku cd.}
 
-    \begin{block}{}
-      $\rightarrow$ Jeżeli minimalizacja w 1-D jest dokładna w kierunkach ortogonalnych -- \emph{met. uzmienniania 1 parametru}
-      \smallskip
-      \\Łatwo o przykład hipotetycznej funkcji,
-      \\ dla której minimum jest $\perp$ gradientu.
-  	\end{block}
-    \begin{figure}
-		\centering
-		\includegraphics[height=0.5\textheight ,width=0.6\textwidth]{img/17/high_fall_met_2}
-	\end{figure}
+  %  \begin{block}{}
+     % $\rightarrow$ Jeżeli minimalizacja w 1-D jest dokładna w kierunkach ortogonalnych -- \emph{met. uzmienniania 1 parametru}
+   %   \smallskip
+    %  \\Łatwo o przykład hipotetycznej funkcji, dla której minimum jest $\perp$ gradientu.
+   %   \\metoda często prowadzi do "zygzakowania" w kierunkach nie prowadzących do minimum globalnego
+  %	\end{block}
+   % \begin{figure}
+	%	\centering
+	%	\includegraphics[height=0.5\textheight ,width=0.6\textwidth]{img/17/high_fall_met_2}
+%	\end{figure}
 
-  \end{frame}
+  %\end{frame}
 
+\begin{frame}{Metoda Newtona - przypomnienie 1D}
+Znamy już metodę Newtona do znajdowania miejsc zerowych funkcji $f(x)$:
+$$
+x_{i+1}=x_i - \frac{f(x_i)}{f'(x_i)}
+$$
+Metodę tę można zastosować do znajdowania  możliwego minimum funkcji $f(x)$, którą przybliżamy wielomianem Taylora drugiego stopnia 
+$$
+f(y)=f(x)+f'(x)(y-x)+\frac{1}{2}f''(x)(y-x)^2
+$$
+Następnie liczymy pochodną  tego przybliżenia po $y$ i szukamy jej miejsca zerowego metodą Newtona. Wzór iteracyjny przyjmuje postać:
+$$
+x_{i+1}=x_i - \frac{f'(x_i)}{f''(x_i)}
+$$
+\end{frame}
   \begin{frame}{Metody gradientowe}
 
-    \begin{block}{Metoda Newtona}
+    \begin{block}{Metoda Newtona minimalizacji N-D}
       Ogólna funkcja kwadratowa jest określona przez:
       \\$\left.
         \begin{array}{l}
@@ -266,20 +290,19 @@
 	    \end{array}
 	  \right\}$
 	  $\begin{array}{l} \text{\emph{W dowolnym punkcie }} x_0 \\
-     \text{Dysponujemy tymi informacjami} \end{array}$
-	  \smallskip
-	  \\Minimalizacja w pierwszym kroku.
+     \text{Dysponujemy tymi informacjami} \end{array}$\\
+    $F(\vec{x})$ rozwijamy w szereg Taylora, pomijamy dalsze wyrazy:
 	  \begin{displaymath}
 	  		F(\vec{x}) = F(\vec{x_0}) + \vec{g}^T \cdot (\vec{x} - \vec{x_0}) +
-	  		\frac{1}{2} (\vec{x} - \vec{x_0})^T \cdot G \cdot (\vec{x} - \vec{x_0})
+	  		\frac{1}{2} (\vec{x} - \vec{x_0})^T \cdot H \cdot (\vec{x} - \vec{x_0})
 	  \end{displaymath}
-	  $\vec{g} - w \ \vec{x_0} \quad G$ -  stała macierz
-	  \smallskip
-	  \\Minimum:
+	  %$\vec{g}, H - obliczone w \ \vec{x_0} \quad H$ -  stała macierz
+	  \\i szukamy minimum takiej funkcji kwadratowej
+	  \\Wzór na minimum (iteracyjny, analogiczny do 1D):
 	  \begin{displaymath}
-	  		\vec{x_m} = \vec{x_0} - G^{-1} \cdot \vec{g} =  \vec{x_0} - V \cdot \vec{g}
+	  		\vec{x_{i+1}} = \vec{x_i} - H^{-1}\vert_{\vec{x_i}} \cdot \vec{g}\vert_{\vec{x_i}} =  \vec{x_i} - V \cdot \vec{g}
 	  \end{displaymath}
-    $V = G^{-1}$ -- macierz kowariancji (covariance)
+   % $V = H^{-1}$ -- macierz kowariancji (covariance)
 	\end{block}
 
   \end{frame}
@@ -291,14 +314,14 @@
       \smallskip
 	  \\ \emph{Te same wady!}
 	  \begin{itemize}
-	  	\item[--] niestabilna
-	  	\item[--] rozbieżna, gdy $V$ nie jest dodatnio określona
+	  	\item[--] może być niestabilna
+	  	\item[--] rozbieżna, gdy $V$ nie jest dodatnio określona (czyli NIE zachodzi $\forall_{x} x^TVx>0$)
 	  \end{itemize}
 	\end{block}
     \begin{block}{Zalety:}
       \begin{itemize}
 	  	\item[--] krok nie jest dowolny, lecz określony przez metodę
-	  	\item[--] kierunek $\neq$ wartość gradientu, tylko brana pod uwagę korelacja parametrów
+	  	\item[--] kierunek $\neq$ wartość gradientu, tylko brana pod uwagę korelacja parametrów (pamietane w macierzy V)
 	  \end{itemize}
 	\end{block}
 
@@ -318,322 +341,328 @@
 
   \end{frame}
 
+ % \begin{frame}{Metody gradientowe}
+
+  %  \begin{block}{Dygresja: dodatnio określone formy kwadratowe}
+  %    \emph{1-D forma kwadratowa:}
+%	  \begin{equation}
+%	  	F(x) = a + g \cdot x + \frac{1}{2} G \cdot x^2
+   %   \nonumber
+%	  \end{equation}
+   % \begin{equation}
+    %  g = \left.\frac{\partial F}{\partial x}\right|_{0}{,}\qquad
+    %  G = \left.\frac{\partial^{2} F}{\partial x^2}\right|_{0}
+     % \nonumber
+   % \end{equation}
+	%  $F(x)$ ma min. wtedy i tylko wtedy, gdy $G$ $\geq 0$.
+    %\begin{equation}
+	  	%	G = 0 \rightarrow \text{\emph{min}} \rightarrow \infty; \qquad
+       % x^m = -g/G
+       % \nonumber
+	 % \end{equation}
+	 % \emph{Dla ogólnej funkcji nieliniowej:}
+	  %\smallskip
+	 % \begin{itemize}
+	  %	    \item krok do $x = - \frac{g}{G}$ gdy $G > 0$
+	  %	    \\(w przeciwnym przypadku: $\infty$ lub maximum)
+	 % \end{itemize}
+%	\end{block}
+
+  %\end{frame}
+
+ % \begin{frame}{Dodatnio określone formy kwadratowe cd.}
+
+   % \begin{figure}
+%		\centering
+	%	\includegraphics[width=0.95\textwidth]{img/17/dygresja}
+%	\end{figure}
+
+  %\end{frame}
+
+ % \begin{frame}{Dodatnio określone formy kwadratowe cd.}
+
+  %  \begin{block}{}
+    %	\begin{itemize}
+	%  	    \item gdy $G \leq 0$ krok $= -g$
+	%  	    \\$\rightarrow$ kierunek - dobry,
+	%  	    \\$\rightarrow$ wartość - dowolna
+	%    \end{itemize}
+	 %   W $x_0 \rightarrow F(x)$ nie jest wypukła (dodatnio określona)
+	 %   \medskip\\
+	 %   \emph{Uogólnienie na n-D:}\\
+	  %  $g \rightarrow \vec{g}$, $G$ - macierz 2-ich poch.;
+	 %   $F(\vec X) = a + \vec{g}^T \cdot \vec{x} + \frac{1}{2} \vec{x}^T G$ tylko dla $G$ dod. określonej
+	  %  ma sens krok do:
+	  %  \begin{displaymath}
+	  %		\vec{x} = - G^{-1} \cdot \vec{g}
+	  %  \end{displaymath}
+  %  \end{block}
+
+ % \end{frame}
+
+ % \begin{frame}{Metody gradientowe}
+
+   % \begin{alertblock}{}
+    %  \textbf{Badanie czy $G$ jest dodatnio określona.}\\
+    %  Brak prostych sposobów.
+    %\end{alertblock}
+    %\begin{block}{\emph{Dla macierzy kwadratowych, symetrycznych - 2 warunki konieczne}}
+    %  $1^o$ elementy diagonalne $> 0$ \ (wyst. 1 $\times$ 1)
+    %  \\$2^o$ elementy pozadiagonalne:
+     % \begin{displaymath}
+      %		G_{ij}^2 < G_{ii} \cdot G_{jj}
+     % \end{displaymath}
+   % \end{block}
+
+  %\end{frame}
+
+  %\begin{frame}{Badanie czy $G$ jest dodatnio określona cd.}
+
+  %  \begin{block}{Ogólne warunki konieczne i wystarczające}
+     % \begin{itemize}
+      	%	\item[--] wszystkie wartości własne $> 0$ (b. trudne i przybliżone)
+      	%	\item[--] wyznacznik wszystkich macierzy $> 0$
+      	%	\begin{figure}
+			%	\centering
+				%\includegraphics[height=0.2\textheight ,width=0.3\textwidth]{img/17/matrix}
+		%	\end{figure}
+		%	(najprościej sprawdzić)
+		%	\item[--] skalar $E^T \cdot G\vec{e} > 0$ dla $\bigwedge \vec{e}$ (zwykłe $\rightarrow$ def.), wyjaśnia dlaczego $G$ dod.
+		%	okr. daje formę $F(x)$ z minimum: $F(x)$ rośnie we wszystkich kierunkach od $\vec{e} = 0$
+		%	\item[--] $-V = G^{-1}$ jest dodatnio określona
+     % \end{itemize}
+   % \end{block}
+
+  %\end{frame}
+
+ % \begin{frame}{Metody gradientowe}
+
+ %	\begin{block}{Postępowanie w przypadku $G$ - nie jest dod. określone}
+ 	 %  \begin{enumerate}[a)]
+ 	   %		\item analogicznie do 1-D : G = I $\rightarrow$ Ale:
+ 	   %		\item lepiej:
+ 	   	%	\begin{itemize}
+ 	   	%		\item[--] gdy $\bigwedge$ elementy diagonalne $G > 0$, wtedy pozadiag. $\rightarrow = 0$ (scale - invariant step),
+ 	   		%	\item[--] gdy tylko niektóre el. pozadiag. $G_{ij}^2 \geq G_{ii}G_{jj} \Rightarrow G_{ij} = 0$,
+ 	   		%	\item[--] zamiast $G^{-1}$ bierzemy $(G + \lambda \cdot I)^{-1}$;
+ 	   		%	\\ $\lambda \geq$ największa (bezwzgl.) ujemna wartość własna:
+ 	   		%	\begin{itemize}
+ 	   			%	\item[--] dużo obliczeń,
+ 	   			%	\item[--] krok pośredni pomiędzy m. Newtona a największego spadku
+ 	   			%	\\(duże $\lambda$ : krok krótki, w kierunku $\vec{g}$)
+ 	   		%	\end{itemize}
+ 	   			%\item[--] gdy jedna lub więcej diagonalnych 2-ich poch. $< 0$
+ 	   		%	\\ $\Rightarrow$ informacja o kierunku wzrostu ujemnej 1-szej poch.
+ 	   		%	\\w tym kierunku - szukanie met. zmiany 1 param.
+ 	   	%	\end{itemize}
+ 	   %\end{enumerate}
+ 	%\end{block}
+
+  %\end{frame}
+
+ % \begin{frame}{Gdy $G$ - nie jest dodatnio określone cd.}
+
+ %	\begin{block}{}
+ %	Metody oparte na powyższych regułach - \emph{quasi-Newton method}
+ 	%\medskip
+ %	\\Podstawowa wada tych metod - obliczanie i odwracanie
+ %	\\w każdym kroku macierzy drugich pochodnych
+ %	\smallskip
+ 	   %	\begin{itemize}
+ 	   	%	\item[--] obliczanie 2-ich poch. $\sim n^2$ (długie)
+ 	   	%	\item[--] odwracanie
+ 	   %	\end{itemize}
+ 	%\end{block}
+
+  %\end{frame}
+
   \begin{frame}{Metody gradientowe}
 
-    \begin{block}{Dygresja: dodatnio określone formy kwadratowe}
-      \emph{1-D forma kwadratowa:}
-	  \begin{equation}
-	  	F(x) = a + g \cdot x + \frac{1}{2} G \cdot x^2
-      \nonumber
-	  \end{equation}
-    \begin{equation}
-      g = \left.\frac{\partial F}{\partial x}\right|_{0}{,}\qquad
-      G = \left.\frac{\partial^{2} F}{\partial x^2}\right|_{0}
-      \nonumber
-    \end{equation}
-	  $F(x)$ ma min. wtedy i tylko wtedy, gdy $G$ $\geq 0$.
-    \begin{equation}
-	  		G = 0 \rightarrow \text{\emph{min}} \rightarrow \infty; \qquad
-        x^m = -g/G
-        \nonumber
-	  \end{equation}
-	  \emph{Dla ogólnej funkcji nieliniowej:}
-	  \smallskip
-	  \begin{itemize}
-	  	    \item krok do $x = - \frac{g}{G}$ gdy $G > 0$
-	  	    \\(w przeciwnym przypadku: $\infty$ lub maximum)
-	  \end{itemize}
-	\end{block}
-
-  \end{frame}
-
-  \begin{frame}{Dodatnio określone formy kwadratowe cd.}
-
-    \begin{figure}
-		\centering
-		\includegraphics[width=0.95\textwidth]{img/17/dygresja}
-	\end{figure}
-
-  \end{frame}
-
-  \begin{frame}{Dodatnio określone formy kwadratowe cd.}
-
-    \begin{block}{}
-    	\begin{itemize}
-	  	    \item gdy $G \leq 0$ krok $= -g$
-	  	    \\$\rightarrow$ kierunek - dobry,
-	  	    \\$\rightarrow$ wartość - dowolna
-	    \end{itemize}
-	    W $x_0 \rightarrow F(x)$ nie jest wypukła (dodatnio określona)
-	    \medskip\\
-	    \emph{Uogólnienie na n-D:}\\
-	    $g \rightarrow \vec{g}$, $G$ - macierz 2-ich poch.;
-	    $F(\vec X) = a + \vec{g}^T \cdot \vec{x} + \frac{1}{2} \vec{x}^T G$ tylko dla $G$ dod. określonej
-	    ma sens krok do:
-	    \begin{displaymath}
-	  		\vec{x} = - G^{-1} \cdot \vec{g}
-	    \end{displaymath}
-    \end{block}
-
-  \end{frame}
-
-  \begin{frame}{Metody gradientowe}
-
-    \begin{alertblock}{}
-      \textbf{Badanie czy $G$ jest dodatnio określona.}\\
-      Brak prostych sposobów.
-    \end{alertblock}
-    \begin{block}{\emph{Dla macierzy kwadratowych, symetrycznych - 2 warunki konieczne}}
-      $1^o$ elementy diagonalne $> 0$ \ (wyst. 1 $\times$ 1)
-      \\$2^o$ elementy pozadiagonalne:
-      \begin{displaymath}
-      		G_{ij}^2 < G_{ii} \cdot G_{jj}
-      \end{displaymath}
-    \end{block}
-
-  \end{frame}
-
-  \begin{frame}{Badanie czy $G$ jest dodatnio określona cd.}
-
-    \begin{block}{Ogólne warunki konieczne i wystarczające}
-      \begin{itemize}
-      		\item[--] wszystkie wartości własne $> 0$ (b. trudne i przybliżone)
-      		\item[--] wyznacznik wszystkich macierzy $> 0$
-      		\begin{figure}
-				\centering
-				\includegraphics[height=0.2\textheight ,width=0.3\textwidth]{img/17/matrix}
-			\end{figure}
-			(najprościej sprawdzić)
-			\item[--] skalar $E^T \cdot G\vec{e} > 0$ dla $\bigwedge \vec{e}$ (zwykłe $\rightarrow$ def.), wyjaśnia dlaczego $G$ dod.
-			okr. daje formę $F(x)$ z minimum: $F(x)$ rośnie we wszystkich kierunkach od $\vec{e} = 0$
-			\item[--] $-V = G^{-1}$ jest dodatnio określona
-      \end{itemize}
-    \end{block}
-
-  \end{frame}
-
-  \begin{frame}{Metody gradientowe}
-
- 	\begin{block}{Postępowanie w przypadku $G$ - nie jest dod. określone}
- 	   \begin{enumerate}[a)]
- 	   		\item analogicznie do 1-D : G = I $\rightarrow$ Ale:
- 	   		\item lepiej:
- 	   		\begin{itemize}
- 	   			\item[--] gdy $\bigwedge$ elementy diagonalne $G > 0$, wtedy pozadiag. $\rightarrow = 0$ (scale - invariant step),
- 	   			\item[--] gdy tylko niektóre el. pozadiag. $G_{ij}^2 \geq G_{ii}G_{jj} \Rightarrow G_{ij} = 0$,
- 	   			\item[--] zamiast $G^{-1}$ bierzemy $(G + \lambda \cdot I)^{-1}$;
- 	   			\\ $\lambda \geq$ największa (bezwzgl.) ujemna wartość własna:
- 	   			\begin{itemize}
- 	   				\item[--] dużo obliczeń,
- 	   				\item[--] krok pośredni pomiędzy m. Newtona a największego spadku
- 	   				\\(duże $\lambda$ : krok krótki, w kierunku $\vec{g}$)
- 	   			\end{itemize}
- 	   			\item[--] gdy jedna lub więcej diagonalnych 2-ich poch. $< 0$
- 	   			\\ $\Rightarrow$ informacja o kierunku wzrostu ujemnej 1-szej poch.
- 	   			\\w tym kierunku - szukanie met. zmiany 1 param.
- 	   		\end{itemize}
- 	   \end{enumerate}
- 	\end{block}
-
-  \end{frame}
-
-  \begin{frame}{Gdy $G$ - nie jest dodatnio określone cd.}
-
- 	\begin{block}{}
- 	Metody oparte na powyższych regułach - \emph{quasi-Newton method}
- 	\medskip
- 	\\Podstawowa wada tych metod - obliczanie i odwracanie
- 	\\w każdym kroku macierzy drugich pochodnych
- 	\smallskip
- 	   	\begin{itemize}
- 	   		\item[--] obliczanie 2-ich poch. $\sim n^2$ (długie)
- 	   		\item[--] odwracanie
- 	   	\end{itemize}
- 	\end{block}
-
-  \end{frame}
-
-  \begin{frame}{Metody gradientowe}
-
- 	\begin{block}{Metoda sprzężonych kierunków \emph{conjugate directions}}
+ 	\begin{block}{kierunki sprzężone \emph{(conjugate directions)}}
  	   Wektory $\vec{d_i}$ i $\vec{d_j}$ \emph{są sprzężone} ze względu na dodatnio określoną macierz, jeżeli:
  	   \\$\vec{d_i}^T A\vec{d_j} = 0$ dla $i \neq j$;
  	   \\gdy $A = I, \vec{d_i} \rightarrow$ ortogonalne
  	   \\(sprzężenie - uogólnienie ortogonalności)
  	   \\ \textbf{n sprzężonych wektorów rozpina n-D przestrzeń}.
- 	   \\$A$ - nie określa jednoznacznie zbioru wektorów sprzężonych $\rightarrow$ można zastosować
- 	   \emph{uogólnienie procedury ortogonalizacji Grama-Schmidta}:
- 	   \\$d_1$ - dowolny wektor $d_2 = A \cdot d_1 - \frac{d_1^T A A d_1}{d_1^T A d_1} \cdot d_1 \rightarrow$ sprzężony do $d_1$
- 	   \\$d_3 =$ \ldots
- 	   \begin{flushright}
- 	      Zadanie: sprawdzić.
- 	   \end{flushright}
+ 	   \\$A$ - nie określa jednoznacznie zbioru wektorów sprzężonych %$\rightarrow$ można zastosować
+ 	   %\emph{uogólnienie procedury ortogonalizacji Grama-Schmidta}:
+ 	  % \\$d_1$ - dowolny wektor $d_2 = A \cdot d_1 - \frac{d_1^T A A d_1}{d_1^T A d_1} \cdot d_1 \rightarrow$ sprzężony do $d_1$
+ 	 %  \\$d_3 =$ \ldots
+ 	 %  \begin{flushright}
+ 	%      Zadanie: sprawdzić.
+ 	 %  \end{flushright}
  	\end{block}
-
+W minimalizacji użyteczne są wektory sprzężone
+    \\ze względu na \emph{hesjan} $H$.
   \end{frame}
 
-  \begin{frame}{Metoda sprzężonych kierunków cd.}
-
-    W minimalizacji użyteczne są wektory sprzężone
-    \\ze względu na \emph{hesjan} $G$.
- 	\begin{block}{Twierdzenie}
- 	   Sekwencja liniowych minimalizacji w każdym z $n$ sprzężonych kierunków minimalizuje ogólną funkcję kwadratową $n$ zmiennych.
+  %\begin{frame}{Metoda sprzężonych kierunków cd.}
+\begin{frame}{Metoda sprzężonych kierunków cd.}
+    
+ 	\begin{block}{Można pokazać, że}
+ 	\begin{itemize}
+ 	    \item   Sekwencja liniowych minimalizacji w każdym z $n$ sprzężonych kierunków minimalizuje ogólną funkcję kwadratową $n$ zmiennych.
+ 	    \item Minimalizacja wzdłuż jednego z kierunków sprzężonych jest niezależna od minimalizacji  względem pozostałych sprzężonych kierunków
+ 	\end{itemize}
  	\end{block}
- 	\begin{block}{Dowód:}
- 	   $\left\{
-        \begin{array}{l l}
-          \text{funkcja:} & F(\vec{x}) = F(\vec{0}) + \vec{g}^T \vec{x} + \frac{1}{2} x^T G \vec{x} \\
-          \text{kierunki sprzężone:} & \vec{d_i} \ \vec{d_i}^T G \vec{d_j} = 0 \ i \neq j
-	    \end{array}
-	  \right.$
-	  \\gdzie: $G$ jest macierzą.
- 	\end{block}
+ %	\begin{block}{Dowód:}
+ 	%   $\left\{
+    %    \begin{array}{l l}
+     %     \text{funkcja:} & F(\vec{x}) = F(\vec{0}) + \vec{g}^T \vec{x} + \frac{1}{2} x^T G \vec{x} \\
+       %   \text{kierunki sprzężone:} & \vec{d_i} \ \vec{d_i}^T G \vec{d_j} = 0 \ i \neq j
+	 %   \end{array}
+	 % \right.$
+	%  \\gdzie: $G$ jest macierzą.
+ %	\end{block}
 
-  \end{frame}
+ % \end{frame}
 
-  \begin{frame}{Metoda sprzężonych kierunków cd.}
+ % \begin{frame}{Metoda sprzężonych kierunków cd.}
 
- 	\begin{block}{Dowód cd.}
-		\emph{$x, g$ -  jako kombinacje liniowe:} w układzie o wektorach jednostkowych
-		\begin{displaymath}
-			\vec{x} = \sum_i y_i \vec{d_i}, \quad \vec{g} = \sum_i c_i \vec{d_i}
-		\end{displaymath}
-		wtedy:
-		\begin{displaymath}
-			F(x) = F(0) + (\sum_i c_i \vec{d_i}^T) \cdot (\sum_j y_j \vec{d_j}) +
-			\underbrace{\frac{1}{2} (\sum_i y_i \vec{d_i}^T) \cdot G \cdot (\sum_j y_j \vec{d_j})}_{(\star)}
-		\end{displaymath}
- 	\end{block}
+ %	\begin{block}{Dowód cd.}
+	%	\emph{$x, g$ -  jako kombinacje liniowe:} w układzie o wektorach jednostkowych
+	%	\begin{displaymath}
+	%		\vec{x} = \sum_i y_i \vec{d_i}, \quad \vec{g} = \sum_i c_i \vec{d_i}
+	%	\end{displaymath}
+	%	wtedy:
+	%	\begin{displaymath}
+		%	F(x) = F(0) + (\sum_i c_i \vec{d_i}^T) \cdot (\sum_j y_j \vec{d_j}) +
+		%	\underbrace{\frac{1}{2} (\sum_i y_i \vec{d_i}^T) \cdot G \cdot (\sum_j y_j \vec{d_j})}_{(\star)}
+	%	\end{displaymath}
+ 	%\end{block}
 
-  \end{frame}
+  %\end{frame}
 
-  \begin{frame}{Metoda sprzężonych kierunków cd.}
+ % \begin{frame}{Metoda sprzężonych kierunków cd.}
 
- 	\begin{block}{Dowód cd.}
- 		($\star$) wynik przegrupowania:
-		\begin{itemize}
-			\item podwójna suma
-			\item $i \neq j \Rightarrow$ równe zero (warunek sprzężenia)
-		\end{itemize}
-		\begin{displaymath}
-			F(x) = F(0) + \sum_i \sum_i c_i d_i^T d_j y_j + \frac{1}{2} \sum_j y_j^2 d_j^T G d_j =
-		\end{displaymath}
-		\begin{center}
-		   	\begin{tabular}{|c|}
-		   	\hline
-				$F(0) + \sum_j (b_j y_j + b'_j y_j^2)$
-			\\ \hline
-			\end{tabular}
-			\smallskip
-			\\gdzie:
-			\begin{tabular}{|c|}
-		   	\hline
-				$b_j = \sum_i c_i d_i^T d_j{,} \quad b'_j = \frac{1}{2} d_j^T G d_j$ - \underline{stałe}
-			\\ \hline
-			\end{tabular}
-		\end{center}
-		\emph{zamiast} $\vec{x}$ \emph{- mamy} $\vec{y}$, przy czym $F(x)$ stała się \emph{sumą niezależnych jednoparametrowych} funkcji kwadratowych. Minimalizacja ze względu na $y_i$ (wzdłuż kierunku $\vec{d_i}$) jest niezależna od minimalizacji  względem pozostałych sprzężonych kierunków.
- 	\end{block}
+ 	%\begin{block}{Dowód cd.}
+ 	%	($\star$) wynik przegrupowania:
+	%	\begin{itemize}
+		%	\item podwójna suma
+	%		\item $i \neq j \Rightarrow$ równe zero (warunek sprzężenia)
+	%	\end{itemize}
+	%	\begin{displaymath}
+	%		F(x) = F(0) + \sum_i \sum_i c_i d_i^T d_j y_j + \frac{1}{2} \sum_j y_j^2 d_j^T G d_j =
+	%	\end{displaymath}
+	%	\begin{center}
+		%   	\begin{tabular}{|c|}
+		 %  	\hline
+		%		$F(0) + \sum_j (b_j y_j + b'_j y_j^2)$
+		%	\\ \hline
+		%	\end{tabular}
+		%	\smallskip
+		%	\\gdzie:
+		%	\begin{tabular}{|c|}
+		 %  	\hline
+		%		$b_j = \sum_i c_i d_i^T d_j{,} \quad b'_j = \frac{1}{2} d_j^T G d_j$ - \underline{stałe}
+		%	\\ \hline
+		%	\end{tabular}
+	%	\end{center}
+	%	\emph{zamiast} $\vec{x}$ \emph{- mamy} $\vec{y}$, przy czym $F(x)$ stała się \emph{sumą niezależnych jednoparametrowych} funkcji kwadratowych. Minimalizacja ze względu na $y_i$ (wzdłuż kierunku $\vec{d_i}$) jest niezależna od minimalizacji  względem pozostałych sprzężonych kierunków.
+ 	%\end{block}
 
-  \end{frame}
+  %\end{frame}
 
-  \begin{frame}{Metoda sprzężonych kierunków cd.}
+%  \begin{frame}{Metoda sprzężonych kierunków cd.}
 
  	\begin{block}{Wnioski:}
 			Minimalizacja nie wzdłuż osi ortogonalnych,
-			\\ale wzdłuż kierunków sprzężonych
+			ale wzdłuż kierunków sprzężonych
  	\end{block}
- 	\begin{block}{}
-		Ale można szukać innej konstrukcji $d_i$ \emph{(gdy znamy $G$ - m. Newtona
-		\\- w 1 kroku!)} $\Rightarrow$ \emph{Można wyznaczyć $d_i$ bez $G$!}
- 	\end{block}
- 	\begin{block}{Twierdzenie}
-		Jeżeli $\vec{x_0}, \vec{x_1}$ - punkty min. w 2 równoległych podprzestrzeniach,
-		\\to $(\vec{x_1} - \vec{x_0})$ jest sprzężony do każdego wektora w tych dwóch podprzestrzeniach.
- 	\end{block}
+ 	%\begin{block}{}
+	%	Ale można szukać innej konstrukcji $d_i$ %\emph{(gdy znamy $G$ - m. Newtona
+	%	\\- w 1 kroku!)} 
+	%\emph{Można wyznaczyć $d_i$ bez $G$}
+ 	%\end{block}
+ %	\begin{block}{Twierdzenie}
+	%	Jeżeli $\vec{x_0}, \vec{x_1}$ - punkty min. w 2 równoległych podprzestrzeniach,
+	%	\\to $(\vec{x_1} - \vec{x_0})$ jest sprzężony do każdego wektora w tych dwóch podprzestrzeniach.
+ %	\end{block}
 
   \end{frame}
 
-  \begin{frame}{Metoda sprzężonych kierunków cd. }
+  %\begin{frame}{Metoda sprzężonych kierunków cd. }
 
- 	\begin{block}{Dowód}
-	  $\vec{x_0}$ - min. wzdłuż $d_i$; to gradient F w $\vec{x_0}$ musi być $\perp \vec{d_1}$
-	  \smallskip
-	  \begin{center}
-	    $ \left\{
-          \begin{array}{l}
-            \vec{d_1}^T \cdot (\vec{g} + G \vec{x_0}) = 0 \\
-            \vec{d_1}^T \cdot (\vec{g} + G \vec{x_1}) = 0
-	      \end{array}
-	    \right\} $
-	    \ $(\vec{g}$ \emph{grad. w} $x = 0)$
-	  \end{center}
-	  \begin{center}
-	    $\vec{d_1}^T \cdot G (\vec{x_1} - \vec{x_0}) = 0 \qquad (\vec{x_1} - \vec{x_0})$ sprzężony do $\vec{d_1}$
-	  \end{center}
- 	\end{block}
+ %	\begin{block}{Dowód}
+%	 $\vec{x_0}$ - min. wzdłuż $d_i$; to gradient F w $\vec{x_0}$ musi być $\perp \vec{d_1}$
+  %\smallskip
+	%  \begin{center}
+	 %   $ \left\{
+      %  \begin{array}{l}
+         %   \vec{d_1}^T \cdot (\vec{g} + G \vec{x_0}) = 0 \\
+          %  \vec{d_1}^T \cdot (\vec{g} + G \vec{x_1}) = 0
+	     % \end{array}
+	   % \right\} $
+	  % \ $(\vec{g}$ \emph{grad. w} $x = 0)$
+	 % \end{center}
+	 % \begin{center}
+	  %  $\vec{d_1}^T \cdot G (\vec{x_1} - \vec{x_0}) = 0 \qquad (\vec{x_1} - \vec{x_0})$ sprzężony do $\vec{d_1}$
+	 % \end{center}
+ %	\end{block}
 
-  \end{frame}
+ % \end{frame}
 
-  \begin{frame}{Metoda sprzężonych kierunków cd. }
+ % \begin{frame}{Metoda sprzężonych kierunków cd. }
 
-   \begin{block}{Dowód cd.}
-	  W przestrzeni:
-	  \smallskip
-	  \\3-D $\Rightarrow$ 3 dodatkowe minimalizacje
-	  \\ \ (3-ci kier. sprzężenia do 2 pierwszych)
-	  \\n-D $\Rightarrow$ $\frac{n(n+1)}{2}$ minimalizacje - ile elem. w $G$ - ale:
-	  \\ \ metoda bardzo stabilna dla $F(x) \neq$ kwadratowych i nie wymaga
-	  \\ \ znajomości pochodnych
-	  \medskip
-	  \\Uwaga: \emph{asymetria:}
-	  \begin{itemize}
-	  	  \item $n$ minimal. w $d_1$
-	  	  \item $1$ minimal. w $d_n$
-	  \end{itemize}
- 	\end{block}
+  % \begin{block}{Dowód cd.}
+	%  W przestrzeni:
+	%  \smallskip
+	%  \\3-D $\Rightarrow$ 3 dodatkowe minimalizacje
+	%  \\ \ (3-ci kier. sprzężenia do 2 pierwszych)
+	 % \\n-D $\Rightarrow$ $\frac{n(n+1)}{2}$ minimalizacje - ile elem. w $G$ - ale:
+	 % \\ \ metoda bardzo stabilna dla $F(x) \neq$ kwadratowych i nie wymaga
+	 % \\ \ znajomości pochodnych
+	 % \medskip
+	 % \\Uwaga: \emph{asymetria:}
+	  %\begin{itemize}
+	  %	  \item $n$ minimal. w $d_1$
+	  %	  \item $1$ minimal. w $d_n$
+	 % \end{itemize}
+ %	\end{block}
 
-  \end{frame}
+ % \end{frame}
 
-  \begin{frame}{Metody gradientowe}
+  \begin{frame}{Metoda gradientów sprzężonych (conjugate gradients)}
 
- 	\begin{block}{Metoda gradientów sprzężonych \emph{(conjugate gradients)}}
- 	   Wykorzystuje tylko 1-sze pochodne.
+ 	\begin{block}{Jak wyznaczyć kierunki sprzężone bez znajomości H?}
+ 	   Metoda wykorzystuje tylko 1-sze pochodne.
  	   \medskip
- 	   \\ $F(\vec{x})$ i $\vec{g}(\vec{x})$ wyznaczone w $\vec{x_0}$ i $\vec{x_1}$, z nich:
+ 	   \\ Jeśli $F(\vec{x})$ i $\vec{g}(\vec{x})$ wyznaczone w $\vec{x_0}$ i $\vec{x_1}$, z nich:
  	   \smallskip
  	   \\ $\vec{\Delta x} = \vec{x_1} - \vec{x_0}$, \ $\vec{\Delta g} = \vec{g_1} - \vec{g_0}$
  	   \smallskip
- 	   \\ Dla $F(\vec{x})$ kwadratowej, z hesjanem $G$:
+ 	   \\ to dla $F(\vec{x})$ kwadratowej, z hesjanem $H$:
  	   $\begin{array}{|c|}
  	   	  \hline
- 	   	  \vec{\Delta g} = G \cdot \vec{\Delta x}
+ 	   	  \vec{\Delta g} = H \cdot \vec{\Delta x}
  	   	  \\ \hline
  	   \end{array}$,
- 	   \\zatem dowolny $\vec{d_1} \perp \vec{\Delta g}$ będzie dodany do $\vec{\Delta x}$:
+ 	   \\zatem dowolny $\vec{d_1}$  sprzężony do $\vec{\Delta x}$ będzie $\perp \vec{\Delta g}$:
  	   \begin{center}
  	      $\begin{array}{|c|}
  	   	    \hline
- 	   	    \vec{d_1}^T \cdot \vec{\Delta g} = \vec{d_1} G \vec{\Delta x} = 0
+ 	   	     \vec{d_1}^T H \vec{\Delta x} =\vec{d_1}^T \cdot \vec{\Delta g} = 0 (*)
  	   	    \\ \hline
  	      \end{array}$
  	   \end{center}
  	   \smallskip
- 	   Metoda uzyskiwania kierunków sprzężonych \emph{bez} znajomości $G$:
  	   \\Pierwszy kierunek: $\vec{d_0} = \vec{-g_0}$
- 	   \\min. wzdłuż $\vec{d_0}$ : w $\vec{x_1}$, gradient:  $\vec{g_1}$
- 	   \\Drugi kierunek: $\vec{d_1} = -\vec{g_1} + b \cdot \vec{d_0}$
- 	   \\(liniowa kombinacja znanych kierunków)
+ 	   \\znajdujemy minimum $\vec{x_1}$ wzdłuż $\vec{d_0}$ według $\vec{x_1}=\vec{x_0}+\alpha \vec{d_0}$
+ 	   \\a następnie gradient w tym punkcie  (czyli $\vec{g_1}$)
+ 	   \\Drugi kierunek tworzymy jako liniową kombinację znanych kierunków: $\vec{d_1} = -\vec{g_1} + b \cdot \vec{d_0}$
  	\end{block}
 
   \end{frame}
 
   \begin{frame}{Metoda gradientów sprzężonych cd. }
 
-   \begin{block}{}
-	  Warunek sprzężenia: $\vec{d_1}^T \cdot G \cdot \vec{d_0} = \vec{d_1}^T \cdot G \cdot (\vec{g_1} - \vec{g_0}) = 0$, czyli:
-	  $(-\vec{g_1} + b \cdot \vec{d_0}) \cdot G \cdot \vec{d_0} = (-\vec{g_1} -b \cdot \vec{g_0}) \cdot (\vec{g_1} - \vec{g_0}) = 0$
-	  \\$\vec{x_1}$ - to min. wzdłuż $\vec{d_0} = -\vec{g_0} \Rightarrow \vec{g_0} \perp \vec{g_1} : \vec{g_1}^T \cdot \vec{g_0} = 0$
+   \begin{block}{Jak ustalić b?}
+	  Warunek sprzężenia: $\vec{d_1}^T \cdot H \cdot \vec{d_0}  = 0$,
+	  czyli $\vec{d_1}^T \cdot H \cdot \frac{1}{\alpha}(\vec{x_1}-\vec{x_0}) = 0$
+	  z (*) $\vec{d_1}^T  \cdot (\vec{g_1} - \vec{g_0})=0$ czyli:
+	  $(-\vec{g_1} + b \cdot \vec{d_0})^T \cdot H \cdot \vec{d_0} = (-\vec{g_1} -b \cdot \vec{g_0})^T \cdot (\vec{g_1} - \vec{g_0}) = 0$
+	  \\$\vec{x_1}$ - jest znalezionym minimum wzdłuż $-\vec{g_0}$\\ $\Rightarrow$
+	  kolejny $\vec{g_1}$, uzyskany w p.$\vec{x_1}$, więc jest $\perp$ do $\vec{g_0}  \Rightarrow  \vec{g_1}^T \cdot \vec{g_0} = 0$
 	  \smallskip
 	  \\$\Rightarrow$
 	  $\begin{array}{|c|}
@@ -643,9 +672,7 @@
 	  \end{array}$,
  	  czyli nowy sprzężony kierunek $\vec{d_1} = -\vec{g_1} + \left(\frac{\vec{g_1}^T \cdot \vec{g_1}}{\vec{g_0}^T \cdot \vec{g_0}}\right) \cdot \vec{d_0} $
  	  \medskip
- 	  \\Ten proces kontynuujemy generując $n$ kierunków \\ wzajemnie sprzężonych.
- 	  \medskip
- 	  \\Można pokazać, że dla wszystkich sprzężonych kierunków zachodzi:
+ 	  \\Ten proces kontynuujemy generując $n$ kierunków  wzajemnie sprzężonych do użycia dla kolejnych kroków minimalizacji 
  	  \begin{center}
  	  	 $\begin{array}{|c|}
  	   	   \hline
@@ -653,6 +680,7 @@
  	   	   \\ \hline
 	    \end{array}$
  	  \end{center}
+ 	
  	\end{block}
 
   \end{frame}

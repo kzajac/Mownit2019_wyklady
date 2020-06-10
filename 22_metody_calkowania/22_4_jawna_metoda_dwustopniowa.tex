@@ -17,10 +17,10 @@ Metoda jawna - tzn w każdym kroku znamy wszystkie wartości do wyznaczania kole
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Stabilność}
-	$$\varepsilon^{n+1} = \varepsilon^n - \frac{\partial f}{\partial u}\bigg\arrowvert_n\Delta t\bigg[\frac{\partial f}{\partial u} \bigg\arrowvert_n\frac{\Delta t}{2}\bigg]\varepsilon^n$$
+	$$\varepsilon^{n+1} = \varepsilon^n - \frac{\partial f}{\partial u}\bigg\arrowvert_n\Delta t\bigg[1-\frac{\partial f}{\partial u} \bigg\arrowvert_n\frac{\Delta t}{2}\bigg]\varepsilon^n$$
     $$\alpha = \frac{\partial f}{\partial u}\bigg\arrowvert_n \Delta t$$
     $$
-    \varepsilon^{n+1} = \varepsilon^n - \alpha\bigg[  \frac{\alpha}{2} \bigg]\varepsilon^n
+    \varepsilon^{n+1} = \varepsilon^n - \alpha\bigg[ 1- \frac{\alpha}{2} \bigg]\varepsilon^n
      $$
      $$g = 1-\alpha +\frac{1}{2}\alpha^2 \qquad \qquad \qquad 
      $$

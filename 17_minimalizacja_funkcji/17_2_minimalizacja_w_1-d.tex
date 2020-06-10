@@ -56,7 +56,7 @@
       \text{Czas obliczeń: } t_o = \frac{10^{20}*10^{-5}s}{\underbrace{\pi * 10^{7}}_{\text{sek. w roku}}} \approx 3 * 10^{7}lat \text{!}
     \end{displaymath}
     \begin{flushright}
-      \emph{Zadanie:} porównaj $\to$ całki w n-D
+     % \emph{Zadanie:} porównaj $\to$ całki w n-D
     \end{flushright}
   \end{frame}
 
@@ -74,6 +74,7 @@
         \end{itemize}
       \end{enumerate}
     \end{block}
+    czyli  minimum w przedziale $[a,b]$ jest tyko jedno.
     \begin{block}{Założenia}
       \textbf{Dane:} $f$ -- funkcja unimodalna na przedziale $[a, b]$\\
       \textbf{Szukane:} minimum $x_0$ funkcji $f$ na przedziale $[a, b]$
@@ -88,9 +89,9 @@
 
   \begin{frame}{Metoda złotego podziału \emph{(golden section search)}}
     \begin{block}{Realizacja}
-      $r$ -- współczynnik redukcji po każdym etapie
+      $t\in(0,1)$ -- współczynnik redukcji po każdym etapie
       \begin{enumerate}
-        \item Obliczamy nową długość przedziałów $ d = \frac{1}{r}(b - a) $
+        \item Obliczamy nową długość przedziałów $ d = t(b - a) $
         \item $ x_L = b - d, x_R = a + d $
         \item Jeżeli $ f(x_L) > f(x_R) \Rightarrow x_0 \in [x_L, b] $,
               $ a := x_L \text{, } $\\
@@ -101,44 +102,46 @@
     \end{block}
     \begin{block}{Minimalizacja ewaluacji}
       \textbf{Problem:} Chcemy zminimalizować liczbę ewaluacji funkcji $f$.\\
-      \textbf{Rozwiązanie:} Dobieramy współczynnik $r$, aby w kolejnym kroku wykorzystać jedną z dwóch próbek: $f(x_L)$ lub $f(x_R)$.
+      \textbf{Rozwiązanie:} Dobieramy współczynnik $t$, aby w kolejnym kroku wykorzystać jedną z dwóch próbek: $f(x_L)$ lub $f(x_R)$.
     \end{block}
   \end{frame}
   \begin{frame}{Metoda złotego podziału \emph{(golden section search)}}
-    $t$ -- współczynnik redukcji po każdym etapie\\
-    Rozmieszczenie punktów:\\
-    Dla $[0, 1]$ -- długość przedziału po pierwszym etapie: $d_1 = t$\\
+   
+   
+    Dla $[0, 1]$ -- długość przedziału po pierwszym etapie: $d_1 = t$\\ 
+    Dla przykładowego rozmieszczenie punktów w kolejnym kroku rozwiązania szukamy w $(0, x_2)$:\\
     \centering
-    \includegraphics[height=0.6\textheight]{img/17/f_uni2}
+    \includegraphics[height=0.5\textheight]{img/17/f_uni2}\\
+    Chodzi o to, żeby w kolejnym kroku wykorzystać znaną już wartość, która zastała we wnętrzu przedziału (tutaj $f(x_1)$)
   \end{frame}
 
   \begin{frame}{Metoda złotego podziału \emph{(golden section search)}}
-    Po wyznaczeniu $f(x_3) \to$ długość przedziału -- $t^{2}$
+    Długość przedziału po drugim etapie to $t^{2}$. Jednocześnie długość ta jest wyznaczona przez pozycję z wnętrza przedziału na poprzednim etapie (tutaj pozycję  $x_1$)
     \begin{displaymath}
       t^{2} = 1 - t \Rightarrow t = \frac{\sqrt{5} - 1}{2} \approx 0,616 \to \text{\emph{złoty podział}}
     \end{displaymath}
     Dla zadanej liczby kroków -- optymalna.\\
-    Podobna metoda dla zbiorów -- Fibonacci search technique.
+    %Podobna metoda dla zbiorów -- Fibonacci search technique.
     \centering
     \includegraphics[height=0.55\textheight]{img/17/fibb}
   \end{frame}
 
-  \begin{frame}{Metoda złotego podziału \emph{(golden section search)}}
-    \begin{block}{Optymalność}
-      Metoda minimax -- minimalizuje maksymalną liczbę określeń
-      $f(x)$.
-    \end{block}
-    \begin{block}{Optymalność pesymistyczna}
-      Odpowiednik najlepszej strategii w grze przeciwko
-      inteligentnemu przeciwnikowi.\\
-      Podejście dobre dla patologicznych funkcji.
-    \end{block}
-    \begin{examples}{Modyfikacje metody -- Przykład}
-      \textbf{Metoda Bermana}
-      $x_{0} = \frac{a + b}{2}$; poszukiwanie tam, gdzie $f$ maleje.
-      Ustalony krok, w drugą stronę -- z mniejszym krokiem.
-    \end{examples}
-  \end{frame}
+  %\begin{frame}{Metoda złotego podziału \emph{(golden section search)}}
+  %  \begin{block}{Optymalność}
+   %   Metoda minimax -- minimalizuje maksymalną liczbę określeń
+    %  $f(x)$.
+   % \end{block}
+   % \begin{block}{Optymalność pesymistyczna}
+    %  Odpowiednik najlepszej strategii w grze przeciwko
+    %  inteligentnemu przeciwnikowi.\\
+    %  Podejście dobre dla patologicznych funkcji.
+   % \end{block}
+   % \begin{examples}{Modyfikacje metody -- Przykład}
+    %  \textbf{Metoda Bermana}
+     % $x_{0} = \frac{a + b}{2}$; poszukiwanie tam, gdzie $f$ maleje.
+     % Ustalony krok, w drugą stronę -- z mniejszym krokiem.
+    %\end{examples}
+  %\end{frame}
 
 \subsection{Kwadratowa interpolacja i aproksymacja}
   \begin{frame}{Kwadratowa interpolacja i aproksymacja}
@@ -148,7 +151,7 @@
     \begin{block}{Realizacja}
       \begin{itemize}
         \item Interpolujemy $f(x)$ funkcją kwadratową w 3 punktach: $x_{1}{, }x_{2}{, }x_{3}$.
-        \item Min $f(x) $ to min paraboli przechodzącej przez
+        \item ekstremum $f(x) $ to ekstremum paraboli przechodzącej przez
         $x_{1}{, }x_{2}{, }x_{3}$, znajduje się w punkcie $x_4$:
         \begin{displaymath}
           x_4 = - \frac{
@@ -161,9 +164,9 @@
             \frac{f_{3}}{(x_{3}-x_{1})*(x_{3}-x_{2})}
           \right]}
         \end{displaymath}
-        \begin{flushright}
-          \emph{Zadanie:} Sprawdzić ten wzór.
-        \end{flushright}
+        %\begin{flushright}
+          %\emph{Zadanie:} Sprawdzić ten wzór.
+       % \end{flushright}
       \end{itemize}
     \end{block}
   \end{frame}
@@ -226,7 +229,7 @@
   \end{frame}
 
   \begin{frame}{Metoda prób i błędów \emph{(success-failure method)}}
-    Minimum jest zawężone (bracketed), wtedy mamy trzy punkty typu:\\
+    Minimum jest wstępnie zlokalizowane (bracketed), gdy po sukcesie - niepowodzenie,  wtedy mamy trzy punkty typu:\\
     \begin{center}
       \includegraphics[width=0.7\textwidth]{img/17/s-f}
     \end{center}

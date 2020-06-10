@@ -11,28 +11,28 @@
         \item Produkcja - minimalizacja kosztów, przy zaspokojeniu popytu
         \item Zasoby ludzkie - problem przydziału godzin pracy
         \item Rolnictwo - dobór nawozów w celu maksymalizacji plonów
-        \item Fizyka - wyznaczanie linii geodezyjnej w OTW
+        \item Fizyka 
         \item \ldots
       \end{itemize}
     \end{exampleblock}
   \end{frame}
 
-  \begin{frame}{Przykład klasyczny}
-    \begin{exampleblock}{\textbf{Estymacja} parametrów modelu teoretycznego}
-      \textbf{Minimalizacja} różnicy między danymi teoretycznymi,\\
-        a eksperymentalnymi:
-        \begin{gather*}
-          min!F(x) = \sum_{i = 1}^{n} \left[ \frac{Y_i - T(x_i)}{\sigma_i}
-          \right] ^2
-        \end{gather*}
-        $ n $ - liczba punktów doświadczalnych,
-        $ K $ - liczba parametrów,\\
-        $ \sigma_i $ - niepewność pomiaru $ x_i $,\\
-        $ Y_i $ - zmierzona wartość w punkcie $ x_i $ \\
-        $ T(x) $ - wartość teoretyczna dana funkcją o K parametrach,\\
-        $ n \geq K{,}\ \text{zwykle}\ n \gg K $
-    \end{exampleblock}
-  \end{frame}
+ % \begin{frame}{Przykład klasyczny}
+   % \begin{exampleblock}{\textbf{Estymacja} parametrów modelu teoretycznego}
+   %   \textbf{Minimalizacja} różnicy między danymi teoretycznymi,\\
+   %     a eksperymentalnymi:
+    %    \begin{gather*}
+     %     min!F(x) = \sum_{i = 1}^{n} \left[ \frac{Y_i - T(x_i)}{\sigma_i}
+     %     \right] ^2
+    %    \end{gather*}
+     %   $ n $ - liczba punktów doświadczalnych,
+     %   $ K $ - liczba parametrów,\\
+     %   $ \sigma_i $ - niepewność pomiaru $ x_i $,\\
+    %    $ Y_i $ - zmierzona wartość w punkcie $ x_i $ \\
+     %   $ T(x) $ - wartość teoretyczna dana funkcją o K parametrach,\\
+      %  $ n \geq K{,}\ \text{zwykle}\ n \gg K $
+   % \end{exampleblock}
+ % \end{frame}
 
 \subsection{Terminologia}
 
@@ -41,8 +41,9 @@
       \begin{itemize}
         \item tradycyjnie: \textbf{minimalizacja}
         \item maksymalizacja $(F = -f(x))$
-        \item optymalizacja -- kolizja z metodą teorii
-        sterowania, (oparta o rachunek wariacyjny)
+        \item optymalizacja 
+        %-- kolizja z metodą teorii
+        %sterowania, (oparta o rachunek %wariacyjny)
         \item b. stary termin: programowanie (liniowe,
         nieliniowe, matematyczne)
         \item ekstremalizacja
@@ -55,8 +56,9 @@
 
   \begin{frame}{Zdefiniowanie zagadnienia}
     \begin{block}{Definicja}
-      \textbf{Dane:} funkcja $F: A \rightarrow \mathbb{R}, A \subseteq \mathbb{R} $ \\
-      \textbf{Szukane:} element $ x_{0} \in A \text{ taki, że } \forall x \in A \text{ } F(x_{0}) \le F(x) $
+      \textbf{Dane:} funkcja 
+      $F: A \rightarrow \mathbb{R}, A \subseteq R^d $ \\
+      \textbf{Szukane:} element $ x_{min} \in A \text{ taki, że } \forall x \in A \text{ } F(x_{min}) \le F(x) $
     \end{block}
 
     \begin{block}{Założenia}
@@ -65,7 +67,7 @@
         \item Wartości $ x $ mogą być zawężone do pewnego
         ustalonego obszaru -- constrained minization.
         \item Mogą być dostępne $ \frac{\partial F}{\partial x} $.
-        \item $ x_0 $ jest wyliczane procedurą -- wykorzystanie wielu wartości funkcji $ f(x) $,
+        \item $ x_{min} $ jest wyliczane procedurą -- wykorzystanie wielu wartości funkcji $ f(x) $,
         aż do osiągnięcia minimum.
       \end{enumerate}
     \end{block}
@@ -113,7 +115,7 @@
       \dots
     \end{displaymath}
     \begin{itemize}
-      \item Nie znamy obszaru jego zbieżności a priori.
+      %\item Nie znamy obszaru jego zbieżności a priori.
       \item Im mniejsza wartość $ (x - x_0) $, tym mniej ważne człony
       wyższych rzędów.
     \end{itemize}
@@ -129,11 +131,11 @@
     \begin{displaymath}
       F(\vec{x}) = \underbrace{F(\vec{x_0})}_{\text{stały}} +
       \vec{g}^T * (\vec{x} - \vec{x_0}) +
-      \frac{1}{2}(\vec{x} - \vec{x_0})^T * G * (\vec{x} - \vec{x_0}) + \dots
+      \frac{1}{2}(\vec{x} - \vec{x_0})^T * H * (\vec{x} - \vec{x_0}) + \dots
     \end{displaymath}
     \begin{displaymath}
       g_i = \left. \frac{\partial F}{\partial x_i} \right|_{\vec{x_0}} \text{-- gradient;}\quad
-      G_{ij} = \left. \frac{\partial^2 F}{\partial x_i \partial x_j} \right|_{\vec{x_0}}
+      H_{ij} = \left. \frac{\partial^2 F}{\partial x_i \partial x_j} \right|_{\vec{x_0}}\text{-- Hesjan;}
     \end{displaymath}
 
   \end{frame}
@@ -142,13 +144,13 @@
     \begin{enumerate}
       \item $ \vec{g}^T * (\vec{x} - \vec{x_0}) $ -- proporcjonalny do
       gradientu, wskazuje kierunek największego spadku funkcji.\\
-      W pobliżu minimum: $ \vec{g} \to 0{, to}\ (\vec{x} - \vec{x_0}) \to 0
+      W pobliżu minimum: $ \vec{g} \to 0{, to}\ \vec{g}*(\vec{x} - \vec{x_0}) \to 0
       \;$ -- człon liniowy, nie przepowiada minimum,
       nie można go użyć do określenia wielkości kroku.
 
-      \item $ \frac{1}{2}((\vec{x} - \vec{x_0})^T) * G * (\vec{x} - \vec{x_0}) $
-      -- kwadratowy, najniższy człon przydatny do przewidywania minimum.\\
-      $ G \approx $ stałe na małych obszarach.
+      \item $ \frac{1}{2}((\vec{x} - \vec{x_0})^T) * H * (\vec{x} - \vec{x_0}) $
+      -- człon kwadratowy, najniższy człon przydatny do przewidywania minimum.\\
+      $ H \approx $ stałe na małych obszarach.
     \end{enumerate}
 
     \begin{alertblock}{Uwaga}

@@ -48,7 +48,7 @@
 	u_{i+1} = u_i + h F(t_i,u_i,h), \qquad i = 0,1,2,\ldots,n-1\\
     F(t,u,h) = c_1k_1(t,u,h) + c_2k_2(t,u,h)+\ldots+c_rk_r(t,u,h)\\
     k_1(t,u,h) = f(t,u) \\
-    k_j(t,u,h) = f(t+ha_j,u+h \sum_{n=1}^{j-1}b_{js}k_s(t,u,h)), \quad j = 2,\ldots,r \\
+    k_j(t,u,h) = f(t+ha_j,u+h \sum_{s=1}^{j-1}b_{js}k_s(t,u,h)), \quad j = 2,\ldots,r \\
     a_j = \sum_{s=1}^{j-1}b_{js}
 	\end{array}\right.$$
     $a_j, b_{js}, c_k$ - stałe rzeczywiste, dobrane tak, aby:
@@ -60,7 +60,7 @@
     Dla $r = 3$ wzory (***) mają postać:
    	\newline
     \begin{tabular}{rcl}
-    	$F(x,y,h)$ & $=$ & $c_1 \cdot k_1 + c_2 \cdot k_2 + c_3 \cdot k_3$ \\
+    	$F(t,u,h)$ & $=$ & $c_1 \cdot k_1 + c_2 \cdot k_2 + c_3 \cdot k_3$ \\
         $k_1$ & $=$ & $f(t,u)$ \\
         $k_2$ & $=$ & $f(t + h \cdot a_2, u + h \cdot b_{21} \cdot k_1 =$ \\
          & $=$ & $f(t+a_2 \cdot h, u+h \cdot a_2 \cdot k_1) $\\
@@ -100,7 +100,7 @@
     $$c_2=c_3=a_2=a_3=b_{32}=0$$
     Przyjmuje się $c_1 = 1$ \qquad $\Rightarrow \left.\begin{array}{l}
     \varphi(h) = O(h) \\
-    f(t,u,h) = f(t,u)
+    F(t,u,h) = f(t,u)
     \end{array}\right.$
     $$u_{i+1} = u_i + h \cdot f(t_i,u_i), \qquad i = 0,1, \ldots,n-1$$
     \begin{block}{Wniosek}
