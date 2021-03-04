@@ -1,5 +1,13 @@
 \section{Wielomian Interpolacyjny Lagrange'a}
-
+\begin{frame}{Postać naturalna wielomianu dla zadania interpolacji}
+\begin{itemize}
+    \item teoretycznie można wyznaczyć wartości wielomianu interpolacyjnego rozwiązując układ równań, gdzie niewiadomymi są współczynniki  $a_{j}$
+    szukanego wielomianu 
+    
+    $$f(x_i)=\sum_{j=0}^{n}a_{j}{x_i}^{j}$$
+    \item w praktyce macierz tego układu jest źle uwarunkowana (macierz Vandermonde'a)
+\end{itemize}
+\end{frame}
 \begin{frame}{3.5 Wielomian Interpolacyjny Lagrange'a \\ 3.5.1 Interpolacja liniowa}
 
 Szukamy wielomianu $P_{1}(x)$ przechodzącego  przez:\\
@@ -40,11 +48,19 @@ $m=(x_{k}-x_{0})(x_{k}-x_{1})\ldots(x_{k}-x_{k-1})(x_{k}-x_{k+1})\ldots(x_{k}-x_
 
 LIP:
 
-$$L_{k}(x) = \frac{d}{m} = \prod_{i=0,i\neq k}^{n}\frac{x-x_{i}}{(x_{k}-x_{i})}\ , \quad P_{n}(x)=\sum_{k=0}^{n}L_{k}(x)f(x_{k})$$
+$$L_{k}(x) = \frac{d}{m} = \prod_{i=0,i\neq k}^{n}\frac{x-x_{i}}{(x_{k}-x_{i})}\ , \quad$$
+$$P_{n}(x)=\sum_{k=0}^{n}\underbrace{f(x_{k})}_{\text{współczynniki      }}\underbrace{L_{k}(x)}_{\text{baza Lagrange'a}}$$
 
-\textbf{Zadanie:} wykres $L_{k}(x)$ , sprawdzić $\displaystyle \sum_{k=0}^{n}L_{k}(x)=1$
+
+%\textbf{Zadanie:} wykres $L_{k}(x)$ , sprawdzić $\displaystyle %$\sum_{k=0}^{n}L_{k}(x)=1$
 \end{frame}
-
+\begin{frame}{Interpolacja ze wzoru Lagrange'a - cechy}
+\begin{itemize}
+    \item (+) łatwo utworzyć wzór
+    \item (-) przy dodawaniu nowego węzła $\rightarrow$ wyliczamy wszystko od początku
+    \item (-) przy obliczaniu wartości w konkretnym punkcie $\rightarrow$ musimy powtórzyć obliczanie licznika dla $L_{k}(x)$
+\end{itemize}
+\end{frame}
 
 \begin{frame}{3.5.3 Jednoznaczność rozwiązania}
 
@@ -188,12 +204,12 @@ $f(x)=P_{n}(x)+\frac{f^{(n+1)}(\eta)}{(n+1)!}
 
 %\begin{frame}
 %\begin{itemize}
-%\item Alternatywny zapis LIP: $(x_{0},\ x_{1},\ \ldots,\ %x_{n})$ :
+%\item Alternatywny zapis LIP: $(x_{0},\ x_{1},\ \ldots,\ x_{n})$ :
 %\end{itemize}
-%$\displaystyle \omega(x)=\prod_{k=0}^{n}(x-x_{k})$
+%\displaystyle \omega(x)=\prod_{k=0}^{n}(x-x_{k})$
 
-%$P_{n}(x)=\displaystyle %\omega(x)\sum_{k=0}^{n}\frac{f(x_{k})}{(x-x_{k})\omega %^{'}(x_{k})}$ \\
-\vspace{5mm}
+%$P_{n}(x)=\displaystyle \omega(x)\sum_{k=0}^{n}\frac{f(x_{k})}{(x-x_{k})\omega %^{'}(x_{k})}$ \\
+%\vspace{5mm}
 
 %\textbf{Zadanie:} Sprawdzić.
 

@@ -1,8 +1,8 @@
-\section{Metoda ilorazów różnicowych (divided differences)}
+\section{Metoda ilorazów różnicowych (divided differences, Newtona)}
 \begin{frame}
-{3.7 Metoda ilorazów różnicowych (divided differences)}
+{3.7 Metoda ilorazów różnicowych (divided differences, Newtona)}
 
-Interesuje nas nie wartość, a postać wielomianu.
+Interesuje nas nie wartość, a  postać wielomianu (dobra do celów praktycznych)
 
 $P_{n}(x)-\text{LIP, stp. } \leq n$, zgodny z $f(x)$ w $\{x_{0},\ x_{1},\ .\ .\ .\ ,\ x_{n}\}$
 
@@ -42,7 +42,22 @@ $$
 f[x_{i},\ x_{i+1}, ...\ x_{i+k}]=\frac{f[x_{i+1},x_{i+2},\ldots.x_{i+k}]-f[x_{i},x_{i+1},\ldots.x_{i+k-1}]}{x_{i+k}-x_{i}}
 $$
 \end{frame}
+\begin{frame}{Budowa tablicy ilorazów różnicowych}
+\begin{itemize}
+    \item wystarczy zrobić tylko raz dla danego zestawu węzłów interpolacji
+    \item do wzoru wykorzystujemy wyniki na przekątnej (czerwone)
+    \item dodanie nowego węzła nie wymaga powtarzania obliczeń od początku
+    
+\end{itemize}
 
+  \begin{array}{llllll} 
+  x_0 & \color{red} f(x_0) \\ 
+  x_1 & f(x_1) & \color{red}  f[x_0,x_1] \\ 
+  x_2 & f(x_2) & f[x_1,x_2] & \color{red}  f[x_0,x_1,x_2] \\ 
+  \ldots & \ldots & \ldots & \ldots & \ldots & \ldots\\ 
+  x_n & f(x_n) & f[x_{n-1},x_n] & \ldots & \ldots & \color{red}  f[x_0,\ldots,x_n] 
+  \end{array}
+\end{frame}
 \begin{frame}
 Interpolacyjny wzór Newtona z ilorazami różnicowymi:
 $$
@@ -53,9 +68,11 @@ $$\\
 $$
 P_{n}(x)=f[x_{0}]+\sum_{k=1}^{n}f[x_{0},\ x_{1},\ .\ .\ .\ ,\ x_{k}](x-x_{0})\cdots(x-x_{k-1})
 $$
+Postać Newtona $\rightarrow$ do obliczania wartości wielomianu najlepiej użyć wariantu schematu Hornera
 %\textbf{Zadanie}: Policzyć $a_{2}, a_{3}$, zapisać algorytm.
 
 \end{frame}
+
 
 \begin{frame}
 Związek ilorazów różnicowych z pochodnymi.
