@@ -54,6 +54,12 @@ Prostą metodą aproksymacji jednostajnej jest metoda szeregów potęgowych t.j.
     $$F^{(k)}(0)-r^{(k)}(0) = 0, k=0,1,..,N$$
     
 \end{frame}
+\begin{frame}{}
+$$w(x)=ax^3+bx^2+cx+d \text{, } w(0)=d \text{ i } w(0)=0 \rightarrow d=0$$ 
+$$w'(x)=3ax^2+2bx+c  \text{, } w'(0)=c \text{ i } w'(0)=0 \rightarrow c=0$$
+$$w''(x)=6ax+2b  \text{, } w''(0)=2b  \text{ i } w''(0)=0 \rightarrow b=0$$
+$$w'''(x)=6a  \text{, } w'''(0)=6a \text{ i } w'''(0)=0 \rightarrow a=0$$
+\end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
     To znaczy, że licznik:
@@ -64,6 +70,11 @@ Prostą metodą aproksymacji jednostajnej jest metoda szeregów potęgowych t.j.
     \end{center}
     Wtedy współczynniki: $\sum_{i=0}^{k}a_iq_{k-i}-p_k$ powinny być równe $0$, a znalezienie $p(x)$ i $q(x)$ polega na rozwiązaniu układu równań liniowych:
     $$\sum_{i=0}^{k}a_iq_{k-i}-p_k = 0; k=0,1,...,N$$
+\end{frame}
+\begin{frame}
+    \begin{figure}
+        \includegraphics[height=0.6\textheight]{img/5/pade1.png}
+    \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{Typowy przykład}
