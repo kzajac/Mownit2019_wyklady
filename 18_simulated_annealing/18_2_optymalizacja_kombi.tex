@@ -1,40 +1,72 @@
 \section{Optymalizacja kombinatoryczna}
 
 %%%%%%%%%%%%%%%%
-	\begin{frame}{Optymalizacja kombinatoryczna }
-		\begin{exampleblock}{Przykład: Problem komiwojażera}
-			\begin{itemize}
-				\item \textbf{In}: symetryczna macierz odległości $(N*N)$
+%	\begin{frame}{Optymalizacja kombinatoryczna }
+	%	\begin{exampleblock}{Przykład: Problem komiwojażera}
+	%		\begin{itemize}
+		%		\item \textbf{In}: %symetryczna macierz odległości $(N*N)$
 
-				\item \textbf{Out}: permutacja zbioru $\{1,2,...,N\}$ taka, że np:
-					$$
-						L_{min} = \sum_{i=1}^N \{ \underbrace{(|x_i - x_{i+1}| + |y_i - y_{i+1}|)}_\text{odległość w metryce Manhattan} + \underbrace{\lambda(\mu_i - \mu_{i-1})}_\text{funkcja kary (penalty)}\}
-					$$
-			\end{itemize}
+		%		\item \textbf{Out}: permutacja zbioru $\{1,2,...,N\}$ taka, że np:
+		%			$$
+		%				L_{min} = \sum_{i=1}^N \{ \underbrace{(|x_i - x_{i+1}| + |y_i - y_{i+1}|)}_\text{odległość w metryce Manhattan} + \underbrace{\lambda(\mu_i - \mu_{i-1})}_\text{funkcja kary (penalty)}\}
+		%			$$
+		%	\end{itemize}
 			%DEAD LINK
-			%Demo optymalizacji problemu komiwojażera (autor: Maciej Borowiec): \url{komiwojazer/komiwojazer.html}
-		\end{exampleblock}
+			%Demo optymalizacji problemu %komiwojażera (autor: Maciej %Borowiec): %\url{komiwojazer/komiwojazer.html}
+	%	\end{exampleblock}
 
-	\end{frame}
+	%\end{frame}
 %%%%%%%%%%%%%%%%
 
 	\begin{frame}{Optymalizacja kombinatoryczna}
-		\begin{exampleblock}{Zagadnienia NP-zupełne (nondeterministic polynomial)}
+		%\begin{exampleblock}{Zagadnienia NP-zupełne (nondeterministic polynomial)}
 			\begin{itemize}
 				\item rozwiązania o złożoności $\sim e^N$
 				\item wiele stopni swobody
 				\item dyskretne (wykluczone poszukiwanie w kierunku)
-				\item funkcja celu (L) łączy przeciwstawne cele cząstkowe
+				\item funkcja celu  łączy przeciwstawne cele cząstkowe
 			\end{itemize}
-		\end{exampleblock}
-		Dobry przegląd w \cite{garey}
-		\begin{thebibliography}{9}
-			\setbeamertemplate{bibliography item}[article]
-			\bibitem{garey}{M.R. Garey, D.S. Johnson \newblock Computers and Intractability: A Guide to the Theory of NP \newblock Completeness, Freeman, San Francisco, 1979}
-		\end{thebibliography}
+	%	\end{exampleblock}
+	%	Dobry przegląd w \cite{garey}
+	%	\begin{thebibliography}{9}
+			%\setbeamertemplate{bibliography item}[article]
+		%	\bibitem{garey}{M.R. Garey, D.S. Johnson \newblock Computers and Intractability: A Guide to the Theory of NP \newblock Completeness, Freeman, San Francisco, 1979}
+	%	\end{thebibliography}
 	\end{frame}
 
 %%%%%%%%%%%%%%%%
+	\begin{frame}{Przykład: problem Max-Cut}
+ \begin{figure}
+\includegraphics[scale=0.3]{img/18/barbell.png}
+%\caption{Graph to cut}
+\end{figure} 
+\begin{figure}
+\includegraphics[scale=0.18]{img/18/partition_barbell.png}
+%\caption{Cutting possibilities}
+\end{figure} 
+Funkcja kosztu:
+    \begin{itemize}
+        \item[] $g(x_1, x_2)=x_1+x_2-2x_1 x_2$, $x_1,x_2 \in\{0,1\}$
+        \item[] $g(00)=0$ $g(11)=0$
+        \item[] $g(01)=1$ $g(10)=1$
+    \end{itemize}
+    \\
+    \small{source: https://grove-docs.readthedocs.io/en/latest/qaoa.html}
+\end{frame}
+\begin{frame}{Przykład - problemy BILP i QUBO}
+\begin{block}{Funkcja kosztu i warunki (zmienne binarne)}
+$f(x)=c^Tx$ and  $Ax=b$ $x_i \in \{0,1\}$
+\end{block}
+\begin{center}
+    \arrowdown $C$-diagonal, diag($C$)=$c$
+\end{center}
+\begin{block}{QUBO - quadratic and uncontraint cost function $f(x)=x^TQx$}
+$f(x)=x^TCx+P\underbrace{(Ax-b)^T(Ax-b)}_{\substack{\text{instead of solving } Ax=b \\ \text{we minimize inner product of }
+Ax-b
+}}$ 
+\end{block}
+\end{frame}
+
 \subsection{Typowa funkcja celu}
 	\begin{frame}{Typowa funkcja celu}
 		\begin{itemize}
@@ -55,14 +87,7 @@
 
 %%%%%%%%%%%%%%%%
 
-	\begin{frame}{Typowa funkcja celu}
-		Niezbędne:
-		\begin{itemize}
-			\item $C_i$ - reprezentacja konfiguracji układu
-			\item $g(C_i)$ - funkcja celu
-			\item procedura generacji kolejnych konfiguracji
-		\end{itemize}
-	\end{frame}
+	
 
 %%%%%%%%%%%%%%%%
 

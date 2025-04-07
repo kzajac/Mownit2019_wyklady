@@ -39,7 +39,7 @@ m_{0}+m_{1}+\cdots+m_{i-1},\ i>0
 
 Zauważmy, że każda liczba 
 $0\leq l\leq n$ da się przedstawić w postaci $l=s(i)+j$ gdzie $0 \leq i \leq k$ oraz $0 \leq j \leq m_{i}-1$\\
-\includegraphics[scale=0.3]{img/3/hermit.png}
+\includegraphics[scale=0.4]{img/3/hermit.png}
 \end{frame}
 \begin{frame}
 \vspace{0.5cm}
@@ -47,10 +47,10 @@ Definiujemy wielomiany:\\
 $p_{s(0)}(x)=1$
 
 $p_{(s(i)+j)}(x)=(x-x_{0})^{m_{0}}(x-x_{1})^{m_{1}}\ldots(x-x_{i-1})^{m_{i-1}}(x-x_{i})^{j}(\star)$ \\
-gdzie: $i=0, 1, \dots, k; \: j=0, 2, \dots , m_{i}-1$ \\
+gdzie: $i=0, 1, \dots, k; \: j=0,1, \dots , m_{i}-1$ \\
 Wtedy szukany wielomian interpolacyjny to kombinacja linowa takich wielomianów (por. postać Newtona)
 $$
-H_{n}(x)=\sum_{l=0}^{n}b_{l}\cdot p_{l}(x)=\sum_{i=0}^{k}\sum_{j=0}^{m_{i-1}}b_{(s(i)+j)}\cdot p_{(s(i)+j)}(x)
+H_{n}(x)=\sum_{l=0}^{n}b_{l}\cdot p_{l}(x)=\sum_{i=0}^{k}\sum_{j=0}^{m_{i}-1}b_{(s(i)+j)}\cdot p_{(s(i)+j)}(x)
 $$
 \end{frame}
 

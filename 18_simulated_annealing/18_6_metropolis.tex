@@ -1,52 +1,45 @@
 \section{Schemat Metropolisa}
 
 %%%%%%%%%%%%%%%%
-	\begin{frame}{Schemat Metropolisa}
-		\textbf{Podstawa metody Monte Carlo symulacji molekularnej}
-		\begin{figure}
-			\includegraphics[width=0.67\textwidth]{img/18/metropolis1}
-		\end{figure}
-		\begin{thebibliography}{9}
-			\setbeamertemplate{bibliography item}[article]
-			\bibitem{metropolis}{Nicolas Metropolis, Arianna W. Rosenbluth, Marshal M. Rosenbluth, Augusta H. Teller, Edward Teller \newblock J. Chem. Phys. 21 (1953) 1087}
-		\end{thebibliography}
-	\end{frame}
+
 
 %%%%%%%%%%%%%%%%
 
-	\begin{frame}{Schemat Metropolisa}
-		$$
-			\Delta \vec{r} = \delta(\vec{i} \cdot a_x + \vec{j} \cdot a_y  + \vec{k} \cdot a_z)
-		$$		
+%	\begin{frame}{Schemat Metropolisa}
+%		$$
+%			\Delta \vec{r} = \delta(\vec{i} \cdot a_x + \vec{j} \cdot a_y  + \vec{k} \cdot a_z)
+%		$$		
+%		
+%		$$
+%		\delta \text{ - wybrane z góry} \approx 10^{-11}m
+%		$$		
 		
-		$$
-		\delta \text{ - wybrane z góry} \approx 10^{-11}m
-		$$		
+%		$$
+%		a_i \in (-1, 1), Unif
+%		$$
 		
-		$$
-		a_i \in (-1, 1), Unif
-		$$
+	%	\begin{figure}
+			%\includegraphics[width=0.5\textwidth]{img/18/metropolis2}
+	%	\end{figure}
+	%	$a_i$, R - liczby pseudolosowe
 		
-		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{img/18/metropolis2}
-		\end{figure}
-		$a_i$, R - liczby pseudolosowe
-		
-		$\Delta\phi$ - zmiana energii potencjalnej układu w wyniku przesunięcia molekuły m
+	%	$\Delta\phi$ - zmiana energii potencjalnej układu w wyniku przesunięcia molekuły m
 		
 		%Dead link
 		%Aplet metropolis/metropolis.html 
-	\end{frame}
+%	\end{frame}
 
 %%%%%%%%%%%%%%%%
 	
 	\begin{frame}{Charakterystyka schematu Metropolisa}
 		\begin{itemize}
-			\item $T \nearrow$ - łatwiej akceptowalne kroki z $H \nearrow (E)$ \\ $ \Rightarrow$ możliwość opuszczenia stanu metastabilnego (lokalnego minimum).
-			\item zmiany $H \searrow$ są akceptowane zawsze
+			\item $T \nearrow$ - łatwiej akceptowalne kroki z $g(C_i) \nearrow (E)$ \\ $ \Rightarrow$ możliwość opuszczenia stanu metastabilnego (lokalnego minimum).
+			\item zmiany $g(C_i) \searrow$ są akceptowane zawsze
 		\end{itemize}
 		
-		Po wielu krokach system $\rightarrow$ stan równowagi termodynamicznej z parametrami oscylującymi wokół wartości średnich zgodnie z rozkładem Boltzmanna
+		Po wielu krokach system $\rightarrow$ stan równowagi termodynamicznej z parametrami oscylującymi wokół wartości średnich zgodnie z rozkładem Boltzmanna 
+		
+
 	\end{frame}
 
 \subsection{Łańcuch Markowa}
@@ -85,7 +78,7 @@
 	
 \section{Uwagi praktyczne}
 %%%%%%%%%%%%%%%%
-	\begin{frame}{Uwagi praktyczne}
+\begin{frame}{Symulacja molekularna - uwagi praktyczne}
 		\textbf{Duże $\Delta\vec{r}$:}
 		\begin{itemize}
 			\item niski poziom akceptacji

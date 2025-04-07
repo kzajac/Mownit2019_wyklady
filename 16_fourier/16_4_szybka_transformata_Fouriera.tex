@@ -146,3 +146,25 @@ end
 \end{lstlisting}
 
 \end{frame}
+\begin{frame}{Zastosowanie - szybkie mnożenie wielomianów}
+\begin{itemize}
+    \item Mamy dane $P(x)=\sum_{i=0}^{n-1}a_i x^i$
+  oraz $Q(x)=\sum_{i=0}^{n-1}b_i x^i$
+  \item Jesli potraktować $[a_i]$ oraz $[b_i]$ jak wektory, to $[c_i]$ gdzie
+  $c_i=\sum_{j=0}^{i} a_j b_{i-j} $ jest ich splotem
+  \item Jednocześnie:
+  $W(x)=P(x)\cdot Q(x)=\sum_{i=0}^{2n-2}c_i x^i$ (aby wzór zadziałał, wyższe niż $n-1$ współczynniki $P(x)$ oraz $Q(x)$ zastępujemy 0)
+  \item zamiast wyliczać współczynniki wprost: transformata $\rightarrow$ iloczyn $\rightarrow$ odwrotna transformata
+\end{itemize}
+\end{frame}
+\begin{frame}{Splot współczynników wielomianów}
+\includegraphics[width=0.99\textwidth]{img/16/splotywiel.png}    
+\end{frame}
+\begin{frame}{Zastosowanie - szybkie mnożenie wielomianów}
+ Plan (szkic):
+  \begin{enumerate}
+      \item wyliczyć 2n-1 wartości wielomianów $P(x_k)$ oraz $Q(x_k)$ dla $x_k=\omega^k=e^{\frac{2\pi i k }{2n-1} }$ dla $k = 0,..,2n-2$ używając FFT (synteza) złożoność O(n log(n))
+      \item policzyć wartości $W(x_k)=P(x_k)\cdot Q(x_k)$ - złożoność O(n)
+      \item policzyć współczynniki $c_i$ znając wartości $W(x_k)$ - FFT (analiza) złożoność O(n log(n))
+  \end{enumerate}
+\end{frame}

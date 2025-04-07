@@ -250,6 +250,7 @@
 	\end{table}
 \end{frame}
 %%%%%%%%%%%%%%%%
+\end{comment}
 \begin{frame}[allowframebreaks]{Zestawienie własności transformat}
 	poza własnościami dotyczącymi pochodnej - obowiązują dla wszystkich 4 transformat \\
 	$Z: f(x) \rightleftharpoons \widehat{f}(k); \quad g(x) \rightleftharpoons \widehat{g}(k)$
@@ -277,16 +278,18 @@
 		\end{array}
 		\]
 	\end{block}
-	\begin{theorem}[o mocy]
+	\begin{block}{Twierdzenie o mocy}
 		\[
-			\int\limits_{-\infty}^{\infty} f(x) \cdot g^*(x) dx = \int\limits_{-\infty}^{\infty} \widehat{f}(x) \cdot \widehat{g}^*(x)  \frac{dk}{2 \pi}
+			\int\limits_{-\infty}^{\infty} f(x) \cdot g^*(x) dx = \int\limits_{-\infty}^{\infty} \widehat{f}(k) \cdot \widehat{g}^*(k)  \frac{dk}{2 \pi}
 			\tag{16.8}
 		\]
-	\end{theorem}
-	Analogicznie dla FS i fFT
+	\end{block}
+	Transformata zachowuje iloczyn skalarny.  \\
+	Jeśli ta sama funkcja $\rightarrow$ kwadrat modułu $\rightarrow$ moc sygnału\\
+	Analogicznie dla FS i fFT (wtedy sumy szeregów)
 \end{frame}
 %%%%%%%%%%%%%%%%
-\begin{frame}[allowframebreaks]{Splot (konwolucja)}
+\begin{frame}{Splot (konwolucja)}
 	$f(x), g(x) -$ funkcje
 	$\newline$ \quad ich splot:
 	\begin{block}
@@ -306,16 +309,19 @@
 		\centering
 		\begin{tabular}{|c|l|}
 			\hline
-			$f \ast g = g \ast f$ & commutative \\
+			$f \ast g = g \ast f$ & przemienny \\
 			\hline
-			$f \ast (g \ast h) = (f \ast g) \ast h$ & associative \\
+			$f \ast (g \ast h) = (f \ast g) \ast h$ & łączny \\
 			\hline
-			$f \ast (g +h ) = f \ast g + f \ast h$ & distributive \\
+			$f \ast (g +h ) = f \ast g + f \ast h$ & rozdzielny \\
 			\hline
 		\end{tabular}
 	\end{table}
+	Przykładowe zastosowanie: splot sygnału z filtrem
+	\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{Przykład operacji splotu dla dwóch wektorów kolumnowych:}
 	%%%%%%%%%%%%%%%%
-	Przykład operacji splotu dla dwóch wektorów kolumnowych:
 	$a \in I\!R^{n\times 1} \ ;\ $ $b \in I\!R^{n\times 1} \ ;\ $
 	$a=\begin{bmatrix}
     		\alpha_0 \\
@@ -366,12 +372,18 @@
 												\end{bmatrix}$ \\
 		\end{tabular}}
 	\end{table}
-	
-	%%%%%%%%%%%%%%%%
+		\end{frame}
+%%%%%%%%%%%%%%%%
+\begin{frame}{Splot i jego transformaty}
+$$h(x)=f(x)\ast g(x) \leftrightarrow
+\widehat{h(k)}=\widehat{f(k)} \cdot \widehat{g(k)}$$
+$$h(x)=f(x)\cdot g(x) \leftrightarrow
+\widehat{h(k)}=\widehat{f(k)} \ast \widehat{g(k)}$$
 	\begin{table}[t]
+	\scriptsize
 	\centering
-	\captionsetup{belowskip=-10pt,aboveskip=-10pt}
-	\caption{Splot i jego transformaty (16.10)}
+%	\captionsetup{belowskip=-10pt,aboveskip=-10pt}
+%	\caption{Splot i jego transformaty }
 		\begin{tabular}{l|l|l}
 			& x & k \\
 			\hline
@@ -449,4 +461,3 @@
 		\renewcommand{\arraystretch}{1}
 	\end{table}
 \end{frame}
-\end{comment}

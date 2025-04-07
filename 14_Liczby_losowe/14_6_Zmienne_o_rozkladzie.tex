@@ -5,14 +5,14 @@
 $$
 F(x)=\int_{-\infty}^{x}{p(y)dy}
 $$
-Funkcja niemalejąca, określa  $P(X<x)$\\
+Funkcja niemalejąca, określa  $P(X\le x)$\\
 Dla rozkładu równomiernego na (0,1), dla
 $x\in (0,1)$ $p(x)=1$
 $$
 F(x)=\int_{-\infty}^{x}{p(y)dy}=x
 $$
 Czyli dla $x \in (0,1)$
-$$P(X<x)=x$$
+$$P(X\le x)=x$$
 \end{frame}
 \begin{frame}{Metoda odwróconej dystrybuanty}
 
@@ -27,8 +27,8 @@ ma rozkład o dystrybuancie $F(x)$\\
 
 Dowód:
 $$
-P(X<x)= P(F^{-1}(U)<x
-)=P(U<F(x))=F(x)
+P(X\le x)= P(F^{-1}(U)\le x
+)=P(U \le F(x))=F(x)
 $$
 
 \end{frame}
@@ -76,7 +76,7 @@ W ogólności odwracanie dystrybuanty sprawia często duże trudności numeryczn
 	    $$
 		x_1, x_2 \in (-\infty,\infty)
 		$$
-		Wprowadzamy zmienne sferyczne:
+		Wprowadzamy zmienne biegunowe:
 		$$
 		r^2=x_1^{2}+x_2^{2}, r \in[0,\infty)
 		$$
@@ -88,7 +88,7 @@ W ogólności odwracanie dystrybuanty sprawia często duże trudności numeryczn
 		$$
 \end{frame}
 \begin{frame}{Metoda Box-Muller}
-    Przeliczamy element prawdopodobieństwa (prawdopodobieństwo, że x i y  znajdą się w małym obszarze dxdy) we współrzędnych sferycznych (\colorbox{red}{$r$} - moduł Jakobianu)
+    Przeliczamy element prawdopodobieństwa (prawdopodobieństwo, że x i y  znajdą się w małym obszarze dxdy) we współrzędnych biegunowych (\colorbox{red}{$r$} - moduł Jakobianu)
 $$
 p(x,y)dxdy=p(r,\phi)
 \textrm{\colorbox{red}{$r$}}

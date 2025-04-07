@@ -130,8 +130,8 @@
     Rozwijamy funkcję $ F $ wokół $ \vec{x_0} $:
     \begin{displaymath}
       F(\vec{x}) = \underbrace{F(\vec{x_0})}_{\text{stały}} +
-      \vec{g}^T * (\vec{x} - \vec{x_0}) +
-      \frac{1}{2}(\vec{x} - \vec{x_0})^T * H * (\vec{x} - \vec{x_0}) + \dots
+      \vec{g}^T \cdot (\vec{x} - \vec{x_0}) +
+      \frac{1}{2}(\vec{x} - \vec{x_0})^T \cdot H \cdot (\vec{x} - \vec{x_0}) + \dots
     \end{displaymath}
     \begin{displaymath}
       g_i = \left. \frac{\partial F}{\partial x_i} \right|_{\vec{x_0}} \text{-- gradient;}\quad
@@ -142,13 +142,13 @@
 
   \begin{frame}{Kształt funkcji $ F(x) $ -- n-D}
     \begin{enumerate}
-      \item $ \vec{g}^T * (\vec{x} - \vec{x_0}) $ -- proporcjonalny do
+      \item $ \vec{g}^T \cdot (\vec{x} - \vec{x_0}) $ -- proporcjonalny do
       gradientu, wskazuje kierunek największego spadku funkcji.\\
-      W pobliżu minimum: $ \vec{g} \to 0{, to}\ \vec{g}*(\vec{x} - \vec{x_0}) \to 0
+      W pobliżu minimum: $ \vec{g} \to 0{, to}\ \vec{g}\cdot(\vec{x} - \vec{x_0}) \to 0
       \;$ -- człon liniowy, nie przepowiada minimum,
       nie można go użyć do określenia wielkości kroku.
 
-      \item $ \frac{1}{2}((\vec{x} - \vec{x_0})^T) * H * (\vec{x} - \vec{x_0}) $
+      \item $ \frac{1}{2}((\vec{x} - \vec{x_0})^T) \cdot H \cdot (\vec{x} - \vec{x_0}) $
       -- człon kwadratowy, najniższy człon przydatny do przewidywania minimum.\\
       $ H \approx $ stałe na małych obszarach.
     \end{enumerate}

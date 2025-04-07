@@ -44,7 +44,10 @@
 
 \begin{frame}{Przykład}
 	\begin{center}
-	$\frac{du}{dt}+\frac{u}{\tau} = 0$, \quad $u(0) = 1$\newline $R$, $L\rightarrow \tau = \frac{L}{R}$\qquad rozpad promieniotwórczy\par
+	$\frac{du}{dt}+\frac{u}{\tau} = 0$, \quad $u(0) = 1$
+	%\newline $R$, $L\rightarrow \tau = %\frac{L}{R}$\qquad 
+	\newline 
+	rozpad promieniotwórczy\par
       \begin{itemize}
     \item rozwiązanie otrzymane analitycznie: $u = e^{-\frac{t}{\tau}}$
     \end{itemize}
@@ -81,9 +84,11 @@
     $$ \frac{du}{dt} + i\omega u= 0 \qquad  \qquad $$
 \underline{współczynnik wzmocnienia:} ($f(u)=i\omega u$)
     $$g = 1-{\frac{\partial f}{\partial u}}\bigg\arrowvert _n \cdot \Delta t \quad \Rightarrow \quad g=1-i\cdot \omega \cdot \Delta t \qquad zespolony!$$
-	$$|g|^2 = g \cdot g^* = 1+\omega^2 {\Delta t}^2 \quad \rightarrow \quad 1+\bigg(\frac{\partial f}{\partial u}\bigg{\arrowvert}_n \cdot \Delta t\bigg)^2 > 1 \Rightarrow |g| > 1 $$
+	$$|g|^2 = g \cdot g^* = 1+\omega^2 {\Delta t}^2 \quad 
+ \Rightarrow |g| > 1 $$
   \fbox{Metoda Eulera jest  niestabilna dla równań typu oscylacyjnego.}\\
-
+	%\rightarrow 
+	%\quad 1+\bigg(\frac{\partial f}{\partial %u}\bigg{\arrowvert}_n \cdot \Delta t\bigg)^2 > 1
     W zagadnieniach \textit{nieliniowych $\frac{\partial f}{\partial u}$} jest funkcją $u$ \quad $\Rightarrow$ \quad należy na każdym etapie wybierać $\Delta t$ spełniające warunki stabilności. 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%

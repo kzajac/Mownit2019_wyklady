@@ -14,6 +14,8 @@
           \]
       \end{exampleblock}
   \end{frame}
+
+ 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{frame}
       \begin{exampleblock}{Definicja}
@@ -267,7 +269,7 @@
     \textbf{Uwaga:}
    % \begin{itemize}
    % \item 
-   Zera w wektorze z prawej strony powyższego równania - bo  $\varphi_{1}(x)$ , . . . , $\varphi_{n-1}(x)$ są ortogonalne do $\varphi_{0}(x)$ -- stałej>0
+   Zera w wektorze z prawej strony powyższego równania - bo  $\varphi_{1}(x)$ , . . . , $\varphi_{n-1}(x)$ są ortogonalne do $\varphi_{0}(x)$ -- stałej$>$0
    czyli :\\
  dla $ i =1,...,n-1$ $\int_{a}^{b} w(x)\varphi_{i}(x)dx=\frac{1}{\varphi_{0}}\varphi_{0}\int_{a}^{b} w(x)\varphi_{i}(x)dx=\int_{a}^{b} w(x)\varphi_{0}(x)\varphi_{i}(x)dx=0$
     $\newline$
@@ -283,6 +285,47 @@
 			$\newline$
 		\end{figure}
   \end{frame}
+
+   \begin{frame}{Wielomiany Legendre'a}
+	Określone wzorem $$P_n(x) = \frac{1}{n! \cdot 2^n}\frac{d^n}{dx^n}[(x^{2}-1)^n], x \in [-1,1], n = 0,1,\ldots$$\\
+    Spełniają wzór rekurencyjny (dla $n\geqslant1$):
+    $$(2n+1) \cdot x \cdot P_n(x)=(n+1)P_{n+1}(x)+n \cdot P_{n-1}(x)$$
+    \begin{flushleft}
+    	$$\left.\begin{array}{l}
+    P_0 = 1 \\
+    P_1(x) = x \\
+    P_2(x) = \frac{1}{2}(3x^2-1)\\
+    P_3(x) = \frac{1}{2}(5x^3-3x) \\
+    P_4(x) = \frac{1}{8}(35x^4-30x^2+3)\\
+    \vdots \\
+    P_n(1) = 1; |P_n(x)| \leqslant 1, x \in [-1,1]
+    \end{array}\right.$$
+    \end{flushleft}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{figure}
+		\includegraphics[height=0.82\textheight]{img/5/img2.jpg}
+	\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Własności}
+	Wielomiany Legendre'a spełniają zależność:
+	$$P_n(-x) = (-1)^n \cdot P_n(x)$$ 
+  
+	spełniają równania różniczkowe:
+        $$\frac{d}{dx}\bigg[(1-x^2)\frac{dP_n(x)}{dx}\bigg]+n(n+1)P_n(x) = 0$$
+        
+        \textbf{Ortogonalność: }
+        $$\int_{-1}^{1}P_n(x)P_m(x)dx = \left\{\begin{array}{cc}
+        0, & m \not= n \\
+        \frac{2}{2n+1}, & m = n 
+        \end{array}\right.$$
+       % \begin{flushright}
+        %	\textit{Zadanie: } \quad Sprawdzić %ortogonalność w przypadku dyskretnym.
+        %\end{flushright}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
 
 
 

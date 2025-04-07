@@ -18,13 +18,13 @@
     \textbf{Szukamy wielomianu uogólnionego:}
     $$f(x) = \sum_{j = 0}^{m} a_j \varphi_j(x)$$
     czyli $\{{a_j}\}_{j=0}^m$, dla których:
-    $$min!\parallel F(x) - f(x) \parallel = min!\underbrace{ \sum_{i=0}^{n}w(x_i)\underbrace{\bigg[F(x_i)-\sum_{j=0}^{m}a_j\varphi_j(x_i)\bigg]^2}_\text{odchylenie}}_{H(a_0,a_1,\ldots,a_m)}$$
+    $$min \parallel F(x) - f(x) \parallel = min\underbrace{ \sum_{i=0}^{n}w(x_i)\underbrace{\bigg[F(x_i)-\sum_{j=0}^{m}a_j\varphi_j(x_i)\bigg]^2}_\text{odchylenie}}_{H(a_0,a_1,\ldots,a_m)}$$
     \textbf{Pochodzenie nazwy:} postać normy $F(x)$ na $[a,b]$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{Przypadek ciągły}
     Dla przypadku ciągłego minimalizujemy wartość całki:
-    $$min!\int_a^bw(x)[F(x)-f(x)]^2dx% : \sum \rightarrow \int
+    $$min\int_a^bw(x)[F(x)-f(x)]^2dx% : \sum \rightarrow \int
     $$
     $\Rightarrow$ aproksymacja średniokwadratowa funkcji ciągłych\newline
 
@@ -48,7 +48,7 @@
     $F(x)$ - zadana na zbiorze dyskretnym $\{x_i\},i=0,1,\ldots,n$\\
     \vspace{0.5cm}
     Szukamy takich współczynników $a_j$, że :\\
-    $$min!\sum_{i=0}^{n}w(x_i)[F(x_i)-f(x_i)]^2 $$
+    $$min\sum_{i=0}^{n}w(x_i)[F(x_i)-f(x_i)]^2 $$
 \end{frame}
 \begin{frame}
     Układ normalny:
@@ -123,10 +123,11 @@
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}{Aproksymacja średniokwadratowa wielomianami ortogonalnymi}
 	Dla wielomianów ortogonalnych układ normalny:
-    $$\sum_{i=0}^{n}w(x_i)\Bigg[F(x_i)-\underbrace{\sum_{j=0}^{m}a_j\varphi_j(x_i)}\Bigg]\varphi_k(x_i)=0, k=0,1,..,m$$
+    $$\sum_{i=0}^{n}w(x_i)\Bigg[F(x_i)-\sum_{j=0}^{m}a_j\varphi_j(x_i)\Bigg]\varphi_k(x_i)=0, k=0,1,..,m$$
     \begin{center}
-    	$$\sum_{i=0}^{n}w(x_i)F(x_i)\varphi_k(x_i)=\sum_{i=0}^{n}w(x_i)\varphi_k(x_i)\sum_{j=0}^{m}a_j\varphi_j(x_i)=$$\newline
-        $$=\sum_{j=0}^{m}a_j\sum_{i=0}^{n}w(x_i)\varphi_k(x_i)\varphi_j(x_i) = a_k\sum_{i=0}^{n}w(x_i)\varphi_k^2(x_i)$$
+    	$$\sum_{i=0}^{n}w(x_i)F(x_i)\varphi_k(x_i)=\sum_{i=0}^{n}w(x_i)\varphi_k(x_i)\sum_{j=0}^{m}a_j\varphi_j(x_i)$$\newline
+        $$\sum_{i=0}^{n}w(x_i)F(x_i)\varphi_k(x_i)=\sum_{j=0}^{m}a_j\sum_{i=0}^{n}w(x_i)\varphi_k(x_i)\varphi_j(x_i)$$\newline 
+        $$\sum_{i=0}^{n}w(x_i)F(x_i)\varphi_k(x_i)=a_k\sum_{i=0}^{n}w(x_i)\varphi_k^2(x_i)$$
     \end{center}
     
 \end{frame}
@@ -144,49 +145,49 @@
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
-\begin{frame}{Aproksymacja średniokwadratowa funkcjami sklejanymi}
-	Możliwa jest aproksymacja średniokwadratowa funkcjami sklejanymi.\newline
-    \newline
-    Przykład: \url{https://pl.wikibooks.org/wiki/Metody_numeryczne_fizyki/Aproksymacja}
-\end{frame}
+%\begin{frame}{Aproksymacja średniokwadratowa funkcjami sklejanymi}
+	%Możliwa jest aproksymacja średniokwadratowa funkcjami sklejanymi.%\newline
+   % \newline
+  %  Przykład: \url{https://pl.wikibooks.org/wiki/%Metody_numeryczne_fizyki/Aproksymacja}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%
-\begin{frame}{Wielomiany Legendre'a}
-	Określone wzorem $$P_n(x) = \frac{1}{n! \cdot 2^n}\frac{d^n}{dx^n}[(x^{2}-1)^n], x \in [-1,1], n = 0,1,\ldots$$\\
-    Spełniają wzór rekurencyjny (dla $n\geqslant1$):
-    $$(2n+1) \cdot x \cdot P_n(x)=(n+1)P_{n+1}(x)+n \cdot P_{n-1}(x)$$
-    \begin{flushleft}
-    	$$\left.\begin{array}{l}
-    P_0 = 1 \\
-    P_1(x) = x \\
-    P_2(x) = \frac{1}{2}(3x^2-1)\\
-    P_3(x) = \frac{1}{2}(5x^3-3x) \\
-    P_4(x) = \frac{1}{8}(35x^4-30x^2+3)\\
-    \vdots \\
-    P_n(1) = 1; |P_n(x)| \leqslant 1, x \in [-1,1]
-    \end{array}\right.$$
-    \end{flushleft}
-\end{frame}
+%\begin{frame}{Wielomiany Legendre'a}
+	%Określone wzorem $$P_n(x) = \frac{1}{n! \cdot 2^n}\frac{d^n}{dx^n}[(x^{2}-1)^n], x \in [-1,1], n = 0,1,\ldots$$\\
+   % Spełniają wzór rekurencyjny (dla $n\geqslant1$):
+  %  $$(2n+1) \cdot x \cdot P_n(x)=(n+1)P_{n+1}(x)+n \cdot P_{n-1}(x)$%$
+ %   \begin{flushleft}
+  %  	$$\left.\begin{array}{l}
+  %  P_0 = 1 \\
+  %  P_1(x) = x \\
+  %  P_2(x) = \frac{1}{2}(3x^2-1)\\
+  %  P_3(x) = \frac{1}{2}(5x^3-3x) \\
+  %  P_4(x) = \frac{1}{8}(35x^4-30x^2+3)\\
+ %   \vdots \\
+ %  P_n(1) = 1; |P_n(x)| \leqslant 1, x \in [-1,1]
+  %  \end{array}\right.$$
+  %  \end{flushleft}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\begin{figure}
-		\includegraphics[height=0.82\textheight]{img/5/img2.jpg}
-	\end{figure}
-\end{frame}
+%\begin{frame}
+	%\begin{figure}
+	%	\includegraphics[height=0.82\textheight]{img/5/img2.jpg}
+	%\end{figure}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%
-\begin{frame}{Własności}
-	Wielomiany Legendre'a spełniają zależność:
-	$$P_n(-x) = (-1)^n \cdot P_n(x)$$ 
+%\begin{frame}{Własności}
+	%Wielomiany Legendre'a spełniają zależność:
+	%$$P_n(-x) = (-1)^n \cdot P_n(x)$$ 
   
-	spełniają równania różniczkowe:
-        $$\frac{d}{dx}\bigg[(1-x^2)\frac{dP_n(x)}{dx}\bigg]+n(n+1)P_n(x) = 0$$
+	%spełniają równania różniczkowe:
+      %  $$\frac{d}{dx}\bigg[(1-x^2)\frac{dP_n(x)}{dx}\bigg]+n(n+1)P_n(x) = 0$$
         
-        \textbf{Ortogonalność: }
-        $$\int_{-1}^{1}P_n(x)P_m(x)dx = \left\{\begin{array}{cc}
-        0, & m \not= n \\
-        \frac{2}{2n+1}, & m = n 
-        \end{array}\right.$$
+      %  \textbf{Ortogonalność: }
+      %  $$\int_{-1}^{1}P_n(x)P_m(x)dx = \left\{\begin{array}{cc}
+      %  0, & m \not= n \\
+     %   \frac{2}{2n+1}, & m = n 
+     %   \end{array}\right.$$
        % \begin{flushright}
         %	\textit{Zadanie: } \quad Sprawdzić %ortogonalność w przypadku dyskretnym.
         %\end{flushright}
-\end{frame}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%

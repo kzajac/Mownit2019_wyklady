@@ -1,16 +1,16 @@
-\subsection{Pierwiastki zespolone -- metoda Bairstowa}
+\section{Metoda Bairstowa oraz deflacja czynnikiem kwadratowym}
 
-\begin{frame}{Pierwiastki zespolone -- metoda Bairstowa}
-  \textit{(Można użyć również metody N-R.)}
+\begin{frame}{Metoda Bairstowa}
+%  \textit{(Można użyć również metody N-R.)}
 
   \vspace{5px}
 
   \textbf{Metoda Bairstowa} polega na szukaniu czynników kwadratowych
-
+Czynnik kwadratowy może objąć 2 pierwiastki rzeczywiste lub zespolone, np.
   $$x_1 = \alpha + \textit{\textrm{i}}\beta, \quad x_2 = \alpha - \textit{\textrm{i}}\beta$$
   $$(x - x_1)(x - x_2) = x^2 - 2 \cdot \alpha x + (\alpha^2 + \beta^2) = x^2 + p \cdot x + q$$
-
-  Czynnik kwadratowy może objąć 2 pierwiastki rzeczywiste lub zespolone.
+Dzięki "wyłuskaniu" czynnika kwadratowego o pierwiastkach zespolonych możemy jak najdłużej pozostać w arytmetyce rzeczywistej
+  
 
   \begin{equation}
     P(x) = (x^2 + p \cdot x + q) \cdot Q(x) + R \cdot x + S \label{bairstow}
@@ -20,16 +20,19 @@
 \begin{frame}
   $$\left. \begin{array}{l}
   R(p,q)=0 \\ S(p,q)=0
-  \end{array}\right\} \Rightarrow \text{met. Newtona-Raphsona}$$
+  \end{array}\right\} \Rightarrow \text{met. Newtona-Raphsona dla dwoch zmiennych}$$
+  
+  Przypomnienie dla jednej zmiennej
+  $$x_{i+1}=x_i-\frac{p(x_i)}{p'(x_i)}$$
 
   \vspace{5mm}
-
+ Dla dwóch zmiennych:
   $$\left( \begin{array}{l}
-  p^{(n+1)} \\ q^{(n+1)}
+  p_{(n+1)} \\ q_{(n+1)}
   \end{array} \right)
   =
   \left( \begin{array}{l}
-  p^{(n)} \\ q^{(n)}
+  p_{(n)} \\ q_{(n)}
   \end{array} \right)
   -
   \left( \begin{array}{ll}
@@ -37,11 +40,13 @@
   \frac{{\partial}S}{{\partial}p} & \frac{{\partial}S}{{\partial}q}
   \end{array} \right)^{-1}
   \left( \begin{array}{l}
-  R^{(n)} \\ S^{(n)}
+  R(p_n,q_n) \\ S(p_n,q_n)
   \end{array} \right)$$
 \end{frame}
 
 \begin{frame}
+ W każdym kroku $ R(p_n,q_n)$ oraz  $S(p_n,q_n)$ znajdujemy poprzez  syntetyczne dzielenie wielomianu $P(x)$ przez $(x^2 + p_n \cdot x + q_n)$\\
+  
   Pochodne znajdujemy w następujący sposób:
 
   $P(x)$ -- nie zależy od $p$, $q$, \\ Z równania (\ref{bairstow}) mamy:

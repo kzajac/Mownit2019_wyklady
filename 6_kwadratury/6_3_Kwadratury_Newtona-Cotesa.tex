@@ -121,22 +121,22 @@ wszystkie $a_{i}>0$ tylko dla $n=1$, 2, 3, 5.
 a) $n=0$ \textbf{, Midpoint Rule, Rectangle Rule}
 
 		$$
-\int_{x-1}^{x_{1}}f(x)dx=2hf(x_{0})+\frac{h^{3}}{3}f''(\eta)\ ,\ \eta\in[x_{-1},\ x_{n+1}]
+\int_{x_{-1}}^{x_{1}}f(x)dx=2hf(x_{0})+\frac{h^{3}}{3}f''(\eta)\ ,\ \eta\in[x_{-1},\ x_{n+1}]
 		$$
 
 b) $n=1$
 		$$
-\int_{x-1}^{x_{2}}f(x)dx=\frac{3h}{2}[f(x_{0})+f(x_{1})]+\frac{3h^{3}}{4}f''(\eta)
+\int_{x_{-1}}^{x_{2}}f(x)dx=\frac{3h}{2}[f(x_{0})+f(x_{1})]+\frac{3h^{3}}{4}f''(\eta)
 		$$
 
 c) $n=2$ \textbf{, Milne's Rule}
 		$$
-\int_{x-1}^{x_{3}}f(x)dx=\frac{4h}{3}[2f(x_{0})-f(x_{1})+2f(x_{2})]+\frac{14h^{5}}{45}f^{(4)}(\eta)
+\int_{x_{-1}}^{x_{3}}f(x)dx=\frac{4h}{3}[2f(x_{0})-f(x_{1})+2f(x_{2})]+\frac{14h^{5}}{45}f^{(4)}(\eta)
 		$$
 
 d) $n=3$
 		$$
-\int_{x-1}^{x_{4}}f(x)dx=\frac{5h}{24} [11f(x_{0})+f(x_{1})+f(x_{2})+11f(x_{3})]+ \frac{95h^{5}}{144}f^{(4)}(\eta)
+\int_{x_{-1}}^{x_{4}}f(x)dx=\frac{5h}{24} [11f(x_{0})+f(x_{1})+f(x_{2})+11f(x_{3})]+ \frac{95h^{5}}{144}f^{(4)}(\eta)
 		$$
 	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -162,7 +162,7 @@ d) $n=3$
 	\begin{itemize}
 		\item efekty wzrostu $n$:
         \begin{itemize}
-        	\item[*]  zmniejszanie stałego czynnika w $E$ , lecz wzrost rzędu pochodnej
+        	\item[*]  zmniejszanie stałego czynnika w $E$, lecz wzrost rzędu pochodnej
             \item[*] trudności z oszacowaniem $E$
             \item[*] duże wartości $f^{(n+1)}(\eta)$
             \item[*] $a_{i}>0:$

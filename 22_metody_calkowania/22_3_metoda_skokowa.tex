@@ -16,8 +16,8 @@
 	\end{figure}
     \textbf{Algorytm:}
     $$ \begin{array}{rcl}
-      (n+1):\quad &=&u^{n-1} -f(u^n,t^n)\cdot 2 \cdot \Delta t\\
-      (n+2):\quad &=&u^n \quad -\underbrace{f(u^{n+1},t^{n+1})\cdot 2 \cdot \Delta t}_{\text{*}}
+      u^{(n+1)}:\quad &=&u^{n-1} -f(u^n,t^n)\cdot 2 \cdot \Delta t\\
+      u^{(n+2)}:\quad &=&u^n \quad -\underbrace{f(u^{n+1},t^{n+1})\cdot 2 \cdot \Delta t}_{\text{*}}
       \end{array} $$
     
 \end{frame}
@@ -38,7 +38,8 @@
 	$$\varepsilon^{n+1} = \varepsilon^{n-1} - \frac{\partial f}{\partial u} \bigg\arrowvert _n \cdot 2 \cdot \Delta t \cdot \varepsilon^n \quad \arrowvert :\varepsilon^{n-1}$$
     $$\alpha = \frac{\partial f}{\partial u}\bigg\arrowvert_n \cdot \Delta t \qquad g = \frac{\varepsilon^{n+1}}{\varepsilon^n} \approx \frac{\varepsilon^{n}}{\varepsilon^{n-1}} \qquad g^2=\frac{\varepsilon^{n+1}}{\varepsilon^n}\cdot \frac{\varepsilon^{n}}{\varepsilon^{n-1}}$$
     $$g^2 = 1- \alpha \cdot 2g \qquad \underline{g = -\alpha \pm \sqrt{\alpha^2+1}}$$
-    Dla metod drugiego rzędu zawsze mamy dwa pierwiastki. \newline
+    %Dla metod drugiego rzędu zawsze 
+    Mamy dwa pierwiastki. \newline
     jeśli $\alpha$ - rzeczywiste $\Rightarrow$ \quad $|g| > 1$ \quad $\rightarrow$ niestabilna\\
     
     Jeśli  $\alpha$ urojone i równe $i\beta$, gdzie $\beta \leqslant 1$, rzeczywiste  

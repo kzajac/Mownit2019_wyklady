@@ -123,7 +123,7 @@
     \[
     m = \underbrace{\sum_{i=1}^{t} e_i \cdot 2^{-i} + 0 \cdot 2^{-(t+1)}}_{\textrm{to samo co } m_t=\sum_{i=1}^{t} e_i \cdot 2^{-i} + 0 \cdot 2^{-t}} +
         \underbrace{\sum_{i=t+2}^{\infty} 1 \cdot 2^{-i}}_{
-            \textrm{suma ciagu: } \frac{1}{2^{t+1}} = 2^{-(t+1)}
+            \textrm{suma szeregu: } \frac{1}{2^{t+1}} = 2^{-(t+1)}
         }
     \] \[
     m - m_t = 2^{-(t+1)}
@@ -186,10 +186,10 @@ W obydwu przypadkach maksymalny błąd bezwzględny to:
 	\textbf{Standaryzacja:}
 	\begin{itemize}
 		\item Reprezentacja zmiennoprzecinkowa została ustandaryzowana w celu ujednolicenia obliczeń
-		\item IEEE754 - 1985; IEEE754 - 2008 
-		\item treść standardu IEEE754-2008:$\newline$ \url{www.dsc.ufcg.edu.br/~cnum/modulos/Modulo2/IEEE754_2008.pdf}
-		\item wywiad z jednym z twórców standardu IEEE754-1985 (William Kahan):\ \url{www.goo.gl/AeNLrd}
-		\item kalkulator \url{https://babbage.cs.qc.cuny.edu/IEEE-754/}
+		\item IEEE754 - 1985; IEEE754 - 2008; IEEE754 - 2019
+		\item historia standardu IEEE754:$\newline$ \url{https://www.computer.org/csdl/magazine/co/2019/12/08909942/1f8KFWxbTCU}
+		\item wywiad z jednym z twórców standardu IEEE754-1985 (William Kahan):\ \url{https://www.researchgate.net/publication/2954891_IEEE_754_An_Interview_with_William_Kahan}
+		\item kalkulator \url{https://christophervickery.com/babbage/IEEE-754/}
 	\end{itemize}
 	\textbf{Istotne pojęcia:}$\newline$
 	\textit{ukryta jedynka, normalizacja mantysy, liczby zdenormalizowane, przesunięcie wykładnika}

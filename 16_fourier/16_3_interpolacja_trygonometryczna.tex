@@ -106,8 +106,7 @@ Dowód:
 	\end{enumerate}
 \end{frame}
 \begin{frame}{Interpolacja trygonometryczna}	
- \\
-	czyli:
+ czyli:
 	\[
 		\underline{c_j = \frac{1}{n} \sum\limits_{k = 0}^{n-1} f(x_k) \cdot e^{-ijx_k}, j = 0, 1, \dots, n-1}
 	\]
@@ -115,12 +114,15 @@ Dowód:
 		Dwa etapy obliczeń: \\
 		\underline{\textit{analiza Fouriera:}} \\
 		dla danych liczb zespolonych $f(x_k), k = 0, 1,\dots, n - 1$ szukamy $c_j, j = 0, 1, \dots, n-1$ \\
-		\bigskip
 		\underline{\textit{synteza Fouriera:}} \\
 		mając liczby $c_j, j = 0, 1, \dots, n-1$ szukamy
-		\[
-			f(x) = \sum\limits_{j = 0}^{n - 1} c_j \cdot e^{ij\frac{2\pi}{n} \cdot k}, k = 0, 1, \dots, n-1
+		%\[
+		%	f(x) = \sum\limits_{j = 0}^{n - 1} c_j \cdot e^{ij\frac{2\pi}{n} \cdot k}, k = 0, 1, \dots, n-1
+		%\]
+        \[
+		  f(x) = \sum\limits_{j = 0}^{n - 1} c_j \cdot e^{ijx}
 		\]
+   Dla $x_k$: $f(x_k) = \sum\limits_{j = 0}^{n - 1} c_j \cdot e^{ij\frac{2\pi}{n} \cdot k}, k = 0, 1, \dots, n-1 $
 	\end{flushleft}
 	\end{frame}
 	\begin{frame}{Interpolacja trygonometryczna}

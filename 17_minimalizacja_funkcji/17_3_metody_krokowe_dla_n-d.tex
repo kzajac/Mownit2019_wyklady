@@ -30,7 +30,7 @@
     \end{block}
   \end{frame}
 
-\subsection{Zmiana jednego parametru (Powell Search Method)}
+\subsection{Zmiana jednego parametru }
 
   \begin{frame}{Zmiana jednego parametru}
     \begin{block}{Założenie}
@@ -40,7 +40,7 @@
         Warunek na istnienie minimum - $ x_i $ -- \emph{stacjonarny punkt},
         tj. znikają wszystkie $n$ pochodne cząstkowe, $ \frac{\partial f}{\partial x_i} = 0 $ , $ i = 1,2,3,\ldots ,n $
     \end{block}
-    \begin{block}{Powell Search Method}
+    \begin{block}{}
         \begin{enumerate}
           \item Wybierz jeden z $n$ wymiarów.
           \item Wykonaj optymalizację 1-D na wybranym wymiarze.
@@ -69,9 +69,9 @@
 
   \end{frame}
 
-\subsection{Metoda Rosenbrocka}
+\subsection{Metoda Powella}
 
-  \begin{frame}{Metoda Rosenbrocka}
+  \begin{frame}{Metoda Powella}
 
     \begin{block}{Algorytm}
  	  \begin{itemize}
@@ -181,7 +181,7 @@
  	   Analitycznie -- kłopotliwe, więc numerycznie:
  	   \begin{displaymath}
  	   	  \frac{\partial (F)}{\partial (x)} \bigg\vert_{x_0} \approx \frac{F(x_0+d) - F(x_0)}{d},
- 	   	  \quad \delta \approx \frac{d}{2} \cdot \frac{\partial^2 F}{\partial x^2} \bigg\vert_{x_0}
+ 	   	  \quad \delta \approx \frac{d^2}{2} \cdot \frac{\partial^2 F}{\partial x^2} \bigg\vert_{x_0}
  	   \end{displaymath}
  	   Lepiej:
  	   \begin{displaymath}
@@ -235,6 +235,7 @@
         \item podążanie w kierunku wyznaczonym przez  $- \vec g$ (gradient $g_i = \left. \frac{\partial F}{\partial x_i}$)
         \item w tym kierunku funkcja maleje najszybciej (nierówność Cauchy’ego-Schwarza)
         \item seria minimalizacji 1-D wzdłuż kierunku największego spadku $\vec{x_{k+1}}=\vec{x_k}-\alpha_k \vec{g}\vert_{x_k}$ ; $\alpha_k$ dobrane tak, ze $f(\vec{x_k}-\alpha_k \vec{g}\vert_{x_k})=min_{\alpha>0} f(\vec{x_k}-\alpha \vec{g}\vert_{x_k})$
+        \item jeśli $\alpha$ - stałe $\rightarrow$ metoda gradientu prostego (vanilla)
         \item iteracyjna, bo gradient nie jest stały 
  \item $g_{k+1}\perp g_{k}$ - metoda  prowadzi do "zygzakowania"
     \end{itemize}
@@ -315,7 +316,7 @@ $$
 	  \\ \emph{Te same wady!}
 	  \begin{itemize}
 	  	\item[--] może być niestabilna
-	  	\item[--] rozbieżna, gdy $V$ nie jest dodatnio określona (czyli NIE zachodzi $\forall_{x} x^TVx>0$)
+	  	\item[--] rozbieżna, gdy $V$ nie jest dodatnio określona (czyli NIE zachodzi $\forall_{x\ne 0} x^TVx>0$)
 	  \end{itemize}
 	\end{block}
     \begin{block}{Zalety:}
@@ -341,140 +342,138 @@ $$
 
   \end{frame}
 
- % \begin{frame}{Metody gradientowe}
+ \begin{frame}{Dygresja: dodatnio określone formy kwadratowe}
 
-  %  \begin{block}{Dygresja: dodatnio określone formy kwadratowe}
-  %    \emph{1-D forma kwadratowa:}
-%	  \begin{equation}
-%	  	F(x) = a + g \cdot x + \frac{1}{2} G \cdot x^2
-   %   \nonumber
-%	  \end{equation}
-   % \begin{equation}
-    %  g = \left.\frac{\partial F}{\partial x}\right|_{0}{,}\qquad
-    %  G = \left.\frac{\partial^{2} F}{\partial x^2}\right|_{0}
-     % \nonumber
-   % \end{equation}
-	%  $F(x)$ ma min. wtedy i tylko wtedy, gdy $G$ $\geq 0$.
-    %\begin{equation}
-	  	%	G = 0 \rightarrow \text{\emph{min}} \rightarrow \infty; \qquad
-       % x^m = -g/G
-       % \nonumber
-	 % \end{equation}
-	 % \emph{Dla ogólnej funkcji nieliniowej:}
-	  %\smallskip
-	 % \begin{itemize}
-	  %	    \item krok do $x = - \frac{g}{G}$ gdy $G > 0$
-	  %	    \\(w przeciwnym przypadku: $\infty$ lub maximum)
-	 % \end{itemize}
-%	\end{block}
+  \begin{block}{}
+      \emph{1-D forma kwadratowa:}
+	  \begin{equation}
+	  	F(x) = a + g \cdot x + \frac{1}{2} G \cdot x^2
+      \nonumber
+	  \end{equation}
+    \begin{equation}
+      g = \left.\frac{\partial F}{\partial x}\right|_{0}{,}\qquad
+      G = \left.\frac{\partial^{2} F}{\partial x^2}\right|_{0}
+      \nonumber
+    \end{equation}
+	 $F(x)$ ma min. wtedy i tylko wtedy, gdy $G > 0$.
+    \begin{equation}
+	  	 x_{min} = -g/G	\qquad G = 0 \text{ to } x_{min} \rightarrow \infty; 
+       
+        \nonumber
+	 \end{equation}
+	 
+	\end{block}
 
-  %\end{frame}
+  \end{frame}
 
- % \begin{frame}{Dodatnio określone formy kwadratowe cd.}
+ \begin{frame}{Dodatnio określone formy kwadratowe cd.}
 
-   % \begin{figure}
-%		\centering
-	%	\includegraphics[width=0.95\textwidth]{img/17/dygresja}
-%	\end{figure}
+    \begin{figure}
+		\centering
+		\includegraphics[width=0.95\textwidth]{img/17/dygresja}
+	\end{figure}
 
-  %\end{frame}
+  \end{frame}
 
- % \begin{frame}{Dodatnio określone formy kwadratowe cd.}
+  \begin{frame}{Dodatnio określone formy kwadratowe cd.}
 
-  %  \begin{block}{}
-    %	\begin{itemize}
-	%  	    \item gdy $G \leq 0$ krok $= -g$
-	%  	    \\$\rightarrow$ kierunek - dobry,
-	%  	    \\$\rightarrow$ wartość - dowolna
-	%    \end{itemize}
-	 %   W $x_0 \rightarrow F(x)$ nie jest wypukła (dodatnio określona)
-	 %   \medskip\\
-	 %   \emph{Uogólnienie na n-D:}\\
-	  %  $g \rightarrow \vec{g}$, $G$ - macierz 2-ich poch.;
-	 %   $F(\vec X) = a + \vec{g}^T \cdot \vec{x} + \frac{1}{2} \vec{x}^T G$ tylko dla $G$ dod. określonej
-	  %  ma sens krok do:
-	  %  \begin{displaymath}
-	  %		\vec{x} = - G^{-1} \cdot \vec{g}
-	  %  \end{displaymath}
-  %  \end{block}
+   \begin{block}{}
+   \emph{Dla ogólnej funkcji nieliniowej:}
+	  \smallskip
+	 \begin{itemize}
+	  	    \item krok do $x = - \frac{g}{G}$ gdy $G > 0$
+	  	    \\(w przeciwnym przypadku: $\infty$ lub maximum)
+	  	    \item gdy $G \leq 0$ krok $= -g$
+	 	    \\$\rightarrow$ kierunek - dobry,
+	 	    \\$\rightarrow$ wartość - dowolna
+	   \end{itemize}
+	    W $x_0 \rightarrow F(x)$ nie jest wypukła (dodatnio określona)
+	   \medskip\\
+	   \emph{Uogólnienie na n-D:}\\
+	    $g \rightarrow \vec{g}$, $G$ - macierz 2-ich poch (inaczej hesjan  H).;
+	   $F(\vec X) = a + \vec{g}^T \cdot \vec{x} + \frac{1}{2} \vec{x}^T G$ tylko dla $G$ dod. określonej
+	    ma sens krok do:
+	  $	\vec{x} = - G^{-1} \cdot \vec{g}$
+	$$\vec{x_{i+1}} = \vec{x_i} - G^{-1} \cdot \vec{g} $$
+    \end{block}
 
- % \end{frame}
+  \end{frame}
 
- % \begin{frame}{Metody gradientowe}
+  \begin{frame}{Metody gradientowe}
 
-   % \begin{alertblock}{}
-    %  \textbf{Badanie czy $G$ jest dodatnio określona.}\\
-    %  Brak prostych sposobów.
-    %\end{alertblock}
-    %\begin{block}{\emph{Dla macierzy kwadratowych, symetrycznych - 2 warunki konieczne}}
-    %  $1^o$ elementy diagonalne $> 0$ \ (wyst. 1 $\times$ 1)
-    %  \\$2^o$ elementy pozadiagonalne:
-     % \begin{displaymath}
-      %		G_{ij}^2 < G_{ii} \cdot G_{jj}
-     % \end{displaymath}
-   % \end{block}
+   \begin{alertblock}{}
+     \textbf{Badanie czy $G$ jest dodatnio określona.}\\
+     Brak prostych sposobów.
+    \end{alertblock}
+    \begin{block}{\emph{Dla macierzy kwadratowych, symetrycznych - 2 warunki konieczne}}
+      $1^o$ elementy diagonalne $> 0$ \ %(wyst. 1 $\times$ 1)
+     \\$2^o$ elementy pozadiagonalne:
+     \begin{displaymath}
+      	G_{ij}^2 < G_{ii} \cdot G_{jj}
+     \end{displaymath}
+    \end{block}
 
-  %\end{frame}
+  \end{frame}
 
-  %\begin{frame}{Badanie czy $G$ jest dodatnio określona cd.}
+  \begin{frame}{Badanie czy $G$ jest dodatnio określona cd.}
 
-  %  \begin{block}{Ogólne warunki konieczne i wystarczające}
-     % \begin{itemize}
-      	%	\item[--] wszystkie wartości własne $> 0$ (b. trudne i przybliżone)
-      	%	\item[--] wyznacznik wszystkich macierzy $> 0$
-      	%	\begin{figure}
-			%	\centering
-				%\includegraphics[height=0.2\textheight ,width=0.3\textwidth]{img/17/matrix}
-		%	\end{figure}
-		%	(najprościej sprawdzić)
-		%	\item[--] skalar $E^T \cdot G\vec{e} > 0$ dla $\bigwedge \vec{e}$ (zwykłe $\rightarrow$ def.), wyjaśnia dlaczego $G$ dod.
-		%	okr. daje formę $F(x)$ z minimum: $F(x)$ rośnie we wszystkich kierunkach od $\vec{e} = 0$
-		%	\item[--] $-V = G^{-1}$ jest dodatnio określona
-     % \end{itemize}
-   % \end{block}
+   \begin{block}{Ogólne warunki konieczne i wystarczające}
+     \begin{itemize}
+      	\item[--] Definicja: skalar $\vec{e}^T \cdot G \cdot \vec{e} > 0$ dla każdego $\vec{e}\ne 0$  wyjaśnia dlaczego $G$ dod.
+			okr. daje formę $F(x)$ z minimum: $F(x)$ rośnie we wszystkich kierunkach od $\vec{e} = 0$
+			\item[--] wszystkie wartości własne $> 0$ (b. trudne i przybliżone)
+      		\item[--] wyznacznik wszystkich macierzy $> 0$
+      		\begin{figure}
+				\centering				\includegraphics[height=0.2\textheight ,width=0.3\textwidth]{img/17/matrix}
+			\end{figure}
+			(najprościej sprawdzić)
+			
+			\item[--] $V = G^{-1}$ jest dodatnio określona
+      \end{itemize}
+    \end{block}
 
-  %\end{frame}
+  \end{frame}
 
- % \begin{frame}{Metody gradientowe}
+  \begin{frame}{Metody gradientowe}
 
- %	\begin{block}{Postępowanie w przypadku $G$ - nie jest dod. określone}
- 	 %  \begin{enumerate}[a)]
- 	   %		\item analogicznie do 1-D : G = I $\rightarrow$ Ale:
- 	   %		\item lepiej:
- 	   	%	\begin{itemize}
- 	   	%		\item[--] gdy $\bigwedge$ elementy diagonalne $G > 0$, wtedy pozadiag. $\rightarrow = 0$ (scale - invariant step),
- 	   		%	\item[--] gdy tylko niektóre el. pozadiag. $G_{ij}^2 \geq G_{ii}G_{jj} \Rightarrow G_{ij} = 0$,
- 	   		%	\item[--] zamiast $G^{-1}$ bierzemy $(G + \lambda \cdot I)^{-1}$;
- 	   		%	\\ $\lambda \geq$ największa (bezwzgl.) ujemna wartość własna:
- 	   		%	\begin{itemize}
+ 	\begin{block}{Postępowanie w przypadku $G$ - nie jest dod. określone}
+ 	   \begin{enumerate}[a)]
+ 	   		\item analogicznie do 1-D : G = I $\rightarrow$ Ale:
+ 	   		\item lepiej:
+ 	   		\begin{itemize}
+ 	   			\item[--] gdy wszystkie elementy diagonalne $G > 0$, wtedy pozadiag. $\rightarrow = 0$ (scale - invariant step),
+ 	   			\item[--] gdy tylko niektóre el. pozadiag. $G_{ij}^2 \geq G_{ii}G_{jj} \Rightarrow G_{ij} = 0$,
+ 	   			\item[--] zamiast $G^{-1}$ bierzemy $(G + \lambda \cdot I)^{-1}$;
+ 	   			\\ $\lambda \geq$ największa (bezwzgl.) ujemna wartość własna (dużo obliczeń)
+ 	   			%\begin{itemize}
  	   			%	\item[--] dużo obliczeń,
  	   			%	\item[--] krok pośredni pomiędzy m. Newtona a największego spadku
  	   			%	\\(duże $\lambda$ : krok krótki, w kierunku $\vec{g}$)
- 	   		%	\end{itemize}
- 	   			%\item[--] gdy jedna lub więcej diagonalnych 2-ich poch. $< 0$
- 	   		%	\\ $\Rightarrow$ informacja o kierunku wzrostu ujemnej 1-szej poch.
- 	   		%	\\w tym kierunku - szukanie met. zmiany 1 param.
- 	   	%	\end{itemize}
- 	   %\end{enumerate}
- 	%\end{block}
+ 	   			%\end{itemize}
+ 	   		%	\item[--] gdy jedna lub więcej diagonalnych 2-ich poch. $< 0$
+ 	   			%\\ $\Rightarrow$ informacja o kierunku wzrostu ujemnej 1-szej poch.
+ 	   			%\\w tym kierunku - szukanie met. zmiany 1 param.
+ 	   		\end{itemize}
+ 	   \end{enumerate}
+ 	\end{block}
 
-  %\end{frame}
+  \end{frame}
 
- % \begin{frame}{Gdy $G$ - nie jest dodatnio określone cd.}
+  \begin{frame}{Gdy $G$ - nie jest dodatnio określone cd.}
 
- %	\begin{block}{}
- %	Metody oparte na powyższych regułach - \emph{quasi-Newton method}
- 	%\medskip
- %	\\Podstawowa wada tych metod - obliczanie i odwracanie
- %	\\w każdym kroku macierzy drugich pochodnych
- %	\smallskip
- 	   %	\begin{itemize}
- 	   	%	\item[--] obliczanie 2-ich poch. $\sim n^2$ (długie)
- 	   	%	\item[--] odwracanie
- 	   %	\end{itemize}
- 	%\end{block}
+ 	\begin{block}{}
+ 	Metody oparte na powyższych regułach - \emph{quasi-Newton method}
+ 	\medskip
+ 	\\Podstawowa wada tych metod - obliczanie i odwracanie
+ 	\\w każdym kroku macierzy drugich pochodnych
+ 	\smallskip
+ 	   	\begin{itemize}
+ 	   		\item[--] obliczanie 2-ich poch. $\sim n^2$ (długie)
+ 	   		\item[--] odwracanie
+ 	   	\end{itemize}
+ 	\end{block}
 
-  %\end{frame}
+  \end{frame}
 
   \begin{frame}{Metody gradientowe}
 
@@ -505,31 +504,32 @@ W minimalizacji użyteczne są wektory sprzężone
  	    \item Minimalizacja wzdłuż jednego z kierunków sprzężonych jest niezależna od minimalizacji  względem pozostałych sprzężonych kierunków
  	\end{itemize}
  	\end{block}
- %	\begin{block}{Dowód:}
- 	%   $\left\{
-    %    \begin{array}{l l}
-     %     \text{funkcja:} & F(\vec{x}) = F(\vec{0}) + \vec{g}^T \vec{x} + \frac{1}{2} x^T G \vec{x} \\
-       %   \text{kierunki sprzężone:} & \vec{d_i} \ \vec{d_i}^T G \vec{d_j} = 0 \ i \neq j
-	 %   \end{array}
-	 % \right.$
-	%  \\gdzie: $G$ jest macierzą.
+ 	
+ 	%\begin{block}{Dowód:}
+ 	 %  $\left\{
+      %  \begin{array}{l l}
+       %  \text{funkcja:} & F(\vec{x}) = F(\vec{0}) + \vec{g}^T \vec{x} + \frac{1}{2} x^T G \vec{x} \\
+        %  \text{kierunki sprzężone:} & \vec{d_i} \ \vec{d_i}^T G \vec{d_j} = 0 \ i \neq j
+	  % \end{array}
+	  %\right.$
+	  %\\gdzie: $G$ jest macierzą.
  %	\end{block}
+ %\end{frame}
 
- % \end{frame}
 
- % \begin{frame}{Metoda sprzężonych kierunków cd.}
+% \begin{frame}{Metoda sprzężonych kierunków cd.}
 
  %	\begin{block}{Dowód cd.}
-	%	\emph{$x, g$ -  jako kombinacje liniowe:} w układzie o wektorach jednostkowych
+	%	\emph{$x, g$ -  jako kombinacje %liniowe:} w układzie o wektorach jednostkowych
 	%	\begin{displaymath}
-	%		\vec{x} = \sum_i y_i \vec{d_i}, \quad \vec{g} = \sum_i c_i \vec{d_i}
+	%		\vec{x} = \sum_i y_i %\vec{d_i}, \quad \vec{g} = \sum_i c_i \vec{d_i}
 	%	\end{displaymath}
 	%	wtedy:
 	%	\begin{displaymath}
 		%	F(x) = F(0) + (\sum_i c_i \vec{d_i}^T) \cdot (\sum_j y_j \vec{d_j}) +
 		%	\underbrace{\frac{1}{2} (\sum_i y_i \vec{d_i}^T) \cdot G \cdot (\sum_j y_j \vec{d_j})}_{(\star)}
 	%	\end{displaymath}
- 	%\end{block}
+ %	\end{block}
 
   %\end{frame}
 
@@ -660,7 +660,9 @@ W minimalizacji użyteczne są wektory sprzężone
 	  Warunek sprzężenia: $\vec{d_1}^T \cdot H \cdot \vec{d_0}  = 0$,
 	  czyli $\vec{d_1}^T \cdot H \cdot \frac{1}{\alpha}(\vec{x_1}-\vec{x_0}) = 0$
 	  z (*) $\vec{d_1}^T  \cdot (\vec{g_1} - \vec{g_0})=0$ czyli:
-	  $(-\vec{g_1} + b \cdot \vec{d_0})^T \cdot H \cdot \vec{d_0} = (-\vec{g_1} -b \cdot \vec{g_0})^T \cdot (\vec{g_1} - \vec{g_0}) = 0$
+	 %$(-\vec{g_1} + b \cdot \vec{d_0})^T \cdot H \cdot \vec{d_0} =$
+  $
+ (-\vec{g_1} -b \cdot \vec{g_0})^T \cdot (\vec{g_1} - \vec{g_0}) = 0$
 	  \\$\vec{x_1}$ - jest znalezionym minimum wzdłuż $-\vec{g_0}$\\ $\Rightarrow$
 	  kolejny $\vec{g_1}$, uzyskany w p.$\vec{x_1}$, więc jest $\perp$ do $\vec{g_0}  \Rightarrow  \vec{g_1}^T \cdot \vec{g_0} = 0$
 	  \smallskip
@@ -683,4 +685,13 @@ W minimalizacji użyteczne są wektory sprzężone
  	
  	\end{block}
 
+  \end{frame}
+  \begin{frame}{Literatura}
+  \begin{itemize}
+  \item Uczenie maszynowe
+  \url{https://www.ruder.io/optimizing-gradient-descent/}
+     \item Minimalizacja za pomocą kompiterów kwantowych \url{https://pennylane.ai/qml/demos/tutorial_quantum_natural_gradient.html}
+     \item Scipy notes (dobry przegląd referencji) \url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html}
+     \item Scipy lectures \url{https://scipy-lectures.org/advanced/mathematical_optimization}
+  \end{itemize}
   \end{frame}

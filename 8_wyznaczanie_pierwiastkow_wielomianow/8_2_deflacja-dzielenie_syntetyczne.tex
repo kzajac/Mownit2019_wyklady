@@ -1,14 +1,26 @@
 \section{Deflacja -- dzielenie syntetyczne}
+\begin{frame}{Przydatność deflacji}
+\textbf{Deflacja} - obniżenie stopnia wielomianu po znalezieniu jego pierwiastka; bardzo użyteczna część algorytmu wyznaczania pierwiastków wielomianów. \\
 
-\begin{frame}{Deflacja -- dzielenie syntetyczne}
-  \textbf{Deflacja} -- bardzo użyteczny element wyznaczania pierwiastków wielomianów. % Deflacja – obniżenie stopnia wielomianu po znalezieniu jego pierwiastka; bardzo użyteczna część algorytmu wyznaczania pierwiastków wielomianów.
+$P(x)$ -- wielomian,\\
+  $r$ -- znaleziony pierwiastek wielomianu $P$.
 
-  \begin{block}{Nested form (Horner)}
+  Realizujemy \textit{faktoryzację}:
+  \begin{block}{}
+    $$ P(x) = (x - r) \cdot Q(x) $$
+  \end{block}
+
+  \begin{itemize}
+    \item Zmniejszenie złożoności obliczeniowej\\
+     ($Q$ -- niższego stopnia niż $P$)
+    \item Uniknięcie pomyłki -- powrotu do pierwiastka już znalezionego.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Algorytm Hornera - przypomnienie}
+  \begin{block}
     $$ f(x) = \sum_{i=0}^m a_i \cdot x^i = ( ( \dots (( a_m \cdot x + a_{m-1}) \cdot x + a_{m-2} ) \cdot \dots) \cdot x + a_1) \cdot x + a_0 $$
   \end{block}
-\end{frame}
 
-\begin{frame}
   Rekurencyjny algorytm obliczania wartości wielomianu dla $x = \lambda$ ma postać:
 
   \begin{block}{Algorytm}
@@ -23,17 +35,17 @@
 \begin{frame}
 
   \begin{block}{Twierdzenie}
-    $$ \frac{f(x) - f(\lambda)}{x - \lambda} = \sum_{i=0}^{m-1} b_i x^i $$
+    $$ f(x) - f(\lambda) = (x - \lambda) \sum_{i=0}^{m-1} b_i x^i $$
   \end{block}
 
-  Dowód:
-
-  \begin{itemize}
-    \item mnożenie przez $(x - \lambda)$
-    \item $ b_{i-1} = a_i + \lambda \cdot b_i $
-  \end{itemize}
-
-  \vspace{5px}
-
-  \textbf{Zadanie:} Przeprowadzić dowód.
+  Dowód (szkic):
+{\scriptsize
+  $$ f(x) = \sum_{i=0}^{m-1} b_i x^i (x - \lambda)+ f(\lambda)$$
+  $$ f(x) = (b_{m-1}x^{m-1}+ b_{m-2}x^{m-2}+...+b_0)(x - \lambda)+ f(\lambda)$$
+  $$ f(x) = (b_{m-1}x^{m}+ b_{m-2}x^{m-1}+...+b_0 x)- \lambda (b_{m-1}x^{m-1}+ b_{m-2}x^{m-2}+...+b_0)+ f(\lambda)$$
+  $$f(x)= \underbrace{b_{m-1}}_{a_m}x^m+\underbrace{(b_{m-2}-\lambda b_{m-1})}_{a_{m-1}}x^{m-1}+...-\lambda b_0+f(\lambda)$$
+  }
+  Czyli:
+$$ b_{i-1} = a_i + \lambda \cdot b_i $$
+ Wniosek: można stosować algorytm Hornera do dzielenia wielomianu przez czynnik liniowy (x-\lambda)$
 \end{frame}

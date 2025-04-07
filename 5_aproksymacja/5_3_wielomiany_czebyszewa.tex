@@ -40,7 +40,7 @@
 \begin{frame}{Miejsca zerowe $T_n(x)$ - węzły Czebyszewa}
 	$T_n(x)$ ma w $[-1,1]$ $n$ miejsc zerowych:
     $$T_n(x) = \cos(n \underbrace{\arccos x}_\alpha)=0$$ wtedy, gdy:
-    $$\cos(n \cdot \alpha) = 0 \text{ dla } n \cdot \alpha = (2k+1) \cdot \frac{\pi}{2}, n \cdot \alpha \in [0,\pi]$$ 
+    $$\cos(n \cdot \alpha) = 0 \text{ dla } n \cdot \alpha = (2k+1) \cdot \frac{\pi}{2},  \alpha \in [0,\pi]$$ 
     czyli 
      $$ \alpha = \frac{2k+1}{n} \cdot \frac{\pi}{2},k=0,1,..,n-1$$
      $$ \arccos x_k = \frac{2k+1}{n} \cdot \frac{\pi}{2},k=0,1,..,n-1$$
@@ -84,6 +84,11 @@
 		\includegraphics[height=0.7\textheight]{img/5/dowod.jpg}
 	\end{figure}
 \end{frame}
+\begin{frame}
+	\begin{figure}
+		\includegraphics[height=0.82\textheight]{img/5/czeb.png}
+	\end{figure}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
 		$x'_k$ jest punktem ekstremalnym jeśli $T_n(x'_k)=(-1)^k$,\\
@@ -110,8 +115,8 @@
     Przez optymalny wybór rozmieszczenia węzłów $x_k$ można zminimalizować $max|\omega_{n+1}(x)|$\newline
     \end{frame}
     \begin{frame}
-   \textbf{Rozwiązanie:} Wprost z własności minimaksu - wielomianem mającym najmniejszy $max|\omega_{n+1}(x)|$ jest $T_{n+1}(x)$, który możemy przedstawić przy pomocy jego zer $x_i$ jako:
-   $$T_{n+1}(x)=\prod_{i=0}^{n}(x-x_i)$$
+   \textbf{Rozwiązanie:} Wprost z własności minimaksu - wielomianem mającym najmniejszy $max|\omega_{n+1}(x)|$ jest $2^{-n} \cdot T_{n+1}(x)$, który możemy przedstawić przy pomocy jego zer $x_i$ jako:
+   $$2^{-n}\cdot T_{n+1}(x)=\prod_{i=0}^{n}(x-x_i)$$
     Czyli jako węzły interpolacji należy wziąć zera wielomianu $T_{n+1}(x)$
     $$x_k = \cos \Big(\frac{2k+1}{n+1}\frac{\pi}{2}\Big), k=0,1,..,n $$
     
@@ -170,12 +175,34 @@ Z warunku ortogonalności znikają wszystkie składniki $\sum_{j=0}^{n}$ poza $j
  $\sum_{k=0}^{n}f(x_k)T_i(x_k)=c_i\frac{n+1}{2}$ czyli
  $c_i = \frac{2}{n+1}\sum_{k=0}^{n}f(x_k)T_i(x_k)$\\
  dla $ i=1,..,n$\\
- \vspace{0.5cm}
-    Pozostaje nam wyliczenie odpowiednich sum.
+ Wspólczynniki są od siebie niezależne ! (pomocny: alg. Clenshawa)\\
+Jeśli wyliczymy ich mniej - aproksymacja. Porównaj (slajd 17) 
+$$\sum_{i=0}^{n}w(x_i)F(x_i)\varphi_k(x_i)=a_k\sum_{i=0}^{n}w(x_i)\varphi_k^2(x_i)$$
+\end{frame}
+\begin{frame}{Analogia do wektorów $R^2$}
+    \includegraphics[height=0.7\textheight]{img/5/ortovsnieorto.png}
+\end{frame}
+\begin{frame}{Szacowanie błędu aproksymacji}
+Maksymalna odległość między "kolejnymi" aproksymacjami w bazie wielomianów Czebyszewa liczona przy użyciu normy aproksymacii jednostajnej $sup_{x \in [a,b]}|g(x)-f(x)|$ to:
+    $$f(x)=a_n\cdot T_{n}(x)+a_{n-1}\cdot T_{n-1}(x)+...+a_1\cdot T_{1}(x)+a_0\cdot T_{0}(x)$$
+     $$g(x)=a_{n-1}\cdot T_{n-1}(x)+...+a_1\cdot T_{1}(x)+a_0\cdot T_{0}(x)$$
+     $$|g(x)-f(x)|< |a_n|\cdot \underbrace{|T_{n}(x)|}_{max 1}\le |a_n|$$
+     Kolejne współczynniki mówią nam o błędach przybliżenia!\\
+     Jeśli współczynniki wyższych rzędów maleją $\rightarrow$ wskaźnik, że funkcja "nadaje się" do aproksymacji wielomianami.\\
+    
+\end{frame}
+\begin{frame}{Co przy pomiarach?}
+     Problem:  Trzeba znać wartości funkcji aproksymowanej w węzłach Czebyszewa.\\
+Możliwe (alternatywne) rozwiązania:
+\begin{itemize}
+    \item mierzyć w węzłach Czebyszewa
+    \item     mierzyć wystarczająco  gęsto
+    \item użyć aproksymacji wielomiami Czebyszewa w "złych" punktach, ale z dobranymi wagami mówiącymi o jakości tych punktów. 
+\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
-\begin{frame}{Aproksymacja wielomianami Czebyszewa}
-    Aproksymacja jednostajna: $min!sup_{x \in [a,b]}|F(x)-f(x)|$ \newline
+\begin{frame}{Aproksymacja wielomianami Czebyszewa (p. ciągły)}
+    Aproksymacja jednostajna: $minsup_{x \in [a,b]}|F(x)-f(x)|$ \newline
     Baza $T_i(x)$ wygodna, bo $T_i(x)$ - równomierne w $[-1,1]$ \\
     \vspace{0.5cm}
     Pierwszy sposób (podobnie jak w metodzie  szeregów potęgowych):
@@ -184,7 +211,7 @@ Z warunku ortogonalności znikają wszystkie składniki $\sum_{j=0}^{n}$ poza $j
     z $c_j$ wyznaczonymi z warunku ortogonalności w przypadku ciągłym
     $$F(x) = \sum_{j=0}^{\infty}c_jT_j(x)    \bigg\arrowvert \cdot\frac{T_i(x)}{\sqrt{1-x^2}}  \bigg\arrowvert \int_{-1}^{1}dx$$
     \begin{tabular}{ll}
-        $c_0 = \frac{1}{\pi}\int_{-1}^{1}\frac{F(x)T_i(x)dx}{\sqrt{1-x^2}}$ &
+        $c_0 = \frac{1}{\pi}\int_{-1}^{1}\frac{F(x)T_0(x)dx}{\sqrt{1-x^2}}$ &
         $c_i = \frac{2}{\pi}\int_{-1}^{1}\frac{F(x)T_i(x)dx}{\sqrt{1-x^2}}, i=1,..,n$
     \end{tabular}
 
@@ -195,7 +222,7 @@ Z warunku ortogonalności znikają wszystkie składniki $\sum_{j=0}^{n}$ poza $j
     $$T_{n,k}(x) = \frac{\sum_{i=0}^{n}a_iT_i(x)}{\sum_{i=0}^{k}b_iT_i(x)}$$
     o $a_i$, $b_i$ dobranych tak, licznik wyrażenia  
      $$F(x)-T_{n,k}(x) = \frac{\big[\sum_{j=0}^{\infty}c_jT_j(x)\big] \cdot \big[\sum_{i=0}^{k}b_iT_i(x)\big] - \sum_{i=0}^{n}a_iT_i(x)}{\sum_{i=0}^{k}b_iT_i(x)}$$
-     był równy  kombinacji liniowych wielomianów Czebyszewa o wskaźnikach większych od k+n. \\
+     był równy  kombinacji liniowej wielomianów Czebyszewa o wskaźnikach większych od k+n. \\
      
      Dla zainteresowanych:
     \url{https://pl.wikibooks.org/wiki/Metody_numeryczne_fizyki/Aproksymacja}

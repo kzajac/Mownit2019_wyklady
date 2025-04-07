@@ -50,10 +50,10 @@ DO 2 t = 1, MAXIT$\qquad\qquad\qquad\qquad\qquad (\approx 100,1000)$
     DO 1 p= 1,n
     DO 1 p= 1,n
         IF ( MOD(p+q,2) .EQ. MOD(t,2)) THEN
-          Residual = $a_{p,q}\phi_{p,q-1}+b_{p,1}\phi_{p,q+1}+c_{p,q}\phi_{p-1,q}+$
+          Residual = $a_{p,q}\phi_{p,q-1}+b_{p,q}\phi_{p,q+1}+c_{p,q}\phi_{p-1,q}+$
                      $d_{p,q}\phi_{p+1,q}+e_{p,q}\phi_{p,q}-f_{p,q}$
           Norm = Norm + (Residual)$^2$
-                 $\phi_{p,q}=\phi_{p_q}-\omega*$Residual$/e_{p,q}$
+                 $\phi_{p,q}=\phi_{p,q}-\omega*$Residual$/e_{p,q}$
           ENDIF
     1 CONTINUE
 (*) $\omega=1.0/(1.0-0.25\rho^2\omega)$
@@ -63,7 +63,6 @@ DO 2 t = 1, MAXIT$\qquad\qquad\qquad\qquad\qquad (\approx 100,1000)$
 \end{lstlisting}
  % \hfill\hfill Zadanie: Przećwiczyć na lab.
 \end{frame}
-
 \begin{frame}{}
   \begin{block}{Uwagi do algorytmu}
     \begin{itemize}
@@ -75,5 +74,23 @@ DO 2 t = 1, MAXIT$\qquad\qquad\qquad\qquad\qquad (\approx 100,1000)$
     \end{itemize}
   \end{block}
 \end{frame}
+\begin{frame}{Najczęściej stosowane normy - przypomnienie}
+\begin{itemize}
+    \item  norma taksówkowa $$\|\vec{x}\|_1 = \sum_{i=1}^n |x_i|$$
+\item norma Euklidesowa $$\|\vec{x}\|_2 = \sqrt{\sum_{i=1}^n x_i^2} $$
+\item norma maksymalna 
+$$\|\vec{x}\|_\infty = \max_{i=1,\dots,n} |x_i|$$
+\end{itemize}
+\end{frame}
+\begin{frame}{Kryteria stopu dla metod iteracyjnych}
+\begin{itemize}
+    \item kryterium rezydualne $\|A \vec{x}^{(i)} - \vec{b}\| < \epsilon$ 
+    \item kryterium rezydualne wariant względny $\frac{\|A\mathbf{x}^{(i)} - \mathbf{b}\|}{\|\mathbf{b}\|} \leq \epsilon$  
+    \item zmiana między iteracjami $\|\vec{x}^{(i)} - \vec{x}^{(i-1)}\|\leq \epsilon$  
+    \item zmiana między iteracjami wariant względny 
+    $\frac{\|\mvec{x}^{(i)} - \mvec{x}^{(i-1)}\|}{\|\mvec{x}^{(i)}\|} \leq \epsilon$  
+\end{itemize}
+\end{frame}
+
 
 

@@ -55,12 +55,13 @@ $G$, $H$ -- wyznaczone dla aktualnego $x$ (z $P$, $P'$, $P''$)
     $$a = \frac{n}{G \pm \sqrt{(n-1)(nH-G^2)}}$$
   \end{block}
 
-  \textbf{Zadanie:} Sprawdzić
+ % \textbf{Zadanie:} Sprawdzić
 
   \begin{itemize}
     \item $a$ -- odległość od szukanego pierwiastka. Bierzemy rozwiązanie dające mniejsze $a$,
     \item $a$ może być zespolone -- metoda ,,sama z siebie'' zaczyna przeszukiwać $\mathbb{C}$,
     \item Rozpoczynamy od przybliżenia $x$, potem $(x-a)$, itd. aż do osiągnięcia żądanej bliskości.
+    $$x_{i+1}=x_i-a$$
   \end{itemize}
 \end{frame}
 
@@ -68,7 +69,7 @@ $G$, $H$ -- wyznaczone dla aktualnego $x$ (z $P$, $P'$, $P''$)
   \begin{block}{}
     \begin{description}
       \item[Zaleta:] Dla $P(x)$ o współczynnikach rzeczywistych -- zbieżna niezależnie od wyboru początkowego $x$.
-      \item[Wada:] Potrzebne $P$, $P'$, $P''$ w każdym kroku.
+      \item[Wada:] Potrzebne $P$, $P'$, $P''$ w każdym kroku (ale to wielomiany, więc łatwe)
     \end{description}
   \end{block}
 
