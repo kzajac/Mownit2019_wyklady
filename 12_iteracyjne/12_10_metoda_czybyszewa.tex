@@ -83,12 +83,19 @@ $$\|\vec{x}\|_\infty = \max_{i=1,\dots,n} |x_i|$$
 \end{itemize}
 \end{frame}
 \begin{frame}{Kryteria stopu dla metod iteracyjnych}
+Najważniejsze typy:
 \begin{itemize}
     \item kryterium rezydualne $\|A \vec{x}^{(i)} - \vec{b}\| < \epsilon$ 
     \item kryterium rezydualne wariant względny $\frac{\|A\mathbf{x}^{(i)} - \mathbf{b}\|}{\|\mathbf{b}\|} \leq \epsilon$  
     \item zmiana między iteracjami $\|\vec{x}^{(i)} - \vec{x}^{(i-1)}\|\leq \epsilon$  
     \item zmiana między iteracjami wariant względny 
     $\frac{\|\mvec{x}^{(i)} - \mvec{x}^{(i-1)}\|}{\|\mvec{x}^{(i)}\|} \leq \epsilon$  
+\end{itemize}
+Cechy:
+\begin{itemize}
+\item kryterium rezydualne jest kosztowniejsze obliczeniowo, nie daje dobrej informacji, gdy macierz jest źle uwarunkowana
+\item kryterium róznic między iteracjami jest tańsze obliczeniowo, ale  może zawodzić w przypadku powolnej zbieżności (stagnacja)
+\item kryterium mieszane (róznice pomiędzy iteracjami, a potem rezydualne)
 \end{itemize}
 \end{frame}
 
