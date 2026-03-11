@@ -391,7 +391,7 @@ $$
 	   \medskip\\
 	   \emph{Uogólnienie na n-D:}\\
 	    $g \rightarrow \vec{g}$, $G$ - macierz 2-ich poch (inaczej hesjan  H).;
-	   $F(\vec X) = a + \vec{g}^T \cdot \vec{x} + \frac{1}{2} \vec{x}^T G$ tylko dla $G$ dod. określonej
+	   $F(\vec X) = a + \vec{g}^T \cdot \vec{x} + \frac{1}{2} \vec{x}^T G \vec{x}$ tylko dla $G$ dod. określonej
 	    ma sens krok do:
 	  $	\vec{x} = - G^{-1} \cdot \vec{g}$
 	$$\vec{x_{i+1}} = \vec{x_i} - G^{-1} \cdot \vec{g} $$
@@ -690,7 +690,7 @@ W minimalizacji użyteczne są wektory sprzężone
   \begin{itemize}
   \item Uczenie maszynowe
   \url{https://www.ruder.io/optimizing-gradient-descent/}
-     \item Minimalizacja za pomocą kompiterów kwantowych \url{https://pennylane.ai/qml/demos/tutorial_quantum_natural_gradient.html}
+     \item Minimalizacja za pomocą kompiterów kwantowych \url{https://pennylane.ai/qml/demos/tutorial_quantum_natural_gradient}
      \item Scipy notes (dobry przegląd referencji) \url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html}
      \item Scipy lectures \url{https://scipy-lectures.org/advanced/mathematical_optimization}
   \end{itemize}

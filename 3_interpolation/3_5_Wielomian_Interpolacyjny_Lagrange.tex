@@ -178,6 +178,11 @@ Zastosowanie twierdzenia Rolle'a:
 $$\begin{array}{ll}
 0=g^{(n+1)}(\displaystyle \eta)= \\
 f^{(n+1)}(\eta)-\underbrace{P_{n}^{(n+1)}(\eta)}_{=0}-[f(\tilde{x})-P_{n}(\tilde{x})]\frac{d^{n+1}}{dt^{n+1}} \left \{\prod_{i=0}^{n}\frac{t-x_{i}}{\tilde{x}-x_{i}} \right \}_{t=\eta}  \end{array}$$
+$$\begin{array}{ll}
+0=f^{(n+1)}(\eta)-[f(\tilde{x})-P_{n}(\tilde{x})]\frac{d^{n+1}}{dt^{n+1}} \left \{\prod_{i=0}^{n}\frac{t-x_{i}}{\tilde{x}-x_{i}} \right \}_{t=\eta}  \end{array}$$
+$$\begin{array}{ll}
+f^{(n+1)}(\eta)=[f(\tilde{x})-P_{n}(\tilde{x})]\frac{d^{n+1}}{dt^{n+1}} \left \{\prod_{i=0}^{n}\frac{t-x_{i}}{\tilde{x}-x_{i}} \right \}_{t=\eta}  \end{array}$$
+
 
 
  \end{frame}
@@ -189,7 +194,16 @@ $\displaystyle \prod_{i=0}^{n}\frac{t-x_{i}}{\tilde{x}-x_{i}}=\frac{t^{n+1}}{\pr
 $$
 f^{(n+1)}(\eta)=[f(\tilde{x})-P_{n}(\tilde{x})]\frac{(n+1)!}{\prod_{i=0}^{n}(\tilde{x}-x_{i})}
 $$
-gdzie $\tilde{x}$ jest dowolnym $x\ne x_i$ \\
+$$
+[f(\tilde{x})-P_{n}(\tilde{x})]\frac{(n+1)!}{\prod_{i=0}^{n}(\tilde{x}-x_{i})}=f^{(n+1)}(\eta)
+$$
+po przekształceniach: \\
+$$
+f(\tilde{x})=P_{n}(\tilde{x})+\frac{f^{(n+1)}(\eta)}{(n+1)!}
+\prod_{i=0}^{n}(x-x_{i})
+$$
+gdzie $\tilde{x}$ jest dowolnym $x\ne x_i$, ale $\eta$ zależy od 
+$\tilde{x}$ \\
 \vspace{0.5cm}
 \textbf{Błąd interpolacji Lagrange'a:}
 %\begin{gather*}

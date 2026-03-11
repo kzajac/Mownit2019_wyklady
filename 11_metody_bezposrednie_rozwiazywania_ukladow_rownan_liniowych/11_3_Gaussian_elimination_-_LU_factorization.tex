@@ -1,5 +1,25 @@
 \section{Gaussian elimination-LU factorization}
-
+\begin{frame}{Faktoryzacja LU }
+Zaleta: mając $A=L\cdot U\rightarrow $ dla dowolnego $b$
+$$
+A\cdot x=b
+$$
+Czyli:
+$$
+L\cdot(U\cdot \mathrm{x})=b
+$$
+Możemy więc rozwiązać dwa równania, ale z macierzami trójkątnymi (podstawianie wsteczne):
+$$
+L\cdot z=b\ (*)
+$$
+$$
+U\cdot x=z\ (**)
+$$
+\begin{center}
+$(*)z_{1}=\displaystyle \frac{b_{1}}{l_{11}};z_{i}=\frac{1}{l_{ii}}\cdot(b_{i}-\sum_{j=1}^{i-1}l_{ij}\cdot z_{j})$ , $i=2$, 3, . . . , $n$
+\end{center}
+$(**)x_{n}=\displaystyle \frac{z_{n}}{u_{nn}};x_{i}=\frac{1}{u_{ii}}\cdot(z_{i}-\sum_{j=i+1}^{n}u_{ij}\cdot x_{j})$ , $i=n-1, n-2$, . . . , 1
+\end{frame}
 \begin{frame}{Eliminacja Gaussa - jeszcze raz}
 1 etap:
 $$
